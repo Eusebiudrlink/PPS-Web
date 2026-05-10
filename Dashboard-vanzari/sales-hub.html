@@ -480,13 +480,14 @@
 
       <div class="commission-calc">
         <div class="commission-card">
-          <p class="commission-label">Total estimat lunar</p>
+          <p class="commission-label">Câștigul tău</p>
           <p class="commission-total" id="commTotal">—</p>
-          <p class="commission-sub" id="commSub">Introdu vânzările brute pentru a vedea câștigul</p>
+          <p class="commission-sub" id="commSub">Introdu cât ai vândut luna asta (suma totală cu TVA)</p>
 
           <div class="commission-input-block">
+            <p class="commission-input-label">💼 Cât ai vândut luna asta? <span>(suma totală facturată, cu TVA)</span></p>
             <div class="commission-input-row">
-              <input type="text" id="commInput" inputmode="numeric" placeholder="ex: 87500" autocomplete="off" />
+              <input type="text" id="commInput" inputmode="numeric" placeholder="ex: 87.500" autocomplete="off" />
               <span class="commission-lei">lei</span>
             </div>
             <input type="range" id="commSlider" min="0" max="250000" step="1000" value="0" />
@@ -506,6 +507,15 @@
           <button class="commission-details-btn" id="commDetailsBtn">
             📊 Vezi detalii · tranșe procente & praguri bonus
           </button>
+        </div>
+      </div>
+
+      <!-- QUICK REFERENCE: ce înseamnă în practică -->
+      <div class="commission-quickref">
+        <div class="qref-icon">💡</div>
+        <div class="qref-body">
+          <p class="qref-eyebrow">Ca să ai o idee</p>
+          <p class="qref-line"><span class="qref-action">Vinzi o tabără</span> <span class="qref-arrow">→</span> <strong class="qref-amount">~ 250 ron</strong> comision</p>
         </div>
       </div>
 
