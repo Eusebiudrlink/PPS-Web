@@ -11,6 +11,7 @@ PRODUCTS: {
     price: '4.500 lei', discounted: '3.850 lei cu -15%',
     location: 'Zona Brașov', capacity: 'Max 48 copii/serie', shortDates: '9 serii · iun-aug',
     productPageUrl: 'https://pasaportpentrusucces.ro/tabere/tabara-incredere-in-sine-adolescenti/',
+    videoUrl: 'https://drive.google.com/file/d/1JQffO5LXh6mjrx5dUp0GxyjwoYhhYAz7/view',
 
     whatIsIt: 'Primul nivel din sistemul nostru de competențe pentru GenZ și Alpha. Copilul învață să se înțeleagă pe sine, să-și gestioneze emoțiile, să comunice, să facă față la bullying, să aibă încredere în el și mai mult curaj în situații reale. E baza pentru tot ce urmează: comunicare, relații, vocație, leadership.',
 
@@ -1435,18 +1436,18 @@ PRODUCTS: {
 },
 
 SCRIPTS: [
-  { title: 'Deschiderea apelului', phase: 'setter', phaseLabel: 'Setter',
-    quote: 'Bună ziua! Mă numesc [Numele tău] și sun din partea Pașaport pentru Succes. V-ați înscris recent pentru informații despre programele noastre pentru adolescenți. Aveți 3 minute să vă spun pe scurt ce oferim și să văd dacă are sens o discuție mai lungă?',
+  { title: 'Deschiderea apelului', phase: 'sales', phaseLabel: 'Apel',
+    quote: 'Bună ziua! Mă numesc [Numele tău] și sun din partea Pașaport pentru Succes. V-ați înscris recent pentru informații despre programele noastre pentru adolescenți. Aveți 3 minute să vă spun pe scurt ce oferim și să văd cum vă pot ajuta?',
     note: 'Tonul e cald, nu recitat. Nu întrebi dacă ai deranjat — prezumi că e ok și treci la subiect.' },
-  { title: 'Calificare — 3 întrebări cheie', phase: 'setter', phaseLabel: 'Setter',
+  { title: 'Calificare — 3 întrebări cheie', phase: 'sales', phaseLabel: 'Apel',
     quote: '1. Ce vârstă are copilul? 2. Ce v-a atras la PPS — ați văzut ceva specific sau v-a recomandat cineva? 3. Care e lucrul pe care ați vrea cel mai mult să se schimbe la el/ea în perioada asta?',
     note: 'Nu întrebi toate odată. Le pui natural, ascultând răspunsul înainte de următoarea.' },
-  { title: 'Pasarea către closer', phase: 'setter', phaseLabel: 'Setter',
-    quote: 'Pe baza a ce mi-ați spus, cred că tabăra de [produs] se potrivește foarte bine. Vreau să vă conectez cu [Adina/Alex] care poate să vă explice detaliile complete. Când aveți 20 de minute în cursul săptămânii?',
-    note: 'Nu dai toate detaliile tu. Rolul tău e să califici și să programezi — nu să vinzi singur.' },
-  { title: 'Descoperire reală', phase: 'closer', phaseLabel: 'Closer',
-    quote: 'Colega mea mi-a spus că [notița din Podio]. Vreau să înțeleg mai bine înainte să vă propun ceva — spuneți-mi mai multe despre [problema identificată]. Cum arată asta în viața de zi cu zi a copilului?',
-    note: 'Pornești de la notițele setterului. Arăți că i-ai ascultat — nu îi pui din nou aceleași întrebări.' },
+  { title: 'Descoperire reală', phase: 'sales', phaseLabel: 'Apel',
+    quote: 'Înțeleg din ce mi-ați spus că [problema identificată]. Vreau să înțeleg mai bine înainte să vă propun ceva — cum arată asta în viața de zi cu zi a copilului? Ce se întâmplă concret?',
+    note: 'Nu pitch-ui imediat. Pune întrebări specifice pentru a înțelege contextul real al familiei.' },
+  { title: 'Escaladare către Adina sau Dana', phase: 'escalate', phaseLabel: 'Escaladare',
+    quote: 'Apreciez foarte mult discuția noastră. Cred că [Adina/Dana] poate să vă explice mai în detaliu și să vă răspundă la întrebări specifice. Când aveți 20 de minute în cursul săptămânii ca să vorbiți cu ea?',
+    note: 'Folosește DOAR când lead-ul are potențial mare dar simți că nu poți închide tu. Nu e procedură standard — e excepție pentru lead-uri sensibile.' },
   { title: 'Obiecție: „e scump"', phase: 'objection', phaseLabel: 'Obiecție',
     quote: 'Înțeleg că investiția contează. În această perioadă (mai 2026) avem o ofertă de -10% valabilă până la sfârșitul lunii. Dar dincolo de preț: ce ar fi cel mai important pentru voi să vedeți schimbat la copil în perioada următoare?',
     note: 'Nu spui „aceasta e reducerea maximă". Redirectezi spre valoare și spre problema lor reală.' },
@@ -1456,16 +1457,44 @@ SCRIPTS: [
   { title: 'Obiecție: „nu cred că vrea să meargă"', phase: 'objection', phaseLabel: 'Obiecție',
     quote: 'E o îngrijorare normală. Mulți copii ezită înainte, dar pleacă mulțumiți și cer să revină. Ați vrea să vă trimit 2-3 testimoniale de la copii care au avut aceeași ezitare?',
     note: 'Numerele sunt reale — verifică-le în materialele de la Adina înainte. Nu inventa procente.' },
-  { title: 'Închidere blândă', phase: 'closer', phaseLabel: 'Closer',
+  { title: 'Închidere blândă', phase: 'sales', phaseLabel: 'Apel',
     quote: 'Având în vedere ce mi-ați spus, cred că tabăra de [produs] e cea mai potrivită. Avem locuri în seria [data]. Cum facem mai departe — vă trimit acum link-ul de înscriere sau preferați să vorbim cu copilul mai întâi?',
     note: 'Oferi două opțiuni clare, ambele pozitive. Nu „vreți sau nu vreți" — ci „cum facem".' },
 ],
 
 PARENT_RESOURCES: [
-  { icon: 'ti-heart', emoji: '💚', title: 'Povești reale (testimoniale)',
+  { emoji: '💚', title: 'Povești reale (testimoniale)',
     desc: 'Pagina cu povești reale de la părinți și adolescenți care au trecut prin programele PPS. Cel mai puternic combustibil pentru ezitare — trimite-l înainte sau după apel.',
     link: 'https://pasaportpentrusucces.ro/povesti-reale/',
     cta: 'Deschide pagina' },
+  { emoji: '🏞️', title: 'Pagina principală PPS',
+    desc: 'Pagina de start a site-ului. Pentru părinții care vor să exploreze tot ecosistemul PPS, nu doar un produs.',
+    link: 'https://pasaportpentrusucces.ro/incepe-aici/',
+    cta: 'Deschide pagina' },
+  { emoji: '🗺️', title: 'Traseul adolescentului prin PPS',
+    desc: 'Cele 4 niveluri PPS prezentate pentru părinți. Util când părintele vrea să înțeleagă „cum se leagă totul".',
+    link: 'https://pasaportpentrusucces.ro/traseul-adolescentului/',
+    cta: 'Deschide pagina' },
+],
+
+// Ghiduri PDF pentru părinți (separate de webinarii și WhatsApp)
+GHIDURI_PARINTI: [
+  { emoji: '📘', title: 'Ce spui când nu mai știi ce să spui',
+    desc: 'Ghid practic pentru părinți cu adolescenți cu care comunicarea e blocată. Formulări concrete, situații tipice.',
+    link: 'https://drive.google.com/file/d/1ss7lR6Jl64dTf_JL7vGTVOk2Bn0t2JlW/view',
+    when: 'Trimite părinților care spun „nu mai pot vorbi cu el" sau „nu știu ce să-i spun"' },
+  { emoji: '🎯', title: '4 talente și puncte forte',
+    desc: 'Ghid pentru părinți care vor să descopere punctele forte reale ale copilului lor — dincolo de note și performanță școlară.',
+    link: 'https://drive.google.com/file/d/1cx4vD5IUJ86-4YHgys9gC8xC6hhD3csB/view',
+    when: 'Trimite părinților interesați de Tabăra de Vocație sau care zic „nu știu la ce e bun"' },
+  { emoji: '🚪', title: '5 pași dacă e retras',
+    desc: 'Ghid pentru părinți cu adolescenți timizi, retrași sau care s-au închis în ultima perioadă.',
+    link: 'https://drive.google.com/file/d/1xKGpfoHz34ycKFwJCKQEAYfNU1j8Vlwt/view',
+    when: 'Trimite părinților interesați de Tabăra de Încredere în Sine sau care zic „s-a închis în el"' },
+  { emoji: '🧠', title: 'De ce adolescentul tău reacționează așa',
+    desc: 'Ghid despre ce se întâmplă în creierul adolescentului. Ajută părintele să înțeleagă în loc să se înfurie.',
+    link: 'https://drive.google.com/file/d/1AIej5BOFQCEV5rjIKhLmTX2_Xh-9_Ug-/view',
+    when: 'Trimite părinților care zic „nu-l înțeleg" sau care au conflicte repetate acasă' },
 ],
 
 // Webinarii Simona — 3 înregistrări care se trimit părinților
@@ -1507,13 +1536,13 @@ WHATSAPP_MESSAGES: [
   {
     emoji: '📅',
     title: 'Confirmare apel programat',
-    when: 'În ziua dinaintea apelului cu closer-ul',
+    when: 'În ziua dinaintea apelului programat',
     text: 'Bună ziua, {NUME_PARINTE}! Vă confirm apelul de mâine la ora {ORA}. Va dura aprox 20-30 min. Pregătiți-vă să-mi povestiți puțin despre {NUME_COPIL} ca să vă pot ghida cel mai bine. Pe curând! [Numele tău]',
   },
   {
     emoji: '🎬',
     title: 'Trimitere webinar pentru context',
-    when: 'După calificare, când vrei să-i dai mai mult context înainte de apelul cu closer',
+    when: 'După calificare, când vrei să-i dai mai mult context înainte de apelul programat',
     text: 'Bună ziua, {NUME_PARINTE}! V-am pregătit acest webinar al Simonei despre {SUBIECT_RELEVANT} — vă va da o imagine bună despre cum gândim la PPS. {LINK_WEBINAR} · Îl puteți viziona când aveți timp, durează ~45 min. Vorbim curând!',
   },
   {
@@ -1608,11 +1637,11 @@ LEARNING_CONTENT: {
 },
 
 DEMO_CALLS: [
-  { quality: 'good', label: 'Bun', title: 'Conversie pe Tabăra Încredere', desc: 'Setter identifică rapid problema, califică corect și programează în 4 minute. Tonul e natural.', duration: '4:12' },
-  { quality: 'good', label: 'Bun', title: 'Closer pe lead recomandare', desc: 'Descoperire profundă, recomandă produsul potrivit (nu cel scump). Părintele mulțumește la final.', duration: '11:30' },
-  { quality: 'medium', label: 'Mediu', title: 'Apel cu follow-up necesar', desc: 'Lead interesat dar nehotărât. Setter depășește rolul și încearcă să vândă singur — pierde controlul.', duration: '8:45' },
-  { quality: 'learn', label: 'De învățat', title: 'Obiecție „e scump" nerezolvată', desc: 'Setterul s-a blocat. Ascultă și vezi cum NU se face — apoi compară cu scriptul aprobat.', duration: '6:33' },
-  { quality: 'learn', label: 'De învățat', title: 'Pitch fără descoperire', desc: 'Closer începe cu prezentarea înainte să întrebe nimic. Părintele se închide. Lecția: descoperire mereu prima.', duration: '7:22' },
+  { quality: 'good', label: 'Bun', title: 'Conversie pe Tabăra Încredere', desc: 'Sellerul identifică rapid problema, califică corect și închide în 4 minute. Tonul e natural.', duration: '4:12' },
+  { quality: 'good', label: 'Bun', title: 'Apel pe lead de recomandare', desc: 'Descoperire profundă, recomandă produsul potrivit (nu cel scump). Părintele mulțumește la final.', duration: '11:30' },
+  { quality: 'medium', label: 'Mediu', title: 'Apel cu follow-up necesar', desc: 'Lead interesat dar nehotărât. Sellerul forțează închiderea în loc să asculte — pierde controlul.', duration: '8:45' },
+  { quality: 'learn', label: 'De învățat', title: 'Obiecție „e scump" nerezolvată', desc: 'Sellerul s-a blocat. Ascultă și vezi cum NU se face — apoi compară cu scriptul aprobat.', duration: '6:33' },
+  { quality: 'learn', label: 'De învățat', title: 'Pitch fără descoperire', desc: 'Sellerul începe cu prezentarea înainte să întrebe nimic. Părintele se închide. Lecția: descoperire mereu prima.', duration: '7:22' },
 ],
 
 // LIMBAJ COMUN — meta-ghid Simona

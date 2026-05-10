@@ -1,5 +1,43 @@
 // PPS Sales Hub — logica aplicației
-const { PRODUCTS, SCRIPTS, PARENT_RESOURCES, WEBINARII, WHATSAPP_MESSAGES, LEARNING_CONTENT, DEMO_CALLS, LIMBAJ } = window.SALES_DATA;
+const { PRODUCTS, SCRIPTS, PARENT_RESOURCES, WEBINARII, WHATSAPP_MESSAGES, GHIDURI_PARINTI, LEARNING_CONTENT, DEMO_CALLS, LIMBAJ } = window.SALES_DATA;
+
+// ============= INTRO SPLASH (video logo · prima vizită) =============
+(function initIntroSplash(){
+  const STORAGE_KEY = 'pps-intro-shown-v1';
+  const splash = document.getElementById('introSplash');
+  const video = document.getElementById('introSplashVideo');
+  const skip = document.getElementById('introSplashSkip');
+  if (!splash || !video) return;
+
+  // Dacă a mai fost văzut sau localStorage e blocat, sări peste.
+  let alreadyShown = false;
+  try { alreadyShown = !!localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  if (alreadyShown) return;
+
+  // Afișează splash-ul
+  splash.hidden = false;
+  // Pornește video-ul (autoplay e mut, deci politica browser-ului permite)
+  const playPromise = video.play();
+  if (playPromise && playPromise.catch) playPromise.catch(() => {});
+
+  let closed = false;
+  function close() {
+    if (closed) return;
+    closed = true;
+    splash.classList.add('fading');
+    try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+    setTimeout(() => { splash.hidden = true; video.pause(); }, 550);
+  }
+  video.addEventListener('ended', close);
+  skip.addEventListener('click', close);
+  // ESC închide
+  document.addEventListener('keydown', function escClose(e){
+    if (e.key === 'Escape' && !closed) { close(); document.removeEventListener('keydown', escClose); }
+  });
+  // Fallback: dacă video nu se încarcă în 8 sec, închide automat
+  video.addEventListener('error', () => setTimeout(close, 200));
+  setTimeout(() => { if (!closed && video.readyState < 2) close(); }, 8000);
+})();
 
 const PAGE_TITLES = {
   'acasa': 'Acasă',
@@ -10,7 +48,7 @@ const PAGE_TITLES = {
   'parinti': 'Resurse pentru părinți',
   'invatare': 'Învățare · onboarding',
   'instrumente': 'Instrumente',
-  'politici': 'Politici de reduceri',
+  'politici': 'Reguli Reduceri',
   'ajutor': 'Cere ajutor',
 };
 
@@ -229,7 +267,10 @@ function renderProductDetail(key) {
     <div class="product-meta-strip">
       <div><span class="meta-label">📍 Locație</span><span class="meta-value">${p.location}</span></div>
       <div><span class="meta-label">👥 Capacitate</span><span class="meta-value">${p.capacity}</span></div>
-      ${p.productPageUrl ? `<div style="margin-left:auto;"><a href="${p.productPageUrl}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:8px 14px; border-radius:20px; font-size:12px; font-weight:700; text-decoration:none;">🔗 Pagina pe site →</a></div>` : ''}
+      <div style="margin-left:auto; display:flex; gap:8px; flex-wrap:wrap;">
+        ${p.videoUrl ? `<a href="${p.videoUrl}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:rgba(196,98,45,0.2); border:1px solid rgba(196,98,45,0.4); color:var(--accent); padding:8px 14px; border-radius:20px; font-size:12px; font-weight:700; text-decoration:none;">🎬 Video tabără →</a>` : ''}
+        ${p.productPageUrl ? `<a href="${p.productPageUrl}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:8px 14px; border-radius:20px; font-size:12px; font-weight:700; text-decoration:none;">🔗 Pagina pe site →</a>` : ''}
+      </div>
     </div>
     <div class="product-subtabs">
       <button class="active" data-subtab="esential"><i class="ti ti-bookmark"></i> Esențial</button>
@@ -329,6 +370,23 @@ function renderResources() {
   });
 }
 
+function renderGhiduri() {
+  const container = document.getElementById('ghiduriGrid');
+  if (!container || !GHIDURI_PARINTI) return;
+  container.innerHTML = GHIDURI_PARINTI.map(g => `
+    <article class="ghid-card">
+      <div class="ghid-emoji">${g.emoji || '📘'}</div>
+      <h4>${g.title}</h4>
+      <p class="ghid-desc">${g.desc}</p>
+      <div class="ghid-when"><strong>Când îl trimiți:</strong> ${g.when}</div>
+      <div class="ghid-actions">
+        <a href="${g.link}" target="_blank" rel="noopener" class="ghid-btn">Deschide PDF →</a>
+        <button class="copy-btn" data-link="${g.link}">Copiază link</button>
+      </div>
+    </article>
+  `).join('');
+}
+
 function renderWhatsApp() {
   const container = document.getElementById('whatsappGrid');
   if (!container || !WHATSAPP_MESSAGES) return;
@@ -422,7 +480,7 @@ function renderLimbaj() {
     </div>
 
     <!-- 3 variante PPS în 10 sec -->
-    <h3 class="section-title">Cum explicăm PPS în 10 secunde</h3>
+    <h3 class="section-title"><span class="sec-emoji">⚡</span> Cum explicăm PPS în 10 secunde</h3>
     <p style="font-size:13px; color:var(--text2); margin-bottom:14px;">Trei variante. Alegi în funcție de tipul de părinte cu care vorbești.</p>
     <div class="variants-grid">
       ${L.ppsIn10Sec.map(v => `
@@ -434,7 +492,7 @@ function renderLimbaj() {
     </div>
 
     <!-- Cele 4 niveluri PPS -->
-    <h3 class="section-title">Structura PPS · 4 niveluri</h3>
+    <h3 class="section-title"><span class="sec-emoji">🪜</span> Structura PPS · 4 niveluri</h3>
     <p style="font-size:13px; color:var(--text2); margin-bottom:14px;">Simplu. Fără complicații. Nu intrăm în detalii dacă nu e nevoie.</p>
     <div class="niveluri-grid">
       ${L.niveluriPPS.map(n => `
@@ -447,30 +505,32 @@ function renderLimbaj() {
     </div>
 
     <!-- Diferența față de tabere -->
-    <h3 class="section-title">Cum explicăm diferența față de „tabere"</h3>
+    <h3 class="section-title"><span class="sec-emoji">🆚</span> Cum explicăm diferența față de „tabere"</h3>
     <div class="diff-block">
       <div class="nu">${L.diferentaTabere.nu}</div>
       ${L.diferentaTabere.da.map(d => `<div class="da">${d}</div>`).join('')}
     </div>
 
     <!-- Competențe traduse -->
-    <h3 class="section-title">Cum traducem „competențele" pe limba părinților</h3>
+    <h3 class="section-title"><span class="sec-emoji">🔄</span> Cum traducem „competențele" pe limba părinților</h3>
     <p style="font-size:13px; color:var(--text2); margin-bottom:14px;">Nu folosim concepte abstracte. Folosim exemple concrete pe care părintele le recunoaște.</p>
     <div class="diff-block" style="margin-bottom:16px;">
       <strong style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--danger); font-weight:700; display:block; margin-bottom:10px;">NU folosim aceste concepte abstracte</strong>
       ${L.competenteTraduse.nu.map(n => `<div class="nu" style="font-style:normal;">${n}</div>`).join('')}
     </div>
     <div class="competente-table">
-      ${Object.entries(L.competenteTraduse.da).map(([cat, items]) => `
+      ${Object.entries(L.competenteTraduse.da).map(([cat, items]) => {
+        const catEmoji = { 'Emoțional': '😊', 'Social': '👥', 'Mental': '🧠', 'Acțiune': '🎬' }[cat] || '✨';
+        return `
         <div class="competente-cat">
-          <strong>${cat}</strong>
+          <strong><span class="cat-emoji">${catEmoji}</span>${cat}</strong>
           <ul>${items.map(i => `<li>„${i}"</li>`).join('')}</ul>
         </div>
-      `).join('')}
+      `;}).join('')}
     </div>
 
     <!-- Cum vorbim despre probleme -->
-    <h3 class="section-title">Cum vorbim despre PROBLEME (fără să speriem)</h3>
+    <h3 class="section-title"><span class="sec-emoji">⚠️</span> Cum vorbim despre PROBLEME (fără să speriem)</h3>
     <div class="diff-block">
       ${L.cumVorbimDespreProbleme.nu.map(n => `<div class="nu">„${n}"</div>`).join('')}
       ${L.cumVorbimDespreProbleme.da.map(d => `<div class="da">„${d}"</div>`).join('')}
@@ -481,7 +541,7 @@ function renderLimbaj() {
     </div>
 
     <!-- Formula problema → soluție -->
-    <h3 class="section-title">Formula problemă → soluție</h3>
+    <h3 class="section-title"><span class="sec-emoji">🧩</span> Formula problemă → soluție</h3>
     <div class="formula-box">
       <div class="label">Formula standard</div>
       <p style="font-style:italic; font-size:15px; line-height:1.6;">„${L.formulaProblemaSolutie.formula}"</p>
@@ -492,20 +552,20 @@ function renderLimbaj() {
     </div>
 
     <!-- Cum vorbim despre tabără -->
-    <h3 class="section-title">Cum vorbim despre TABĂRĂ</h3>
+    <h3 class="section-title"><span class="sec-emoji">🏕️</span> Cum vorbim despre TABĂRĂ</h3>
     <div class="fraze-cheie">
       ${L.cumVorbimDespreTabara.map(f => `<div class="fraza-item">„${f}"</div>`).join('')}
     </div>
 
     <!-- Comunitate -->
-    <h3 class="section-title">Cum introducem COMUNITATEA</h3>
+    <h3 class="section-title"><span class="sec-emoji">🤝</span> Cum introducem COMUNITATEA</h3>
     <p style="font-size:13px; color:var(--text2); margin-bottom:14px;">Fără să exagerăm.</p>
     <div class="fraze-cheie">
       ${L.comunitate.map(f => `<div class="fraza-item">„${f}"</div>`).join('')}
     </div>
 
     <!-- Cum vorbim despre PREȚ -->
-    <h3 class="section-title">Cum vorbim despre PREȚ</h3>
+    <h3 class="section-title"><span class="sec-emoji">💰</span> Cum vorbim despre PREȚ</h3>
     <div class="callout danger" style="margin-bottom:14px;">
       <strong>Regulă</strong>
       <p>${L.cumVorbimDespreaPret.rule}</p>
@@ -526,7 +586,7 @@ function renderLimbaj() {
     <p style="font-size:12px; color:var(--text2); font-style:italic; margin-top:8px;">${L.cumVorbimDespreaPret.note}</p>
 
     <!-- Formula obiecții -->
-    <h3 class="section-title">Cum gestionăm OBIECȚIILE (formula de bază)</h3>
+    <h3 class="section-title"><span class="sec-emoji">🛡️</span> Cum gestionăm OBIECȚIILE (formula de bază)</h3>
     <div class="callout danger" style="margin-bottom:14px;">
       <strong>Regulă</strong>
       <p>${L.formulaObiectii.rule}</p>
@@ -542,20 +602,20 @@ function renderLimbaj() {
     </div>
 
     <!-- Ce NU spunem (NICIODATĂ) -->
-    <h3 class="section-title">Ce NU spunem (foarte important)</h3>
+    <h3 class="section-title"><span class="sec-emoji">🚫</span> Ce NU spunem (foarte important)</h3>
     <div class="nu-block" style="margin-bottom:0;">
       <strong>Echipa trebuie să evite</strong>
       <ul>${L.ceNuSpunem.map(n => `<li>${n}</li>`).join('')}</ul>
     </div>
 
     <!-- Fraze cheie de memorat -->
-    <h3 class="section-title">Fraze cheie pentru echipă (de memorat)</h3>
+    <h3 class="section-title"><span class="sec-emoji">🔑</span> Fraze cheie pentru echipă (de memorat)</h3>
     <div class="fraze-cheie">
       ${L.frazeCheie.map(f => `<div class="fraza-item">„${f}"</div>`).join('')}
     </div>
 
     <!-- Esența -->
-    <h3 class="section-title">Mesajul emoțional · esența PPS</h3>
+    <h3 class="section-title"><span class="sec-emoji">❤️</span> Mesajul emoțional · esența PPS</h3>
     <div class="lang-hero" style="background-image: linear-gradient(135deg, #2D6B5A 0%, #1A4035 100%);">
       <p class="label" style="color:#FFE5C4;">Dacă ar fi o singură idee</p>
       <blockquote>„${L.esenta}"</blockquote>
@@ -563,16 +623,117 @@ function renderLimbaj() {
   `;
 }
 
-function calcKPI() {
-  const g = id => parseFloat(document.querySelector(`[data-kpi="${id}"]`)?.value) || 0;
-  const calls = g('setterCalls'), contacts = g('setterContacts'), bookings = g('setterBookings'), noshow = g('setterNoShow');
-  document.getElementById('contactRate').textContent = calls ? Math.round((contacts/calls)*100) + '%' : '0%';
-  document.getElementById('bookingRate').textContent = contacts ? Math.round((bookings/contacts)*100) + '%' : '0%';
-  document.getElementById('showRate').textContent = bookings ? Math.round(((bookings-noshow)/bookings)*100) + '%' : '0%';
-  const held = g('closerHeld'), closed = g('closerClosed'), rev = g('closerRevenue'), fw = g('followWins');
-  document.getElementById('closeRate').textContent = held ? Math.round((closed/held)*100) + '%' : '0%';
-  document.getElementById('revenuePerCall').textContent = held ? Math.round(rev/held).toLocaleString('ro') + ' lei' : '0 lei';
-  document.getElementById('followRate').textContent = held ? Math.round((fw/held)*100) + '%' : '0%';
+// CALCULATOR COMISION (înlocuiește vechiul KPI)
+const COMM_TVA = 0.21;
+const COMM_BAZA = 3000;
+const COMM_BAZA_MIN = 50000;
+const COMM_TRANSE = [
+  { de: 0, la: 50000, pct: 3 },
+  { de: 50000, la: 100000, pct: 4 },
+  { de: 100000, la: 150000, pct: 5 },
+  { de: 150000, la: Infinity, pct: 7 },
+];
+const COMM_PRAGURI = [
+  { min: 70000, val: 500 },
+  { min: 120000, val: 1000 },
+  { min: 160000, val: 2000 },
+];
+const COMM_FMT = n => Math.round(n).toLocaleString('ro-RO') + ' lei';
+
+function commUpdateTrack(el) {
+  const pct = (el.value - el.min) / (el.max - el.min) * 100;
+  el.style.background = `linear-gradient(to right, var(--accent) ${pct}%, rgba(255,255,255,0.08) ${pct}%)`;
+}
+
+function commCalc(vBrut) {
+  const vNet = vBrut / (1 + COMM_TVA);
+  const bazaOk = vBrut >= COMM_BAZA_MIN;
+  const baza = bazaOk ? COMM_BAZA : 0;
+
+  let com = 0;
+  COMM_TRANSE.forEach(t => {
+    if (vNet <= t.de) return;
+    const ap = Math.min(vNet, t.la === Infinity ? vNet : t.la) - t.de;
+    com += ap * t.pct / 100;
+  });
+
+  let bonus = 0;
+  COMM_PRAGURI.forEach(p => {
+    if (vBrut >= p.min) bonus = p.val;
+  });
+
+  const total = baza + com + bonus;
+
+  document.getElementById('commWarn').classList.toggle('show', !bazaOk && vBrut > 0);
+  document.getElementById('commBaza').textContent = bazaOk ? COMM_FMT(COMM_BAZA) : '0 lei';
+  document.getElementById('commBaza').className = bazaOk ? '' : 'red';
+  document.getElementById('commCom').textContent = vBrut > 0 ? COMM_FMT(com) : '—';
+  document.getElementById('commCom').className = vBrut > 0 ? 'green' : '';
+  document.getElementById('commBon').textContent = bonus > 0 ? COMM_FMT(bonus) : (vBrut > 0 ? '0 lei' : '—');
+  document.getElementById('commBon').className = bonus > 0 ? 'green' : '';
+
+  if (vBrut === 0) {
+    document.getElementById('commTotal').textContent = '—';
+    document.getElementById('commSub').textContent = 'Introdu vânzările brute pentru a vedea câștigul';
+  } else {
+    document.getElementById('commTotal').textContent = COMM_FMT(total);
+    const parts = [];
+    parts.push('Bază ' + (bazaOk ? COMM_FMT(COMM_BAZA) : '0 lei (sub prag)'));
+    parts.push('comision ' + COMM_FMT(com));
+    if (bonus > 0) parts.push('bonus ' + COMM_FMT(bonus));
+    document.getElementById('commSub').textContent = parts.join(' + ');
+  }
+}
+
+function initCommissionCalc() {
+  const slider = document.getElementById('commSlider');
+  const input = document.getElementById('commInput');
+  if (!slider || !input) return;
+
+  slider.addEventListener('input', function() {
+    const val = +this.value;
+    commUpdateTrack(this);
+    if (document.activeElement !== input) {
+      input.value = val > 0 ? val : '';
+    }
+    commCalc(val);
+  });
+
+  input.addEventListener('input', function() {
+    const raw = this.value.replace(/[^\d]/g, '');
+    const val = raw === '' ? 0 : parseInt(raw, 10);
+    const sliderVal = Math.min(val, +slider.max);
+    slider.value = sliderVal;
+    commUpdateTrack(slider);
+    commCalc(val);
+  });
+
+  input.addEventListener('blur', function() {
+    if (this.value.trim() === '' || this.value === '0') {
+      this.value = '';
+      slider.value = 0;
+      commUpdateTrack(slider);
+      commCalc(0);
+    }
+  });
+
+  // Drawer pentru detalii bonus
+  document.getElementById('commDetailsBtn')?.addEventListener('click', () => {
+    document.getElementById('commDrawerOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('commDrawerClose')?.addEventListener('click', closeCommDrawer);
+  document.getElementById('commDrawerOverlay')?.addEventListener('click', e => {
+    if (e.target.id === 'commDrawerOverlay') closeCommDrawer();
+  });
+
+  commUpdateTrack(slider);
+  commCalc(0);
+}
+
+function closeCommDrawer() {
+  document.getElementById('commDrawerOverlay').classList.remove('active');
+  document.body.style.overflow = '';
 }
 
 // ============= NAVIGATION =============
@@ -620,10 +781,7 @@ document.querySelectorAll('#page-invatare .tabs button').forEach(btn => {
   });
 });
 
-// KPI
-document.querySelectorAll('[data-kpi]').forEach(input => {
-  input.addEventListener('input', calcKPI);
-});
+// (KPI vechi eliminat — folosim calculatorul de comision oficial)
 
 // Search dezactivat — eliminat din topbar
 
@@ -640,8 +798,9 @@ document.addEventListener('keydown', e => {
 renderProductGrid('all');
 renderScripts();
 renderResources();
+renderGhiduri();
 renderWhatsApp();
 renderCalls();
 renderLimbaj();
-calcKPI();
+initCommissionCalc();
 wireUpMaterialCards();
