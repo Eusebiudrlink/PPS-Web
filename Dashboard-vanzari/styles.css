@@ -403,6 +403,63 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .review-notice strong { color: #633806; font-weight: 700; }
 .review-notice em { color: #844F0B; font-style: normal; font-weight: 600; }
 
+/* COMING SOON · pentru secțiunile încă în pregătire */
+.status-pill.soon {
+  background: rgba(196, 98, 45, 0.12);
+  color: var(--accent);
+  border-color: rgba(196, 98, 45, 0.25);
+}
+.coming-soon-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #FFF1E0 0%, #FFE3C2 100%);
+  border: 1px solid rgba(196, 98, 45, 0.22);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin: 0 0 22px;
+  max-width: 720px;
+}
+.coming-soon-banner .cs-icon {
+  flex-shrink: 0;
+  font-size: 26px;
+  line-height: 1;
+}
+.coming-soon-banner .cs-text strong {
+  display: block;
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.coming-soon-banner .cs-text p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.coming-soon-wrap {
+  opacity: 0.42;
+  filter: grayscale(0.55);
+  pointer-events: none;
+  user-select: none;
+  position: relative;
+}
+.tab-soon-badge {
+  display: inline-block;
+  font-size: 9px;
+  background: rgba(196, 98, 45, 0.15);
+  color: var(--accent);
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 /* HERO (Acasă) — verde PPS, mai vie dar liniștită */
 .hero {
   background: var(--accent2);

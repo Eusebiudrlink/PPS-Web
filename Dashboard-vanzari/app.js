@@ -49,7 +49,7 @@ const PAGE_TITLES = {
   'invatare': 'Învățare · onboarding',
   'instrumente': 'Instrumente',
   'politici': 'Reguli Reduceri',
-  'comanda': 'Marchează lead',
+  'comanda': 'Gestionează Leads',
   'ajutor': 'Cere ajutor',
 };
 
@@ -456,7 +456,9 @@ function wireUpMaterialCards() {
 }
 
 function renderCalls() {
-  document.getElementById('callLibrary').innerHTML = DEMO_CALLS.map(c => `
+  const el = document.getElementById('callLibrary');
+  if (!el) return; // Bibliotecă apeluri eliminată — guard ca init-ul să nu mai crape
+  el.innerHTML = DEMO_CALLS.map(c => `
     <div class="call-card">
       <div class="call-card-top">
         <span>${c.duration}</span>
@@ -626,18 +628,16 @@ function renderLimbaj() {
 
 // CALCULATOR COMISION (înlocuiește vechiul KPI)
 const COMM_TVA = 0.21;
-const COMM_BAZA = 3000;
-const COMM_BAZA_MIN = 50000;
 const COMM_TRANSE = [
-  { de: 0, la: 50000, pct: 3 },
-  { de: 50000, la: 100000, pct: 4 },
-  { de: 100000, la: 150000, pct: 5 },
+  { de: 0, la: 50000, pct: 4 },
+  { de: 50000, la: 100000, pct: 5 },
+  { de: 100000, la: 150000, pct: 6 },
   { de: 150000, la: Infinity, pct: 7 },
 ];
 const COMM_PRAGURI = [
-  { min: 70000, val: 500 },
-  { min: 120000, val: 1000 },
-  { min: 160000, val: 2000 },
+  { min: 70000, val: 250 },
+  { min: 120000, val: 250 },
+  { min: 160000, val: 500 },
 ];
 const COMM_FMT = n => Math.round(n).toLocaleString('ro-RO') + ' lei';
 
@@ -648,8 +648,6 @@ function commUpdateTrack(el) {
 
 function commCalc(vBrut) {
   const vNet = vBrut / (1 + COMM_TVA);
-  const bazaOk = vBrut >= COMM_BAZA_MIN;
-  const baza = bazaOk ? COMM_BAZA : 0;
 
   let com = 0;
   COMM_TRANSE.forEach(t => {
@@ -660,14 +658,11 @@ function commCalc(vBrut) {
 
   let bonus = 0;
   COMM_PRAGURI.forEach(p => {
-    if (vBrut >= p.min) bonus = p.val;
+    if (vBrut >= p.min) bonus += p.val;
   });
 
-  const total = baza + com + bonus;
+  const total = com + bonus;
 
-  document.getElementById('commWarn').classList.toggle('show', !bazaOk && vBrut > 0);
-  document.getElementById('commBaza').textContent = bazaOk ? COMM_FMT(COMM_BAZA) : '0 lei';
-  document.getElementById('commBaza').className = bazaOk ? '' : 'red';
   document.getElementById('commCom').textContent = vBrut > 0 ? COMM_FMT(com) : '—';
   document.getElementById('commCom').className = vBrut > 0 ? 'green' : '';
   document.getElementById('commBon').textContent = bonus > 0 ? COMM_FMT(bonus) : (vBrut > 0 ? '0 lei' : '—');
@@ -679,7 +674,6 @@ function commCalc(vBrut) {
   } else {
     document.getElementById('commTotal').textContent = COMM_FMT(total);
     const parts = [];
-    parts.push('Bază ' + (bazaOk ? COMM_FMT(COMM_BAZA) : '0 lei (sub prag)'));
     parts.push('comision ' + COMM_FMT(com));
     if (bonus > 0) parts.push('bonus ' + COMM_FMT(bonus));
     document.getElementById('commSub').textContent = parts.join(' + ');
@@ -763,6 +757,16 @@ document.body.addEventListener('click', e => {
   switchPage(target.dataset.page);
 });
 
+// Smooth scroll pentru ancore interne (ex: card „Marchează interacțiune" → formular Podio)
+document.body.addEventListener('click', e => {
+  const a = e.target.closest('[data-scroll-to]');
+  if (!a) return;
+  e.preventDefault();
+  const id = a.getAttribute('data-scroll-to');
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 // Product filters
 document.querySelectorAll('.product-filters button').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -801,7 +805,6 @@ renderScripts();
 renderResources();
 renderGhiduri();
 renderWhatsApp();
-renderCalls();
 renderLimbaj();
 initCommissionCalc();
 wireUpMaterialCards();

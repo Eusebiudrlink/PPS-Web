@@ -36,14 +36,14 @@
     <button class="nav-item" data-page="invatare"><span class="nav-emoji">📚</span> Învățare <span class="badge-mini">4 capitole</span></button>
     <button class="nav-item" data-page="instrumente"><span class="nav-emoji">🛠️</span> Instrumente</button>
     <button class="nav-item" data-page="politici"><span class="nav-emoji">📋</span> Reguli Reduceri</button>
-    <button class="nav-item" data-page="comanda"><span class="nav-emoji">📞</span> Marchează lead</button>
+    <button class="nav-item" data-page="comanda"><span class="nav-emoji">📋</span> Gestionează Leads</button>
     <button class="nav-item" data-page="ajutor"><span class="nav-emoji">🆘</span> Cere ajutor</button>
   </nav>
 
   <div class="sidebar-panel">
     <p class="label">Campanie activă</p>
     <strong>Mai 2026 · -10%</strong>
-    <span>Reducere pentru tabere staționare. Verifică formulările aprobate înainte să suni.</span>
+    <span>Reducere pentru tabere. Verifică formulările aprobate înainte să suni.</span>
   </div>
 </aside>
 
@@ -65,19 +65,14 @@
         <p>Produse, scripturi, limbaj comun, politici, resurse pentru părinți și contactele echipei. Pentru zilele când ai 80 de apeluri și nu ai timp să cauți.</p>
         <div class="hero-stats">
           <div class="hero-stat"><strong>12</strong><span>produse active</span></div>
-          <div class="hero-stat"><strong>8</strong><span>scripturi & obiecții</span></div>
           <div class="hero-stat"><strong>-10%</strong><span>campania mai</span></div>
         </div>
-      </div>
-      <div class="review-notice">
-        <div class="review-icon">⚠️</div>
-        <div><strong>Statistici orientative</strong> — cifrele de mai sus reflectă numărul de produse și scripturi din dashboard, NU sunt KPI oficial al echipei. <em>De confirmat și actualizat de Sebi/Simona</em> când lansăm oficial.</div>
       </div>
 
       <div class="campaign-banner">
         <i class="ti ti-discount-2"></i>
         <div class="text">
-          <strong>Campania activă (mai 2026): reducere -10% la toate taberele staționare.</strong>
+          <strong>Campania activă (mai 2026): reducere -10% la toate taberele.</strong>
           <p>Rate disponibile (+200 lei taxă administrativă). Reducerile NU se cumulează — verifică formulările aprobate.</p>
         </div>
         <a href="#" data-page="politici">Vezi regulile →</a>
@@ -86,10 +81,10 @@
       <h3 class="section-title">Acces rapid în timpul apelului</h3>
       <div class="quick-actions">
         <button class="quick-action" data-page="comanda" style="border-color:var(--accent); background:var(--accent-bg);">
-          <div class="quick-action-icon">📞</div>
+          <div class="quick-action-icon">📋</div>
           <div class="quick-action-text">
-            <strong>Marchează lead apelat</strong>
-            <span>Pentru calleri · formular Podio</span>
+            <strong>Gestionează Leads</strong>
+            <span>Marchează interacțiune + lista leads Podio</span>
           </div>
         </button>
         <button class="quick-action" data-page="limbaj">
@@ -117,7 +112,7 @@
           <div class="quick-action-icon">📅</div>
           <div class="quick-action-text">
             <strong>Calendar tabere 2026</strong>
-            <span>8 tabere staționare + online</span>
+            <span>8 tabere + online</span>
           </div>
         </button>
         <button class="quick-action" data-page="parinti">
@@ -150,7 +145,7 @@
 
       <div class="product-filters">
         <button class="active" data-filter="all">Toate</button>
-        <button data-filter="tabere">Tabere staționare</button>
+        <button data-filter="tabere">Tabere</button>
         <button data-filter="online">Programe online</button>
         <button data-filter="cursuri">Cursuri & cărți</button>
       </div>
@@ -181,12 +176,18 @@
           <h1>Scripturi & gestionare obiecții</h1>
           <p class="intro">Nu sunt texte de citit. Sunt structuri pe care le faci tale. Tonul tău, cuvintele aprobate.</p>
         </div>
+        <span class="status-pill soon">Va urma</span>
       </div>
-      <div class="review-notice">
-        <div class="review-icon">⚠️</div>
-        <div><strong>De verificat de echipă</strong> — textele scripturilor și obiecțiilor sunt redactate de AI. Înainte de a le folosi în apel, <em>Adina sau Simona trebuie să le valideze și să le ajusteze</em> cu formulările folosite real în PPS.</div>
+      <div class="coming-soon-banner">
+        <div class="cs-icon">⏳</div>
+        <div class="cs-text">
+          <strong>Va urma</strong>
+          <p>Scripturile și obiecțiile sunt în pregătire. Textele de mai jos sunt orientative — vor fi disponibile în versiunea finală.</p>
+        </div>
       </div>
-      <div class="script-board" id="scriptBoard"></div>
+      <div class="coming-soon-wrap">
+        <div class="script-board" id="scriptBoard"></div>
+      </div>
     </section>
 
     <!-- LIMBAJ COMUN -->
@@ -220,13 +221,18 @@
       <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Patru ghiduri scurte pe teme specifice. Trimite-l pe cel potrivit situației părintelui — nu pe toate odată.</p>
       <div class="ghiduri-grid" id="ghiduriGrid"></div>
 
-      <h3 class="section-title" style="margin-top:36px">💬 Mesaje WhatsApp · template-uri gata de copiat</h3>
+      <h3 class="section-title" style="margin-top:36px">💬 Mesaje WhatsApp · template-uri gata de copiat <span class="tab-soon-badge">Va urma</span></h3>
       <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Mesaje scrise pe care le copiezi, înlocuiești {NUME_PARINTE} cu numele real, și trimiți.</p>
-      <div class="review-notice">
-        <div class="review-icon">⚠️</div>
-        <div><strong>De verificat de echipă</strong> — template-urile sunt redactate de AI. <em>Adina sau Simona trebuie să le citească și să le ajusteze</em> înainte de a fi trimise părinților.</div>
+      <div class="coming-soon-banner">
+        <div class="cs-icon">⏳</div>
+        <div class="cs-text">
+          <strong>Va urma</strong>
+          <p>Template-urile WhatsApp sunt în pregătire. Textele de mai jos sunt orientative — vor fi finalizate în următoarea iterație.</p>
+        </div>
       </div>
-      <div class="whatsapp-grid" id="whatsappGrid"></div>
+      <div class="coming-soon-wrap">
+        <div class="whatsapp-grid" id="whatsappGrid"></div>
+      </div>
 
       <h3 class="section-title" style="margin-top:36px">📚 Alte resurse oficiale</h3>
       <div class="resource-grid" id="resourceGrid"></div>
@@ -241,16 +247,11 @@
           <p class="intro">Parcurs liniar pentru primele 2 săptămâni. La final faci primul apel real. Veteranii pot reciti orice capitol când vor refresh.</p>
         </div>
       </div>
-      <div class="review-notice">
-        <div class="review-icon">⚠️</div>
-        <div><strong>De verificat de echipă</strong> — conținutul celor 4 capitole este redactat de AI pe baza notelor interne. <em>Sebi sau Adina trebuie să-l revizuiască și să-l ajusteze</em> înainte ca un seller nou să-l folosească ca onboarding oficial.</div>
-      </div>
-
       <div class="tabs">
         <button class="active" data-tab="bunvenit"><span class="step-num">1</span> Bun venit & Cultura</button>
         <button data-tab="journey"><span class="step-num">2</span> Customer Journey</button>
-        <button data-tab="cumsuni"><span class="step-num">3</span> Cum suni</button>
-        <button data-tab="comanda"><span class="step-num">4</span> Comandă & raportare</button>
+        <button data-tab="cumsuni"><span class="step-num">3</span> Cum suni <span class="tab-soon-badge">Va urma</span></button>
+        <button data-tab="comanda"><span class="step-num">4</span> Comandă & raportare <span class="tab-soon-badge">Va urma</span></button>
       </div>
 
       <!-- TAB 1: BUN VENIT & CULTURA -->
@@ -387,6 +388,14 @@
 
       <!-- TAB 3: CUM SUNI -->
       <div class="tab-content" id="tab-cumsuni">
+        <div class="coming-soon-banner">
+          <div class="cs-icon">⏳</div>
+          <div class="cs-text">
+            <strong>Va urma</strong>
+            <p>Capitolul „Cum suni" e în pregătire. Conținutul de mai jos este orientativ — va fi rafinat de Adina și Sebi înainte de lansarea oficială.</p>
+          </div>
+        </div>
+        <div class="coming-soon-wrap">
         <h3 class="section-title">Procesul unui apel · de la primul contact la închidere</h3>
         <p style="font-size:13px; color: var(--text2); margin-bottom: 18px; max-width: 720px;">La PPS, aceeași persoană sună, califică, descoperă și închide. Nu pasezi lead-ul. Singura excepție: dacă lead-ul are potențial mare și simți că nu poți închide, escaladezi la Adina sau Dana.</p>
 
@@ -439,10 +448,19 @@
             <span class="material-tag script">Mergi la Scripturi →</span>
           </div>
         </div>
+        </div>
       </div>
 
       <!-- TAB 4: COMANDĂ & RAPORTARE -->
       <div class="tab-content" id="tab-comanda">
+        <div class="coming-soon-banner">
+          <div class="cs-icon">⏳</div>
+          <div class="cs-text">
+            <strong>Va urma</strong>
+            <p>Capitolul „Comandă & raportare" e în pregătire. Materialele de mai jos sunt orientative — vor fi completate cu video-urile finale și fluxul exact Podio.</p>
+          </div>
+        </div>
+        <div class="coming-soon-wrap">
         <h3 class="section-title">🎥 Video-uri tutorial Podio · 👇 click pe card</h3>
         <p style="font-size:13px; color: var(--text2); margin-bottom: 14px; max-width: 720px;">Două video-uri scurte care îți arată concret cum lucrezi în Podio. Le urmărești o dată în onboarding și apoi de câte ori ai nevoie.</p>
         <div class="material-grid">
@@ -467,7 +485,7 @@
           </article>
           <article class="material-card" data-action="modal:comision">
             <strong>💰 Structura comisionului</strong>
-            <p>Bază 3.000 lei + comision progresiv 3-7% + bonus de prag până la 2.000 lei.</p>
+            <p>Comision progresiv 4-7% pe vânzări nete + bonus de prag cumulativ până la 1.000 lei.</p>
             <span class="material-tag pdf">Citește aici</span>
           </article>
           <article class="material-card" data-action="https://docs.google.com/document/d/1NvQYF4JOcR2cbGskk_j_2VfnQ3B2dAhE/edit">
@@ -486,6 +504,7 @@
             <span class="material-tag link">Mergi la Cere ajutor →</span>
           </article>
         </div>
+        </div>
       </div>
     </section>
 
@@ -495,12 +514,12 @@
         <div>
           <p class="eyebrow">Performance & învățare</p>
           <h1>Instrumente</h1>
-          <p class="intro">Calculator KPI pentru self-check zilnic și bibliotecă de apeluri reale comentate.</p>
+          <p class="intro">Calculator de comision pentru self-check zilnic + tools externe pentru înregistrare și transcript apeluri.</p>
         </div>
       </div>
 
-      <h3 class="section-title">💰 Calculator comision lunar</h3>
-      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Introduci vânzările brute ale lunii și vezi câștigul total: bază + comision progresiv + bonus de prag. Click pe „Vezi detalii" pentru tranșe și praguri.</p>
+      <h3 class="section-title">💰 Calculator comision lunar <span class="tab-soon-badge" style="background:var(--accent2-bg); color:var(--accent2); text-transform:uppercase;">Pentru caller</span></h3>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Calculator dedicat rolului de <strong>caller</strong>. Introduci vânzările brute ale lunii și vezi câștigul total: comision progresiv + bonus de prag. Click pe „Vezi detalii" pentru tranșe și praguri.</p>
 
       <div class="commission-calc">
         <div class="commission-card">
@@ -518,12 +537,7 @@
             <p class="commission-hint">← trage slider-ul sau tastează suma exactă →</p>
           </div>
 
-          <div class="commission-warn" id="commWarn">
-            ⚠ Sub 50.000 lei vânzări brute — <strong>baza fixă nu se acordă</strong> în această lună.
-          </div>
-
           <div class="commission-metrics">
-            <div class="commission-met"><span>Bază fixă</span><strong id="commBaza">—</strong></div>
             <div class="commission-met"><span>Comision</span><strong id="commCom" class="green">—</strong></div>
             <div class="commission-met"><span>Bonus prag</span><strong id="commBon" class="green">—</strong></div>
           </div>
@@ -531,15 +545,6 @@
           <button class="commission-details-btn" id="commDetailsBtn">
             📊 Vezi detalii · tranșe procente & praguri bonus
           </button>
-        </div>
-      </div>
-
-      <!-- QUICK REFERENCE: ce înseamnă în practică -->
-      <div class="commission-quickref">
-        <div class="qref-icon">💡</div>
-        <div class="qref-body">
-          <p class="qref-eyebrow">Ca să ai o idee</p>
-          <p class="qref-line"><span class="qref-action">Vinzi o tabără</span> <span class="qref-arrow">→</span> <strong class="qref-amount">~ 250 ron</strong> comision</p>
         </div>
       </div>
 
@@ -566,21 +571,7 @@
           </div>
           <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:10px 14px; border-radius:var(--radius-sm); font-size:13px; font-weight:600; text-decoration:none; margin-top:4px; justify-content:center;">Deschide Whisper →</a>
         </article>
-        <article class="resource-card">
-          <div class="res-icon">🔗</div>
-          <strong>Calculator oficial PPS</strong>
-          <p>Versiunea standalone a calculatorului de mai sus — link direct dacă vrei să o accesezi separat.</p>
-          <div class="copy-link">
-            <a href="https://pasaportpentrusucces.ro/wp-content/themes/hello-theme-child-master/integrari/job/tools/calculator_telesales_v4.html" target="_blank" rel="noopener" style="color:var(--text2); text-decoration:none; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">pasaportpentrusucces.ro/.../calculator</a>
-            <button class="copy-btn" data-link="https://pasaportpentrusucces.ro/wp-content/themes/hello-theme-child-master/integrari/job/tools/calculator_telesales_v4.html">Copiază</button>
-          </div>
-          <a href="https://pasaportpentrusucces.ro/wp-content/themes/hello-theme-child-master/integrari/job/tools/calculator_telesales_v4.html" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:10px 14px; border-radius:var(--radius-sm); font-size:13px; font-weight:600; text-decoration:none; margin-top:4px; justify-content:center;">Deschide pe site →</a>
-        </article>
       </div>
-
-      <h3 class="section-title">🎧 Bibliotecă apeluri · bune, medii, de învățat</h3>
-      <p style="font-size:13px; color: var(--text2); margin-bottom: 14px;">Înregistrări reale cu comentarii. Ascultă minim 2 pe săptămână.</p>
-      <div class="call-library" id="callLibrary"></div>
     </section>
 
     <!-- POLITICI -->
@@ -668,16 +659,35 @@
       </div>
     </section>
 
-    <!-- MARCHEAZĂ LEAD · formular Podio embed pentru calleri -->
+    <!-- GESTIONEAZĂ LEADS · formular Podio + lista leads + onboarding Podio -->
     <section class="page" id="page-comanda" data-search-area>
       <div class="page-header">
         <div>
-          <p class="eyebrow">Pentru calleri · după fiecare apel</p>
-          <h1>📞 Marchează interacțiune cu lead</h1>
-          <p class="intro">Ai vorbit cu un părinte. Înainte de următorul apel, completează formularul ca să marchezi interacțiunea în Podio — apoi closer-ul preia mai departe lead-ul calificat.</p>
+          <p class="eyebrow">Pentru calleri · înainte, în timpul și după apel</p>
+          <h1>📋 Gestionează Leads</h1>
+          <p class="intro">Marchează interacțiunile cu părinții pe care i-ai sunat și accesează lista completă de lead-uri din Podio.</p>
         </div>
-        <a href="https://podio.com/webforms/30400064/2609583" target="_blank" rel="noopener" class="status-pill" style="text-decoration:none;">Deschide pe Podio ↗</a>
+        <a href="https://podio.com/pasaport-pentru-success/sales/apps/leads" target="_blank" rel="noopener" class="status-pill" style="text-decoration:none;">Deschide lista pe Podio ↗</a>
       </div>
+
+      <!-- ACCES RAPID · două carduri principale -->
+      <h3 class="section-title">🚀 Acces rapid</h3>
+      <div class="material-grid">
+        <a href="https://podio.com/pasaport-pentru-success/sales/apps/leads" target="_blank" rel="noopener" class="material-card" style="text-decoration:none; color:inherit; border-color:var(--accent); background:var(--accent-bg);">
+          <strong>📊 Lista lead-uri în Podio</strong>
+          <p>Vezi toate lead-urile asignate ție, filtrează după status, prioritizează apelurile de azi. Sursa de adevăr pentru pipeline-ul tău.</p>
+          <span class="material-tag link">Deschide lista →</span>
+        </a>
+        <a href="#form-marcheaza" class="material-card" data-scroll-to="form-marcheaza" style="text-decoration:none; color:inherit;">
+          <strong>✏️ Marchează interacțiune</strong>
+          <p>Ai vorbit cu un părinte? Completează formularul de mai jos ca să marchezi apelul, notițele și next step-ul în Podio.</p>
+          <span class="material-tag script">Mergi la formular ↓</span>
+        </a>
+      </div>
+
+      <!-- FORMULAR PODIO · marcare interacțiune -->
+      <h3 class="section-title" id="form-marcheaza" style="margin-top:32px;">✏️ Marchează interacțiune cu lead</h3>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">După fiecare apel completează formularul de mai jos ca să marchezi interacțiunea în Podio. Dacă apare „refused to connect", deschide-l într-un tab nou.</p>
 
       <div class="podio-embed-wrap">
         <!-- BEGIN Podio web form -->
@@ -693,7 +703,24 @@
 
       <div class="review-notice" style="margin-top:20px;">
         <div class="review-icon">💡</div>
-        <div><strong>Sfat rapid:</strong> dacă formularul pare blocat sau apare „refused to connect", click pe <em>„Deschide pe Podio ↗"</em> din colț — se deschide într-un tab nou. După ce trimiți, revii aici pentru următorul apel.</div>
+        <div><strong>Sfat rapid:</strong> dacă formularul pare blocat sau apare „refused to connect", deschide-l într-un tab nou: <a href="https://podio.com/webforms/30400064/2609583" target="_blank" rel="noopener" style="color:var(--accent); font-weight:600;">Deschide formularul pe Podio ↗</a></div>
+      </div>
+
+      <!-- ONBOARDING PODIO · pentru cei fără cont sau fără acces -->
+      <h3 class="section-title" style="margin-top:36px;">🆕 Prima oară aici? Setează-ți accesul la Podio</h3>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Ca să poți marca interacțiuni și să vezi lista de lead-uri, ai nevoie de două lucruri: un cont Podio și acces la Workspace-ul <strong>04_Vanzari</strong>. Verifică pe rând pașii de mai jos.</p>
+
+      <div class="material-grid">
+        <article class="material-card" style="border-left:3px solid var(--accent);">
+          <strong>1️⃣ Nu ai încă un cont Podio?</strong>
+          <p>Creează-ți un cont gratuit pe Podio folosind <strong>adresa ta de email de la PPS</strong>. E ușor — durează 2 minute. După ce confirmi mail-ul, treci la pasul 2.</p>
+          <a href="https://podio.com/signup" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:10px 14px; border-radius:var(--radius-sm); font-size:13px; font-weight:600; text-decoration:none; margin-top:6px; justify-content:center;">Creează cont Podio →</a>
+        </article>
+        <article class="material-card" style="border-left:3px solid var(--accent2);">
+          <strong>2️⃣ Ai cont, dar nu ai acces la 04_Vanzari?</strong>
+          <p>Trimite un mail către <strong>comunicare@pasaportpentrusucces.ro</strong> cerând acces la Workspace-ul <strong>04_Vanzari</strong>. Menționează adresa cu care ți-ai făcut contul Podio.</p>
+          <a href="mailto:comunicare@pasaportpentrusucces.ro?subject=Cerere%20acces%20Workspace%2004_Vanzari%20%C3%AEn%20Podio&body=Bun%C4%83%2C%0A%0ASunt%20%5Bnumele%20t%C4%83u%5D%2C%20parte%20din%20echipa%20de%20v%C3%A2nz%C4%83ri%20PPS.%20Mi-am%20creat%20cont%20Podio%20cu%20adresa%20%5Badresa%20ta%5D%20%C8%99i%20a%C8%99%20avea%20nevoie%20de%20acces%20la%20Workspace-ul%2004_Vanzari%20ca%20s%C4%83%20pot%20marca%20interac%C8%9Biunile%20cu%20lead-urile.%0A%0AMul%C8%9Bumesc%21" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent2); color:white; padding:10px 14px; border-radius:var(--radius-sm); font-size:13px; font-weight:600; text-decoration:none; margin-top:6px; justify-content:center;">Trimite mail →</a>
+        </article>
       </div>
     </section>
 
@@ -759,26 +786,20 @@
     <div class="drawer-body">
 
       <div class="drawer-card">
-        <h4>💼 Bază fixă</h4>
-        <p class="big-num">3.000 lei</p>
-        <p class="rule">Se acordă DOAR dacă vânzările brute lunare ≥ <strong>50.000 lei</strong>.</p>
-      </div>
-
-      <div class="drawer-card">
         <h4>📈 Comision progresiv (din vânzări nete, fără TVA)</h4>
-        <div class="transa-row"><span>0 – 50.000 lei</span><strong>3%</strong></div>
-        <div class="transa-row"><span>50.000 – 100.000 lei</span><strong>4%</strong></div>
-        <div class="transa-row"><span>100.000 – 150.000 lei</span><strong>5%</strong></div>
+        <div class="transa-row"><span>0 – 50.000 lei</span><strong>4%</strong></div>
+        <div class="transa-row"><span>50.000 – 100.000 lei</span><strong>5%</strong></div>
+        <div class="transa-row"><span>100.000 – 150.000 lei</span><strong>6%</strong></div>
         <div class="transa-row"><span>Peste 150.000 lei</span><strong>7%</strong></div>
         <p class="rule" style="margin-top:10px;">Calculat progresiv pe tranșe — fiecare tranșă se aplică doar la suma din intervalul ei.</p>
       </div>
 
       <div class="drawer-card">
         <h4>🎯 Praguri bonus (pe vânzări brute)</h4>
-        <div class="prag-bonus"><div><span>Atingi 70.000 lei</span><strong>+ 500 lei</strong></div></div>
-        <div class="prag-bonus"><div><span>Atingi 120.000 lei</span><strong>+ 1.000 lei</strong></div></div>
-        <div class="prag-bonus"><div><span>Atingi 160.000 lei</span><strong>+ 2.000 lei</strong></div></div>
-        <p class="rule" style="margin-top:10px;">Bonusurile <strong>NU se cumulează</strong> — primești doar bonusul pragului celui mai înalt atins.</p>
+        <div class="prag-bonus"><div><span>Atingi 70.000 lei</span><strong>+ 250 lei</strong></div></div>
+        <div class="prag-bonus"><div><span>Atingi 120.000 lei</span><strong>+ 250 lei</strong></div></div>
+        <div class="prag-bonus"><div><span>Atingi 160.000 lei</span><strong>+ 500 lei</strong></div></div>
+        <p class="rule" style="margin-top:10px;">Bonusurile <strong>se cumulează</strong> — la 160.000 lei vânzări brute ai bonus total <strong>1.000 lei</strong>.</p>
       </div>
 
       <div class="drawer-card">
