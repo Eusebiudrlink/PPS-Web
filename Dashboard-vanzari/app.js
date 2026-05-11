@@ -49,6 +49,7 @@ const PAGE_TITLES = {
   'invatare': 'Învățare · onboarding',
   'instrumente': 'Instrumente',
   'politici': 'Reguli Reduceri',
+  'comanda': 'Marchează lead',
   'ajutor': 'Cere ajutor',
 };
 
