@@ -440,11 +440,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.5;
 }
 .coming-soon-wrap {
-  opacity: 0.42;
-  filter: grayscale(0.55);
-  pointer-events: none;
+  opacity: 0.35 !important;
+  filter: grayscale(1) blur(0.5px) !important;
+  pointer-events: none !important;
   user-select: none;
   position: relative;
+}
+.coming-soon-wrap * {
+  opacity: inherit;
+  filter: inherit;
 }
 .tab-soon-badge {
   display: inline-block;
@@ -2261,7 +2265,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 10px;
   margin-bottom: 10px;
 }
-#commInput {
+#commFixInput, #commProgInput {
   flex: 1;
   background: rgba(255,255,255,0.06);
   border: 1.5px solid rgba(255,255,255,0.12);
@@ -2275,11 +2279,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: border-color 0.15s;
   min-width: 0;
 }
-#commInput:focus { border-color: var(--accent); }
-#commInput::placeholder { color: rgba(247,245,240,0.3); font-size: 16px; font-weight: 400; }
+#commFixInput:focus, #commProgInput:focus { border-color: var(--accent); }
+#commFixInput::placeholder, #commProgInput::placeholder { color: rgba(247,245,240,0.3); font-size: 16px; font-weight: 400; }
 .commission-lei { font-size: 14px; color: rgba(247,245,240,0.6); white-space: nowrap; }
 
-#commSlider {
+#commFixSlider, #commProgSlider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
@@ -2290,7 +2294,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   cursor: grab;
   display: block;
 }
-#commSlider::-webkit-slider-thumb {
+#commFixSlider::-webkit-slider-thumb, #commProgSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 28px; height: 28px;
@@ -2301,8 +2305,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 0 0 3px rgba(196,98,45,0.3), 0 4px 12px rgba(0,0,0,0.4);
   transition: transform 0.1s;
 }
-#commSlider::-webkit-slider-thumb:active { transform: scale(1.1); cursor: grabbing; }
-#commSlider::-moz-range-thumb {
+#commFixSlider::-webkit-slider-thumb:active, #commProgSlider::-webkit-slider-thumb:active { transform: scale(1.1); cursor: grabbing; }
+#commFixSlider::-moz-range-thumb, #commProgSlider::-moz-range-thumb {
   width: 28px; height: 28px;
   border-radius: 50%;
   background: var(--accent);

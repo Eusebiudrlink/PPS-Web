@@ -626,13 +626,14 @@ function renderLimbaj() {
   `;
 }
 
-// CALCULATOR COMISION (înlocuiește vechiul KPI)
+// CALCULATOR COMISION CLOSER — 2 variante (4% fix + progresiv 4-7%)
 const COMM_TVA = 0.21;
+const COMM_FIX_PCT = 4; // procent fix pentru Closer (varianta simplă)
 const COMM_TRANSE = [
-  { de: 0, la: 50000, pct: 4 },
-  { de: 50000, la: 100000, pct: 5 },
-  { de: 100000, la: 150000, pct: 6 },
-  { de: 150000, la: Infinity, pct: 7 },
+  { de: 0, la: 50000, pct: 5 },
+  { de: 50000, la: 100000, pct: 6 },
+  { de: 100000, la: 150000, pct: 7 },
+  { de: 150000, la: Infinity, pct: 8 },
 ];
 const COMM_PRAGURI = [
   { min: 70000, val: 250 },
@@ -646,43 +647,61 @@ function commUpdateTrack(el) {
   el.style.background = `linear-gradient(to right, var(--accent) ${pct}%, rgba(255,255,255,0.08) ${pct}%)`;
 }
 
-function commCalc(vBrut) {
-  const vNet = vBrut / (1 + COMM_TVA);
+function commCalcBonus(vBrut) {
+  let bonus = 0;
+  COMM_PRAGURI.forEach(p => {
+    if (vBrut >= p.min) bonus += p.val;
+  });
+  return bonus;
+}
 
+function commCalcFix(vBrut) {
+  const vNet = vBrut / (1 + COMM_TVA);
+  const com = vNet * COMM_FIX_PCT / 100;
+  const bonus = commCalcBonus(vBrut);
+  commRenderResult('Fix', vBrut, com, bonus);
+}
+
+function commCalcProg(vBrut) {
+  const vNet = vBrut / (1 + COMM_TVA);
   let com = 0;
   COMM_TRANSE.forEach(t => {
     if (vNet <= t.de) return;
     const ap = Math.min(vNet, t.la === Infinity ? vNet : t.la) - t.de;
     com += ap * t.pct / 100;
   });
+  const bonus = commCalcBonus(vBrut);
+  commRenderResult('Prog', vBrut, com, bonus);
+}
 
-  let bonus = 0;
-  COMM_PRAGURI.forEach(p => {
-    if (vBrut >= p.min) bonus += p.val;
-  });
-
+function commRenderResult(suffix, vBrut, com, bonus) {
   const total = com + bonus;
+  const elCom = document.getElementById('comm' + suffix + 'Com');
+  const elBon = document.getElementById('comm' + suffix + 'Bon');
+  const elTotal = document.getElementById('comm' + suffix + 'Total');
+  const elSub = document.getElementById('comm' + suffix + 'Sub');
+  if (!elCom || !elBon || !elTotal || !elSub) return;
 
-  document.getElementById('commCom').textContent = vBrut > 0 ? COMM_FMT(com) : '—';
-  document.getElementById('commCom').className = vBrut > 0 ? 'green' : '';
-  document.getElementById('commBon').textContent = bonus > 0 ? COMM_FMT(bonus) : (vBrut > 0 ? '0 lei' : '—');
-  document.getElementById('commBon').className = bonus > 0 ? 'green' : '';
+  elCom.textContent = vBrut > 0 ? COMM_FMT(com) : '—';
+  elCom.className = vBrut > 0 ? 'green' : '';
+  elBon.textContent = bonus > 0 ? COMM_FMT(bonus) : (vBrut > 0 ? '0 lei' : '—');
+  elBon.className = bonus > 0 ? 'green' : '';
 
   if (vBrut === 0) {
-    document.getElementById('commTotal').textContent = '—';
-    document.getElementById('commSub').textContent = 'Introdu vânzările brute pentru a vedea câștigul';
+    elTotal.textContent = '—';
+    elSub.textContent = 'Introdu vânzările brute pentru a vedea câștigul';
   } else {
-    document.getElementById('commTotal').textContent = COMM_FMT(total);
+    elTotal.textContent = COMM_FMT(total);
     const parts = [];
     parts.push('comision ' + COMM_FMT(com));
     if (bonus > 0) parts.push('bonus ' + COMM_FMT(bonus));
-    document.getElementById('commSub').textContent = parts.join(' + ');
+    elSub.textContent = parts.join(' + ');
   }
 }
 
-function initCommissionCalc() {
-  const slider = document.getElementById('commSlider');
-  const input = document.getElementById('commInput');
+function initOneCommissionCalc(suffix, calcFn) {
+  const slider = document.getElementById('comm' + suffix + 'Slider');
+  const input = document.getElementById('comm' + suffix + 'Input');
   if (!slider || !input) return;
 
   slider.addEventListener('input', function() {
@@ -691,7 +710,7 @@ function initCommissionCalc() {
     if (document.activeElement !== input) {
       input.value = val > 0 ? val : '';
     }
-    commCalc(val);
+    calcFn(val);
   });
 
   input.addEventListener('input', function() {
@@ -700,7 +719,7 @@ function initCommissionCalc() {
     const sliderVal = Math.min(val, +slider.max);
     slider.value = sliderVal;
     commUpdateTrack(slider);
-    commCalc(val);
+    calcFn(val);
   });
 
   input.addEventListener('blur', function() {
@@ -708,26 +727,31 @@ function initCommissionCalc() {
       this.value = '';
       slider.value = 0;
       commUpdateTrack(slider);
-      commCalc(0);
+      calcFn(0);
     }
   });
 
   // Drawer pentru detalii bonus
-  document.getElementById('commDetailsBtn')?.addEventListener('click', () => {
-    document.getElementById('commDrawerOverlay').classList.add('active');
+  document.getElementById('comm' + suffix + 'DetailsBtn')?.addEventListener('click', () => {
+    document.getElementById('comm' + suffix + 'DrawerOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
   });
-  document.getElementById('commDrawerClose')?.addEventListener('click', closeCommDrawer);
-  document.getElementById('commDrawerOverlay')?.addEventListener('click', e => {
-    if (e.target.id === 'commDrawerOverlay') closeCommDrawer();
+  document.getElementById('comm' + suffix + 'DrawerClose')?.addEventListener('click', () => closeCommDrawer(suffix));
+  document.getElementById('comm' + suffix + 'DrawerOverlay')?.addEventListener('click', e => {
+    if (e.target.id === 'comm' + suffix + 'DrawerOverlay') closeCommDrawer(suffix);
   });
 
   commUpdateTrack(slider);
-  commCalc(0);
+  calcFn(0);
 }
 
-function closeCommDrawer() {
-  document.getElementById('commDrawerOverlay').classList.remove('active');
+function initCommissionCalc() {
+  initOneCommissionCalc('Fix', commCalcFix);
+  initOneCommissionCalc('Prog', commCalcProg);
+}
+
+function closeCommDrawer(suffix) {
+  document.getElementById('comm' + suffix + 'DrawerOverlay').classList.remove('active');
   document.body.style.overflow = '';
 }
 

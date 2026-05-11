@@ -6,7 +6,7 @@
 <title>Sales Hub · Pașaport pentru Succes</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260511d">
 </head>
 <body>
 
@@ -514,35 +514,65 @@
         <div>
           <p class="eyebrow">Performance & învățare</p>
           <h1>Instrumente</h1>
-          <p class="intro">Calculator de comision pentru self-check zilnic + tools externe pentru înregistrare și transcript apeluri.</p>
+          <p class="intro">Două calculatoare de comision — unul pentru <strong>Caller</strong> (4% fix), altul pentru <strong>Closer</strong> (progresiv 5–8%) + tools externe pentru înregistrare și transcript apeluri.</p>
         </div>
       </div>
 
-      <h3 class="section-title">💰 Calculator comision lunar <span class="tab-soon-badge" style="background:var(--accent2-bg); color:var(--accent2); text-transform:uppercase;">Pentru caller</span></h3>
-      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Calculator dedicat rolului de <strong>caller</strong>. Introduci vânzările brute ale lunii și vezi câștigul total: comision progresiv + bonus de prag. Click pe „Vezi detalii" pentru tranșe și praguri.</p>
+      <h3 class="section-title">💰 Calculator comision · 4% fix <span class="tab-soon-badge" style="background:var(--accent2-bg); color:var(--accent2); text-transform:uppercase;">Pentru Caller</span></h3>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Varianta pentru <strong>Caller</strong>: comision fix <strong>4% din vânzările nete</strong> + bonusuri de prag pe brut. Fără bază, fără tranșe.</p>
 
       <div class="commission-calc">
         <div class="commission-card">
           <p class="commission-label">Câștigul tău</p>
-          <p class="commission-total" id="commTotal">—</p>
-          <p class="commission-sub" id="commSub">Introdu cât ai vândut luna asta (suma totală cu TVA)</p>
+          <p class="commission-total" id="commFixTotal">—</p>
+          <p class="commission-sub" id="commFixSub">Introdu cât ai vândut luna asta (suma totală cu TVA)</p>
 
           <div class="commission-input-block">
             <p class="commission-input-label">💼 Cât ai vândut luna asta? <span>(suma totală facturată, cu TVA)</span></p>
             <div class="commission-input-row">
-              <input type="text" id="commInput" inputmode="numeric" placeholder="ex: 87.500" autocomplete="off" />
+              <input type="text" id="commFixInput" inputmode="numeric" placeholder="ex: 87.500" autocomplete="off" />
               <span class="commission-lei">lei</span>
             </div>
-            <input type="range" id="commSlider" min="0" max="250000" step="1000" value="0" />
+            <input type="range" id="commFixSlider" min="0" max="250000" step="1000" value="0" />
             <p class="commission-hint">← trage slider-ul sau tastează suma exactă →</p>
           </div>
 
           <div class="commission-metrics">
-            <div class="commission-met"><span>Comision</span><strong id="commCom" class="green">—</strong></div>
-            <div class="commission-met"><span>Bonus prag</span><strong id="commBon" class="green">—</strong></div>
+            <div class="commission-met"><span>Comision (4% fix)</span><strong id="commFixCom" class="green">—</strong></div>
+            <div class="commission-met"><span>Bonus prag</span><strong id="commFixBon" class="green">—</strong></div>
           </div>
 
-          <button class="commission-details-btn" id="commDetailsBtn">
+          <button class="commission-details-btn" id="commFixDetailsBtn">
+            📊 Vezi detalii · procent fix & praguri bonus
+          </button>
+        </div>
+      </div>
+
+      <h3 class="section-title" style="margin-top:36px;">💰 Calculator comision · progresiv 5–8% <span class="tab-soon-badge" style="background:var(--accent2-bg); color:var(--accent2); text-transform:uppercase;">Pentru Closer</span></h3>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:14px; max-width:720px;">Varianta pentru <strong>Closer</strong>: comision progresiv pe tranșe (5% / 6% / 7% / 8% din vânzările nete) + aceleași bonusuri de prag. Fără bază.</p>
+
+      <div class="commission-calc">
+        <div class="commission-card">
+          <p class="commission-label">Câștigul tău</p>
+          <p class="commission-total" id="commProgTotal">—</p>
+          <p class="commission-sub" id="commProgSub">Introdu cât ai vândut luna asta (suma totală cu TVA)</p>
+
+          <div class="commission-input-block">
+            <p class="commission-input-label">💼 Cât ai vândut luna asta? <span>(suma totală facturată, cu TVA)</span></p>
+            <div class="commission-input-row">
+              <input type="text" id="commProgInput" inputmode="numeric" placeholder="ex: 87.500" autocomplete="off" />
+              <span class="commission-lei">lei</span>
+            </div>
+            <input type="range" id="commProgSlider" min="0" max="250000" step="1000" value="0" />
+            <p class="commission-hint">← trage slider-ul sau tastează suma exactă →</p>
+          </div>
+
+          <div class="commission-metrics">
+            <div class="commission-met"><span>Comision progresiv</span><strong id="commProgCom" class="green">—</strong></div>
+            <div class="commission-met"><span>Bonus prag</span><strong id="commProgBon" class="green">—</strong></div>
+          </div>
+
+          <button class="commission-details-btn" id="commProgDetailsBtn">
             📊 Vezi detalii · tranșe procente & praguri bonus
           </button>
         </div>
@@ -776,21 +806,54 @@
   </div>
 </main>
 
-<!-- DRAWER LATERAL pentru detalii calculator comision -->
-<div class="drawer-overlay" id="commDrawerOverlay">
+<!-- DRAWER LATERAL pentru detalii calculator comision · 4% fix -->
+<div class="drawer-overlay" id="commFixDrawerOverlay">
   <aside class="drawer">
     <div class="drawer-header">
-      <h3>📊 Detalii comision · cum se calculează</h3>
-      <button id="commDrawerClose" class="modal-close" aria-label="Închide">✕</button>
+      <h3>📊 Detalii comision 4% fix · cum se calculează</h3>
+      <button id="commFixDrawerClose" class="modal-close" aria-label="Închide">✕</button>
+    </div>
+    <div class="drawer-body">
+
+      <div class="drawer-card">
+        <h4>📈 Comision fix (din vânzări nete, fără TVA)</h4>
+        <div class="transa-row"><span>Orice volum</span><strong>4%</strong></div>
+        <p class="rule" style="margin-top:10px;">Procent unic, indiferent de volum. Se aplică pe valoarea netă a vânzărilor.</p>
+      </div>
+
+      <div class="drawer-card">
+        <h4>🎯 Praguri bonus (pe vânzări brute)</h4>
+        <div class="prag-bonus"><div><span>Atingi 70.000 lei</span><strong>+ 250 lei</strong></div></div>
+        <div class="prag-bonus"><div><span>Atingi 120.000 lei</span><strong>+ 250 lei</strong></div></div>
+        <div class="prag-bonus"><div><span>Atingi 160.000 lei</span><strong>+ 500 lei</strong></div></div>
+        <p class="rule" style="margin-top:10px;">Bonusurile <strong>se cumulează</strong> — la 160.000 lei vânzări brute ai bonus total <strong>1.000 lei</strong>.</p>
+      </div>
+
+      <div class="drawer-card">
+        <h4>🧮 Cum se calculează vânzările nete</h4>
+        <p style="font-size:13px; color:var(--text2); line-height:1.6;">Vânzări brute (cu TVA 21%) ÷ 1.21 = vânzări nete</p>
+        <p style="font-size:13px; color:var(--text2); line-height:1.6; margin-top:6px;">Comisionul se aplică DOAR pe valoarea netă, NU pe brut.</p>
+      </div>
+
+    </div>
+  </aside>
+</div>
+
+<!-- DRAWER LATERAL pentru detalii calculator comision · progresiv 4-7% -->
+<div class="drawer-overlay" id="commProgDrawerOverlay">
+  <aside class="drawer">
+    <div class="drawer-header">
+      <h3>📊 Detalii comision progresiv · cum se calculează</h3>
+      <button id="commProgDrawerClose" class="modal-close" aria-label="Închide">✕</button>
     </div>
     <div class="drawer-body">
 
       <div class="drawer-card">
         <h4>📈 Comision progresiv (din vânzări nete, fără TVA)</h4>
-        <div class="transa-row"><span>0 – 50.000 lei</span><strong>4%</strong></div>
-        <div class="transa-row"><span>50.000 – 100.000 lei</span><strong>5%</strong></div>
-        <div class="transa-row"><span>100.000 – 150.000 lei</span><strong>6%</strong></div>
-        <div class="transa-row"><span>Peste 150.000 lei</span><strong>7%</strong></div>
+        <div class="transa-row"><span>0 – 50.000 lei</span><strong>5%</strong></div>
+        <div class="transa-row"><span>50.000 – 100.000 lei</span><strong>6%</strong></div>
+        <div class="transa-row"><span>100.000 – 150.000 lei</span><strong>7%</strong></div>
+        <div class="transa-row"><span>Peste 150.000 lei</span><strong>8%</strong></div>
         <p class="rule" style="margin-top:10px;">Calculat progresiv pe tranșe — fiecare tranșă se aplică doar la suma din intervalul ei.</p>
       </div>
 
@@ -823,7 +886,7 @@
   </div>
 </div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script src="data.js?v=20260511d"></script>
+<script src="app.js?v=20260511d"></script>
 </body>
 </html>
