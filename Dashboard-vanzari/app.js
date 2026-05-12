@@ -1,5 +1,5 @@
 // PPS Sales Hub — logica aplicației
-const { PRODUCTS, SCRIPTS, PARENT_RESOURCES, WEBINARII, WHATSAPP_MESSAGES, GHIDURI_PARINTI, LEARNING_CONTENT, DEMO_CALLS, LIMBAJ } = window.SALES_DATA;
+const { PRODUCTS, GHID_CALLER, GHID_CLOSER, PARENT_RESOURCES, WEBINARII, WHATSAPP_MESSAGES, GHIDURI_PARINTI, LEARNING_CONTENT, DEMO_CALLS, LIMBAJ } = window.SALES_DATA;
 
 // ============= INTRO SPLASH (video logo · prima vizită) =============
 (function initIntroSplash(){
@@ -43,7 +43,7 @@ const PAGE_TITLES = {
   'acasa': 'Acasă',
   'produse': 'Produse',
   'produs': 'Detaliu produs',
-  'scripturi': 'Scripturi & Obiecții',
+  'scripturi': 'Ghiduri Caller & Closer',
   'limbaj': 'Limbaj comun',
   'parinti': 'Resurse pentru părinți',
   'invatare': 'Învățare · onboarding',
@@ -59,10 +59,11 @@ function renderProductGrid(filter = 'all') {
   const grid = document.getElementById('productGrid');
   const items = Object.entries(PRODUCTS).filter(([k, p]) => filter === 'all' || p.category === filter);
   grid.innerHTML = items.map(([key, p]) => `
-    <div class="product-card" data-product-key="${key}">
+    <div class="product-card${p.comingSoon ? ' is-coming-soon' : ''}" data-product-key="${key}">
       <div class="product-card-thumb ${p.thumb}">
         <i class="ti ${p.icon}"></i>
         <span class="tag">${p.tag}</span>
+        ${p.comingSoon ? '<span class="card-coming-soon">Va urma</span>' : ''}
       </div>
       <div class="product-card-body">
         <h4>${p.name}</h4>
@@ -92,171 +93,11 @@ function renderProductDetail(key) {
   // helper to render a list as ul
   const ul = (items, cls = 'list-clean') => `<ul class="${cls}">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
 
-  // build benefit categories
-  const benefitsHtml = p.benefitsByCategory ? `
-    <div class="benefit-categories">
-      ${Object.entries(p.benefitsByCategory).map(([cat, items]) => `
-        <div class="benefit-cat">
-          <strong>${cat}</strong>
-          <ul>${items.map(i => `<li>${i}</li>`).join('')}</ul>
-        </div>
-      `).join('')}
-    </div>
-  ` : '';
-
-  // ---- TAB 1: ESENȚIAL ----
-  const tabEsential = `
-    <div class="subtab-content active" id="subtab-esential">
-      ${p.whatIsIt ? `
-        <h5>Ce este programul</h5>
-        <p style="font-size:14px; line-height:1.6; color:var(--text); margin-bottom:20px;">${p.whatIsIt}</p>
-      ` : ''}
-
-      ${p.strategicNote ? `
-        <div class="callout purple">
-          <strong>Notă strategică pentru echipă</strong>
-          <p>${p.strategicNote}</p>
-        </div>
-      ` : ''}
-
-      ${p.forWho ? `
-        <h5>Pentru cine este (profil)</h5>
-        ${ul(p.forWho)}
-      ` : ''}
-
-      ${p.realProblem ? `
-        <h5>Problema reală</h5>
-        ${p.realProblemNote ? `<p style="font-size:13px; color:var(--text2); margin-bottom:8px; font-style:italic;">${p.realProblemNote}</p>` : ''}
-        ${ul(p.realProblem)}
-      ` : ''}
-
-      ${p.benefitsByCategory ? `
-        <h5>Cele 20 de beneficii (organizate pe zone)</h5>
-        ${benefitsHtml}
-      ` : ''}
-    </div>
-  `;
-
-  // ---- TAB 2: DISCOVERY ----
-  const tabDiscovery = `
-    <div class="subtab-content" id="subtab-discovery">
-      ${p.parentSignals ? `
-        <h5>Semnale pe care le observă părinții</h5>
-        <p style="font-size:13px; color:var(--text2); margin-bottom:10px;">Frazele pe care le auzi des de la părinți. Ascultă pentru ele.</p>
-        <ul class="list-signals">${p.parentSignals.map(s => `<li>${s}</li>`).join('')}</ul>
-      ` : ''}
-
-      ${p.discoveryQuestions ? `
-        <h5>5 întrebări de discovery (obligatorii în call)</h5>
-        <ul class="list-questions">${p.discoveryQuestions.map(q => `<li>${q}</li>`).join('')}</ul>
-      ` : ''}
-
-      ${p.awarenessQuestion && p.awarenessQuestion !== '—' ? `
-        <h5>Întrebarea de conștientizare</h5>
-        <div class="callout">
-          <strong>Întrebare-cheie</strong>
-          <p style="font-size:14px; font-style:italic;">„${p.awarenessQuestion}"</p>
-        </div>
-        ${p.awarenessNote ? `<p style="font-size:12px; color:var(--text2); font-style:italic;">${p.awarenessNote}</p>` : ''}
-      ` : ''}
-    </div>
-  `;
-
-  // ---- TAB 3: CE FACEM ÎN TABĂRĂ ----
-  const tabFacem = `
-    <div class="subtab-content" id="subtab-facem">
-      ${p.whatWeDoIntro ? `
-        <h5>Ce facem efectiv</h5>
-        <p style="font-size:14px; line-height:1.6; color:var(--text); margin-bottom:16px;">${p.whatWeDoIntro}</p>
-      ` : ''}
-
-      ${p.whatWeDoExamples ? `
-        <h5>Exemple concrete de activități</h5>
-        ${ul(p.whatWeDoExamples)}
-      ` : ''}
-
-      ${p.realExamples ? `
-        <h5>3 exemple reale (de spus în call)</h5>
-        ${p.realExamples.map(ex => `
-          <div class="example-card">
-            <strong>${ex.title}</strong>
-            <p>„${ex.text}"</p>
-          </div>
-        `).join('')}
-      ` : ''}
-    </div>
-  `;
-
-  // ---- TAB 4: CUM PREZENTĂM ----
-  const tabPrezentam = `
-    <div class="subtab-content" id="subtab-prezentam">
-      ${p.presentationPhrase ? `
-        <h5>Fraza de prezentare (de memorat)</h5>
-        <div class="callout">
-          <strong>Memorează</strong>
-          <p style="font-size:14px; font-style:italic;">„${p.presentationPhrase}"</p>
-        </div>
-      ` : ''}
-
-      ${p.transitionToOffer ? `
-        <h5>Cum facem tranziția spre ofertă</h5>
-        <div class="callout green">
-          <strong>Tranziție</strong>
-          <p style="font-size:14px;">„${p.transitionToOffer}"</p>
-        </div>
-      ` : ''}
-
-      ${p.noVsYesBenefits ? `
-        <h5>Cum explicăm beneficiile (NU vs DA)</h5>
-        <div class="nu-da-grid">
-          <div class="nu-block">
-            <strong>NU spunem</strong>
-            <ul>${p.noVsYesBenefits.no.map(i => `<li>${i}</li>`).join('')}</ul>
-          </div>
-          <div class="da-block">
-            <strong>SPUNEM</strong>
-            <ul>${p.noVsYesBenefits.yes.map(i => `<li>${i}</li>`).join('')}</ul>
-          </div>
-        </div>
-      ` : ''}
-
-      ${p.importantNote ? `
-        <div class="callout green">
-          <strong>Important · esența</strong>
-          <p>${p.importantNote}</p>
-        </div>
-      ` : ''}
-    </div>
-  `;
-
-  // ---- TAB 5: OBIECȚII ----
-  const tabObiectii = `
-    <div class="subtab-content" id="subtab-obiectii">
-      ${p.objections && p.objections.length > 0 ? `
-        <h5>Obiecții frecvente pentru acest produs</h5>
-        ${p.objections.map(o => `
-          <div class="objection-block">
-            <div class="obj-title">${o.obj}</div>
-            <div class="obj-answer">„${o.answer}"</div>
-          </div>
-        `).join('')}
-      ` : '<p style="color:var(--text2); font-size:13px;">Pentru obiecțiile generale, vezi pagina <strong>Scripturi & Obiecții</strong>.</p>'}
-
-      ${p.doNotSay ? `
-        <h5>Ce NU spunem (foarte important)</h5>
-        <div class="nu-block">
-          <strong>Interzis pentru acest produs</strong>
-          <ul>${p.doNotSay.map(i => `<li>${i}</li>`).join('')}</ul>
-        </div>
-      ` : ''}
-    </div>
-  `;
-
-  // ---- HTML COMPLET ----
-  document.getElementById('productDetail').innerHTML = `
+  // Header common (sus pe pagină — același pentru toate produsele)
+  const headerHtml = `
     <div class="product-header">
       <div>
-        <h4>${p.name}</h4>
+        <h4>${p.name}${p.comingSoon ? ' <span class="prod-coming-soon-badge">Va urma</span>' : ''}</h4>
         <p>${p.tagline}</p>
         <span class="product-tag">${p.tag}</span>
       </div>
@@ -273,18 +114,276 @@ function renderProductDetail(key) {
         ${p.productPageUrl ? `<a href="${p.productPageUrl}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; background:var(--accent); color:white; padding:8px 14px; border-radius:20px; font-size:12px; font-weight:700; text-decoration:none;">🔗 Pagina pe site →</a>` : ''}
       </div>
     </div>
-    <div class="product-subtabs">
-      <button class="active" data-subtab="esential"><i class="ti ti-bookmark"></i> Esențial</button>
-      <button data-subtab="discovery"><i class="ti ti-search"></i> Discovery</button>
-      <button data-subtab="facem"><i class="ti ti-tools"></i> Ce facem în tabără</button>
-      <button data-subtab="prezentam"><i class="ti ti-message-circle"></i> Cum prezentăm</button>
-      <button data-subtab="obiectii"><i class="ti ti-shield-x"></i> Obiecții</button>
+  `;
+
+  // === COMING SOON: nu afișăm conținut, doar banner mare ===
+  if (p.comingSoon) {
+    document.getElementById('productDetail').innerHTML = `
+      ${headerHtml}
+      <div class="prod-coming-soon">
+        <div class="prod-cs-icon">⏳</div>
+        <h3>Conținut în pregătire</h3>
+        <p>Fișa de vânzare pentru această tabără urmează să fie completată oficial împreună cu Simona. Până atunci, folosește pagina oficială de pe site și consultă-te cu Adina dacă ai apel pe acest produs.</p>
+        <div class="prod-cs-actions">
+          ${p.productPageUrl ? `<a href="${p.productPageUrl}" target="_blank" rel="noopener" class="prod-cs-btn primary">Vezi pagina pe site →</a>` : ''}
+          <button class="prod-cs-btn ghost" data-action="page:ajutor">Contactează Adina pentru context</button>
+        </div>
+      </div>
+      ${p.periods && p.periods.length ? `
+        <div class="product-periods">
+          <p class="col-label">Perioade & disponibilitate (provizorii)</p>
+          <div class="periods-table">
+            ${p.periods.map(period => {
+              const isFull = period.occupied / period.total > 0.8;
+              return `<div class="period-row${isFull ? ' full' : ''}">
+                <span class="age">${period.age} ani</span>
+                <span>${period.dates}</span>
+                <span class="seats"><strong>${period.total - period.occupied}</strong> locuri libere · ${period.occupied}/${period.total}</span>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      ` : ''}
+    `;
+    // wire fallback button to Cere ajutor
+    const fallbackBtn = document.querySelector('#productDetail .prod-cs-btn.ghost');
+    if (fallbackBtn) {
+      fallbackBtn.addEventListener('click', () => switchPage('ajutor'));
+    }
+    return;
+  }
+
+  // === Helpers pentru secțiuni ===
+  const section = (id, title, eyebrow, contentHtml) => `
+    <section class="prod-section" id="prod-${id}">
+      <div class="prod-section-head">
+        ${eyebrow ? `<span class="prod-section-eyebrow">${eyebrow}</span>` : ''}
+        <h3 class="prod-section-title">${title}</h3>
+      </div>
+      <div class="prod-section-body">${contentHtml}</div>
+    </section>
+  `;
+
+  // === Fișa produs (varsta/durata/locatie/serii) ===
+  const fp = p.fisaProdus;
+  const fisaProdusHtml = fp ? `
+    <div class="prod-fisa">
+      ${fp.age ? `<div class="prod-fisa-item"><span class="lbl">Vârstă</span><strong>${fp.age}</strong></div>` : ''}
+      ${fp.duration ? `<div class="prod-fisa-item"><span class="lbl">Durată</span><strong>${fp.duration}</strong></div>` : ''}
+      ${fp.location ? `<div class="prod-fisa-item"><span class="lbl">Locație</span><strong>${fp.location}</strong></div>` : ''}
+      ${fp.priceLabel ? `<div class="prod-fisa-item"><span class="lbl">Preț</span><strong>${fp.priceLabel}</strong>${fp.rateNote ? `<small>${fp.rateNote}</small>` : ''}</div>` : ''}
+      ${fp.seriesLabel ? `<div class="prod-fisa-item wide"><span class="lbl">Serii ${fp.seriesYear || ''}</span><strong>${fp.seriesLabel}</strong></div>` : ''}
     </div>
-    ${tabEsential}
-    ${tabDiscovery}
-    ${tabFacem}
-    ${tabPrezentam}
-    ${tabObiectii}
+  ` : '';
+
+  // === 1. Ce este tabăra ===
+  const whatIsHtml = (p.whatIsItShort || p.whatIsIt) ? `
+    <p class="prod-lead">${p.whatIsItShort || p.whatIsIt}</p>
+  ` : '';
+
+  // === 2. Mesaj central ===
+  const mesajCentralHtml = p.mesajCentral ? `
+    <div class="prod-mesaj-central">
+      <span class="prod-mc-label">Mesajul central</span>
+      <p>${p.mesajCentral}</p>
+    </div>
+  ` : '';
+
+  // === 3. Pentru cine ===
+  const pentruCine = p.pentruCine || (p.forWho ? { se_potriveste: p.forWho, nu_se_potriveste: p.notFor || [] } : null);
+  const pentruCineHtml = pentruCine ? `
+    <div class="prod-fit-grid">
+      ${pentruCine.se_potriveste && pentruCine.se_potriveste.length ? `
+        <div class="prod-fit good">
+          <div class="prod-fit-head">✓ Se potrivește dacă</div>
+          <ul>${pentruCine.se_potriveste.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+      ${pentruCine.nu_se_potriveste && pentruCine.nu_se_potriveste.length ? `
+        <div class="prod-fit bad">
+          <div class="prod-fit-head">✗ Nu se potrivește dacă</div>
+          <ul>${pentruCine.nu_se_potriveste.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+    </div>
+  ` : '';
+
+  // === 4. Ce se întâmplă în 6 zile ===
+  const ceSeIntamplaHtml = (() => {
+    const cs = p.ceSeIntampla;
+    if (cs && cs.length) {
+      // structured: array of {day?, title, desc?}
+      const structured = cs[0] && typeof cs[0] === 'object';
+      if (structured) {
+        return `<div class="prod-days">
+          ${cs.map(d => `
+            <div class="prod-day">
+              ${d.day ? `<span class="prod-day-num">${d.day}</span>` : ''}
+              <div class="prod-day-body">
+                <strong>${d.title}</strong>
+                ${d.desc ? `<p>${d.desc}</p>` : ''}
+                ${d.parentSees ? `<p class="prod-day-parent">Ce vede părintele după: <em>${d.parentSees}</em></p>` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>`;
+      }
+      // simple array of strings
+      return `<ul class="prod-bullets">${cs.map(i => `<li>${i}</li>`).join('')}</ul>`;
+    }
+    // fallback la whatWeDoExamples
+    if (p.whatWeDoExamples && p.whatWeDoExamples.length) {
+      return `
+        ${p.whatWeDoIntro ? `<p class="prod-para">${p.whatWeDoIntro}</p>` : ''}
+        <ul class="prod-bullets">${p.whatWeDoExamples.map(i => `<li>${i}</li>`).join('')}</ul>
+      `;
+    }
+    return '';
+  })();
+
+  // === 5. Profilul părintelui ===
+  const profileHtml = p.parintProfil ? `
+    ${p.parintProfil.intro ? `<p class="prod-para">${p.parintProfil.intro}</p>` : ''}
+    <div class="prod-parent-grid">
+      ${p.parintProfil.ingrijorari && p.parintProfil.ingrijorari.length ? `
+        <div class="prod-parent-col">
+          <span class="prod-parent-col-head">Ce îl îngrijorează</span>
+          <ul>${p.parintProfil.ingrijorari.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+      ${p.parintProfil.doreste && p.parintProfil.doreste.length ? `
+        <div class="prod-parent-col">
+          <span class="prod-parent-col-head">Ce își dorește</span>
+          <ul>${p.parintProfil.doreste.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+    </div>
+  ` : (p.parentSignals && p.parentSignals.length ? `
+    <p class="prod-para" style="font-style:italic; color:var(--text2);">Semnale pe care le auzi des de la părinți (ascultă pentru ele):</p>
+    <ul class="prod-bullets">${p.parentSignals.map(s => `<li>${s}</li>`).join('')}</ul>
+  ` : '');
+
+  // === 6. Cuvintele lui — cum descrie vs ce-și dorește ===
+  const cuvinteleHtml = p.cuvintele ? `
+    <div class="prod-words-grid">
+      <div class="prod-words-col">
+        <span class="prod-words-head">Cum descrie problema</span>
+        <ul>${p.cuvintele.cumDescrie.map(i => `<li>„${i}"</li>`).join('')}</ul>
+      </div>
+      <div class="prod-words-col">
+        <span class="prod-words-head">Ce își dorește</span>
+        <ul>${p.cuvintele.ceIsiDoreste.map(i => `<li>„${i}"</li>`).join('')}</ul>
+      </div>
+    </div>
+  ` : '';
+
+  // === 7. Cum vorbești cu el (NU vs DA) ===
+  const cumVorbestiHtml = p.noVsYesBenefits ? `
+    <div class="prod-talk-grid">
+      <div class="prod-talk-col nu">
+        <span class="prod-talk-head">✗ NU spui</span>
+        <ul>${p.noVsYesBenefits.no.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+      <div class="prod-talk-col da">
+        <span class="prod-talk-head">✓ SPUI</span>
+        <ul>${p.noVsYesBenefits.yes.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+    </div>
+  ` : '';
+
+  // === 8. Întrebări frecvente / obiecții cu răspunsuri ===
+  const faqData = p.faq || (p.objections ? p.objections.map(o => ({ q: o.obj, a: o.answer })) : []);
+  const faqHtml = faqData.length ? `
+    <div class="prod-faq">
+      ${faqData.map(f => `
+        <details class="prod-faq-item">
+          <summary>${f.q}</summary>
+          <div class="prod-faq-a">${f.a}</div>
+        </details>
+      `).join('')}
+    </div>
+  ` : '';
+
+  // === 9. Povești pentru conversație ===
+  const povestiHtml = p.povesti && p.povesti.length ? `
+    <div class="prod-stories">
+      ${p.povesti.map((s, idx) => `
+        <article class="prod-story">
+          <div class="prod-story-head">
+            <span class="prod-story-num">${idx + 1}</span>
+            <div>
+              <h4>${s.title}</h4>
+              ${s.when ? `<p class="prod-story-when">Folosește când: ${s.when}</p>` : ''}
+            </div>
+          </div>
+          <blockquote class="prod-story-text">${s.text}</blockquote>
+        </article>
+      `).join('')}
+    </div>
+  ` : '';
+
+  // === 10. Preț & rate ===
+  const pretHtml = (p.pretRate || p.fisaProdus) ? `
+    <div class="prod-pret-box">
+      <div class="prod-pret-row">
+        <div>
+          <span class="prod-pret-label">Preț standard</span>
+          <strong class="prod-pret-main">${p.price}</strong>
+        </div>
+        ${p.discounted ? `
+          <div>
+            <span class="prod-pret-label">Cu reducere</span>
+            <strong class="prod-pret-main accent">${p.discounted}</strong>
+          </div>
+        ` : ''}
+      </div>
+      ${p.pretRate ? `<p class="prod-pret-text">${p.pretRate}</p>` : `
+        <p class="prod-pret-text">Spui prețul clar, fără scuze. Oferi ratele imediat — nu aștepți să întrebe.</p>
+      `}
+    </div>
+  ` : '';
+
+  // === 11. Ce NU spui ===
+  const doNotSayHtml = p.doNotSay && p.doNotSay.length ? `
+    <ul class="prod-donot">${p.doNotSay.map(i => `<li>${i}</li>`).join('')}</ul>
+  ` : '';
+
+  // === 12. Tranziție spre ofertă (dacă există) ===
+  const transitionHtml = p.transitionToOffer ? `
+    <div class="prod-transition">
+      <span class="prod-transition-label">Tranziție spre ofertă</span>
+      <p>„${p.transitionToOffer}"</p>
+    </div>
+  ` : '';
+
+  // === Construim conținutul ===
+  let body = '';
+  if (fisaProdusHtml) body += `<section class="prod-section prod-fisa-section">${fisaProdusHtml}</section>`;
+  if (whatIsHtml || mesajCentralHtml)
+    body += section('ce-este', 'Ce este această tabără', 'Esențial', `${whatIsHtml}${mesajCentralHtml}`);
+  if (pentruCineHtml)
+    body += section('pentru-cine', 'Pentru ce tip de copil e potrivită', 'Profil copil', pentruCineHtml);
+  if (ceSeIntamplaHtml)
+    body += section('ce-se-intampla', 'Ce se întâmplă în 6 zile', 'În tabără', ceSeIntamplaHtml);
+  if (profileHtml)
+    body += section('parinte', 'Profilul părintelui', 'Cui vinzi', profileHtml);
+  if (cuvinteleHtml)
+    body += section('cuvintele', 'Cuvintele părintelui — cum descrie vs ce-și dorește', 'Limbaj', cuvinteleHtml);
+  if (cumVorbestiHtml)
+    body += section('cum-vorbesti', 'Cum vorbești cu el (NU vs DA)', 'Limbaj seller', cumVorbestiHtml);
+  if (faqHtml)
+    body += section('faq', 'Întrebări frecvente cu răspunsuri', 'În apel', faqHtml);
+  if (povestiHtml)
+    body += section('povesti', 'Povești pentru conversație', 'Storytelling', povestiHtml);
+  if (pretHtml)
+    body += section('pret', 'Prețul și ratele — cum le spui în apel', 'Ofertă', pretHtml);
+  if (transitionHtml)
+    body += section('tranzitie', 'Tranziție spre ofertă', 'Frază de tranziție', transitionHtml);
+  if (doNotSayHtml)
+    body += section('nu-spui', 'Ce NU spui niciodată', 'Atenție', doNotSayHtml);
+
+  // === Perioade ===
+  const periodsHtml = p.periods && p.periods.length ? `
     <div class="product-periods">
       <p class="col-label">Perioade & disponibilitate</p>
       <div class="periods-table">
@@ -298,32 +397,141 @@ function renderProductDetail(key) {
         }).join('')}
       </div>
     </div>
-  `;
+  ` : '';
 
-  // wire up sub-tabs
-  document.querySelectorAll('#productDetail .product-subtabs button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#productDetail .product-subtabs button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('#productDetail .subtab-content').forEach(c => c.classList.remove('active'));
-      document.getElementById('subtab-' + btn.dataset.subtab).classList.add('active');
-    });
-  });
+  document.getElementById('productDetail').innerHTML = `
+    ${headerHtml}
+    <div class="prod-scroll">
+      ${body}
+      ${periodsHtml}
+    </div>
+  `;
 }
 
-function renderScripts() {
-  document.getElementById('scriptBoard').innerHTML = SCRIPTS.map(s => `
-    <div class="script-card">
-      <div class="script-card-header">
-        <strong>${s.title}</strong>
-        <span class="phase-tag phase-${s.phase}">${s.phaseLabel}</span>
+// ============= GHIDURI CALLER & CLOSER =============
+function renderBlock(b) {
+  switch (b.type) {
+    case 'paragraph':
+      return `<p class="ghid-para">${b.text}</p>`;
+    case 'subheading':
+      return `<h4 class="ghid-subheading">${b.text}</h4>`;
+    case 'script':
+      return `<div class="ghid-script">
+        <span class="ghid-script-label">Script</span>
+        <p>${b.text}</p>
+      </div>`;
+    case 'script-alt':
+      return `<div class="ghid-script alt">
+        <span class="ghid-script-label">${b.label}</span>
+        <p>${b.text}</p>
+      </div>`;
+    case 'qa':
+      return `<ol class="ghid-qa">${b.items.map(it => `
+        <li>
+          <p class="ghid-qa-q">${it.q}</p>
+          ${it.hint ? `<p class="ghid-qa-hint">→ ${it.hint}</p>` : ''}
+        </li>
+      `).join('')}</ol>`;
+    case 'checklist':
+      return `<ul class="ghid-checklist">${b.items.map(it => `<li>${it}</li>`).join('')}</ul>`;
+    case 'rule':
+      return `<div class="ghid-rule">${b.text}</div>`;
+    case 'warning':
+      return `<div class="ghid-warning">${b.text}</div>`;
+    case 'objections':
+      return `<div class="ghid-objections-wrap">
+        <div class="ghid-objections-head">
+          <span>Ce spune părintele</span>
+          <span>Ce răspunzi</span>
+        </div>
+        ${b.rows.map(r => `
+          <div class="ghid-objection">
+            <div class="ghid-obj-q">${r.obj}</div>
+            <div class="ghid-obj-a">${r.resp}</div>
+          </div>
+        `).join('')}
+      </div>`;
+    case 'signals':
+      return `<div class="ghid-signals">
+        <div class="ghid-signal good">
+          <div class="ghid-signal-head">✓ ${b.good.title}</div>
+          <ul>${b.good.items.map(it => `<li>${it}</li>`).join('')}</ul>
+        </div>
+        <div class="ghid-signal bad">
+          <div class="ghid-signal-head">✗ ${b.bad.title}</div>
+          <ul>${b.bad.items.map(it => `<li>${it}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+    case 'timetable':
+      return `<div class="ghid-timetable">
+        <div class="ghid-tt-head">
+          <span>Timp</span><span>Ce faci</span><span>Semnal că merge bine</span>
+        </div>
+        ${b.rows.map(r => `
+          <div class="ghid-tt-row">
+            <span class="ghid-tt-time">${r.time}</span>
+            <span class="ghid-tt-action">${r.action}</span>
+            <span class="ghid-tt-signal">${r.signal}</span>
+          </div>
+        `).join('')}
+      </div>`;
+    default:
+      return '';
+  }
+}
+
+function renderGhid(ghid) {
+  return `
+    <article class="ghid-doc">
+      <header class="ghid-doc-header">
+        <div class="ghid-badge">${ghid.badge}</div>
+        <h2 class="ghid-doc-title">${ghid.title}</h2>
+        <p class="ghid-doc-subtitle">${ghid.subtitle}</p>
+        <p class="ghid-doc-intro">${ghid.intro}</p>
+      </header>
+      <div class="ghid-sections">
+        ${ghid.sections.map(sec => `
+          <section class="ghid-section">
+            <div class="ghid-section-head">
+              <span class="ghid-section-num">${sec.num}</span>
+              <div>
+                <h3 class="ghid-section-title">${sec.title}</h3>
+                ${sec.eyebrow ? `<p class="ghid-section-eyebrow">${sec.eyebrow}</p>` : ''}
+              </div>
+            </div>
+            <div class="ghid-section-body">
+              ${sec.blocks.map(renderBlock).join('')}
+            </div>
+          </section>
+        `).join('')}
       </div>
-      <div class="script-card-body">
-        <div class="quote">${s.quote}</div>
-        <div class="note">${s.note}</div>
-      </div>
-    </div>
-  `).join('');
+      <div class="ghid-footer">${ghid.footer}</div>
+    </article>
+  `;
+}
+
+function renderGhiduri() {
+  const callerEl = document.getElementById('ghid-caller');
+  const closerEl = document.getElementById('ghid-closer');
+  if (callerEl) callerEl.innerHTML = renderGhid(GHID_CALLER);
+  if (closerEl) closerEl.innerHTML = renderGhid(GHID_CLOSER);
+
+  // Tabs switching
+  document.querySelectorAll('.ghid-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.ghid-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      const target = tab.dataset.ghid;
+      document.querySelectorAll('.ghid-content').forEach(c => c.classList.remove('active'));
+      const targetEl = document.getElementById('ghid-' + target);
+      if (targetEl) targetEl.classList.add('active');
+    });
+  });
 }
 
 function renderResources() {
@@ -371,7 +579,7 @@ function renderResources() {
   });
 }
 
-function renderGhiduri() {
+function renderGhiduriParinti() {
   const container = document.getElementById('ghiduriGrid');
   if (!container || !GHIDURI_PARINTI) return;
   container.innerHTML = GHIDURI_PARINTI.map(g => `
@@ -825,9 +1033,9 @@ document.addEventListener('keydown', e => {
 
 // Init
 renderProductGrid('all');
-renderScripts();
-renderResources();
 renderGhiduri();
+renderResources();
+renderGhiduriParinti();
 renderWhatsApp();
 renderLimbaj();
 initCommissionCalc();

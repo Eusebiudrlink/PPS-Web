@@ -148,9 +148,91 @@ PRODUCTS: {
       { age: '15–18', dates: '2–7 aug', occupied: 11, total: 39 },
       { age: '15–18', dates: '23–28 aug', occupied: 7, total: 43 },
     ],
+
+    // === Câmpuri din docx „Tabara_Incredere_in_Sine_Materiale_Sales" (mai 2026) ===
+    fisaProdus: {
+      age: '10 – 18 ani',
+      duration: '6 zile / 5 nopți',
+      location: 'Zona Brașov',
+      priceLabel: '4.500 RON',
+      rateNote: 'Rate disponibile chiar în apel.',
+      seriesYear: '2026',
+      seriesLabel: '28 iun-3 iul · 5-10 iul · 19-24 iul · 2-7 aug · 16-21 aug · 23-28 aug',
+    },
+    whatIsItShort: '6 zile în care adolescentul tău învață să aibă încredere în el, să-și gestioneze emoțiile și să se exprime autentic. Nu e o tabără de activități — e o tabără de transformare. Pleacă altfel decât a venit.',
+    mesajCentral: 'Nu schimbăm copilul. Îi dăm instrumente ca să se descurce singur. Nu e un eveniment — e începutul unui proces.',
+    pentruCine: {
+      se_potriveste: [
+        'Îi e frică să vorbească în public sau în grup',
+        'Se simte diferit, nu se încadrează',
+        'E timid sau foarte introvertit',
+        'Are crize de plâns sau furie fără să înțeleagă de ce',
+        'Nu își face prieteni ușor',
+        'Are potențial dar nu îl valorifică',
+      ],
+      nu_se_potriveste: [
+        'Copilul refuză categoric și fără context — vorbește mai întâi cu el',
+        'Părintele așteaptă rezultate „garantate" în 6 zile',
+        'E o problemă clinică (anxietate severă, depresie netratată) — în acest caz, copilul are nevoie întâi de suport specializat',
+      ],
+    },
+    ceSeIntampla: [
+      'Ateliere de inteligență emoțională — în fiecare zi, practice și interactive',
+      'Jocuri de cunoaștere și activități de grup — de la prima zi nu mai e străin',
+      'Exerciții de vorbire în public, body language, gestionare emoții',
+      'Seara — ritual de grup care îi ajută să proceseze și să doarmă liniștiți',
+      'Ultima zi — seminar pentru părinți: aflați exact ce a învățat copilul și cum continuați acasă',
+    ],
+    parintProfil: {
+      intro: 'Părintele acestei tabere are 35-55 ani, locuiește în mediu urban, are venit mediu spre mare și e implicat în educația copilului. El sau ea ia decizia și plătește. De cele mai multe ori a ajuns la noi printr-o reclamă pe Facebook/Instagram, prin recomandare sau căutând pe Google soluții pentru copilul lui.',
+      ingrijorari: [
+        '„Copilul meu e tot mai retras și nu știu cum să îl ajut"',
+        '„Se enervează repede și nu înțeleg de ce"',
+        '„Are potențial dar nu are încredere să îl arate"',
+        '„Nu are prieteni și stă mult singur"',
+        '„La școală e bine, dar acasă e închis în el"',
+        '„Mă tem că o să-l pierd"',
+      ],
+      doreste: [
+        'Să vadă copilul fericit și sigur pe el',
+        'Să comunice mai bine cu el acasă',
+        'Să știe că a făcut ceva concret ca să îl ajute',
+        'Să nu regrete că nu a acționat',
+      ],
+    },
+    cuvintele: {
+      cumDescrie: ['E timid', 'Nu se exprimă', 'Are emoții', 'Stă pe telefon tot timpul', 'Nu își face prieteni', 'Nu are încredere în el'],
+      ceIsiDoreste: ['Să fie mai deschis', 'Să comunice mai bine', 'Să fie mai sigur pe el', 'Să aibă prieteni', 'Să fie fericit', 'Să se descurce în viață'],
+    },
+    faq: [
+      { q: 'Copilul meu nu cunoaște pe nimeni acolo. Va fi bine?', a: 'Asta e îngrijorarea numărul 1 a părinților — și răspunsul e <strong>da, cu siguranță</strong>. Prima activitate a taberei sunt jocuri de cunoaștere special concepute pentru asta. Le dăm chiar o formulă concretă — „formula fac cunoștință" — ca să știe exact cum să se prezinte. În 24 de ore are deja un grup.' },
+      { q: 'Cum știu că nu e o tabără oarecare?', a: 'Pașaport pentru Succes e singurul program din Europa de Est care predă inteligența emoțională în pași concreți, aplicați pe peste 47.000 de adolescenți în 15 ani. Nu sunt activități — e o metodologie validată. Și la final veniți și voi, părinții, la un seminar de transfer, ca să continuați acasă.' },
+      { q: 'Ce fac dacă copilul nu vrea să vină?', a: 'Nu îl forța — e important. Dar întrebați-l ce anume îl îngrijorează. De obicei e frica de a nu cunoaște pe nimeni sau de a fi judecat. Dacă asta e motivul, puteți să-i spuneți că <strong>exact asta lucrăm acolo</strong> — și că poate vorbi cu noi înainte dacă vrea să știe mai multe.' },
+      { q: 'E prea scump. / Nu ne permitem.', a: 'Înțeleg. Avem și varianta în rate, chiar în apel. Spuneți-mi care sumă pe lună ar fi confortabilă pentru voi și vedem ce putem face. Mulți părinți ne spun după că a fost cea mai bună investiție pe care au făcut-o pentru copilul lor.' },
+      { q: 'Ce se întâmplă dacă copilul vrea să plece acasă?', a: 'Nu s-a întâmplat niciodată să vrea cineva să plece după prima zi. Dar dacă apare această situație, suntem în legătură cu voi imediat. Avem traineri cu experiență care știu să gestioneze și copii mai anxioși sau mai reținuți la început.' },
+    ],
+    povesti: [
+      {
+        title: 'Ema (13 ani, nu cunoștea pe nimeni)',
+        when: 'părintele e îngrijorat că copilul nu cunoaște pe nimeni',
+        text: '„Îmi amintesc o fetiță de 13 ani — Ema. Mama ei ne-a sunat îngrijorată pentru că Ema nu cunoștea pe nimeni la tabără și era copleșită de emoții. A lăsat-o totuși. După 6 zile, când a venit să o ia, Ema plângea. Dar nu de tristețe — plângea de fericire pentru ce trăise și de tristețe că tabăra se termina. Își făcuse prieteni care i-au rămas până azi."',
+      },
+      {
+        title: 'Miruna (părinte despre schimbare vizibilă)',
+        when: 'părintele întreabă „dar chiar funcționează?" sau „cum știu că merită banii?"',
+        text: '„O mamă ne-a scris după tabără ceva ce nu uităm. A spus: <em>«Miruna nu se mai teme să își susțină punctul de vedere în fața unui adult și nu se mai supără așa repede.»</em> Copiii sunt mai încrezători, mai deschiși, își gestionează mai bine temerile și sunt mai orientați către soluții. Și a adăugat ceva care m-a marcat: «Văd o altă copilă în casă»."',
+      },
+      {
+        title: 'În vocea adolescentului',
+        when: 'părintele spune „dar copilul meu nu vrea să meargă" sau „nu știu dacă o să-i placă"',
+        text: '„Un băiat de 15 ani a scris după tabără: <em>«Această tabără m-a învățat să nu mai fiu închis în mine și să nu îmi mai fie rușine de mine.»</em> Un altul: <em>«Mi-a schimbat felul de a gândi. Abia aștept următoarea tabără.»</em> Și o fată: <em>«Când mama m-a trimis la tabără mi-am dat ochii peste cap. Acum practicând spun: a fost cea mai bună săptămână din viața mea.»</em>"',
+      },
+    ],
+    pretRate: 'Spui prețul clar, fără scuze. Oferi ratele <strong>imediat</strong>, nu aștepți să întrebe. Formularea: „Programul costă 4.500 lei. Avem și varianta în rate — spuneți-mi care sumă pe lună ar fi confortabilă pentru voi și vedem împreună."',
   },
 
   conectam: {
+    comingSoon: true,
     name: 'ConnectGen · Ateliere Conectăm Generații',
     tagline: 'Motorul de conversie spre tabere · părinte + copil împreună',
     tag: 'Strategic', category: 'online', thumb: 'thumb-conectam', icon: 'ti-bulb',
@@ -414,9 +496,95 @@ PRODUCTS: {
     ],
 
     periods: [{ age: '13–18', dates: '12–17 iul', occupied: 19, total: 50 }],
+
+    // === Câmpuri din docx „Tabara_Vocatia_Mea_Materiale_Sales" (mai 2026) ===
+    fisaProdus: {
+      age: '13 – 18 ani',
+      duration: '6 zile / 5 nopți',
+      location: 'Zona Brașov',
+      priceLabel: '5.500 RON',
+      rateNote: '* Verifică prețul actualizat înainte de apel. Rate disponibile chiar în apel.',
+      seriesYear: '2026',
+      seriesLabel: '12 – 17 iulie 2026',
+    },
+    whatIsItShort: '6 zile în care adolescentul tău descoperă cine este el — prin teste de personalitate, exercițiu de autocunoaștere și abilități practice. Nu îi spunem ce să aleagă. Îl ajutăm să afle cine este, la ce e bun și ce îl aprinde — de acolo, alegerea școlii vine natural.',
+    mesajCentral: 'Părintele întreabă „la ce școală mergi?" Noi întoarcem întrebarea: „Știe copilul tău cine este?" Asta e diferența fundamentală față de orice alt program de orientare vocațională.',
+    pentruCine: {
+      se_potriveste: [
+        'Nu știe ce vrea să facă după școală',
+        'Simte presiunea alegerii școlii / facultății',
+        'Are mai multe interese și nu știe pe care să-l urmeze',
+        'Părinții îi pun întrebarea „la ce școală mergi?" și el nu știe',
+        'E în clasa a 7-a, a 8-a, a 10-a sau a 11-a',
+        'A făcut deja Tabăra Încredere în Sine și vrea pasul următor',
+      ],
+      nu_se_potriveste: [
+        'Părintele așteaptă o „decizie clară" la finalul taberei — copilul pleacă cu un plan, nu cu o facultate aleasă',
+        'Copilul nu vrea deloc să discute despre el și viitor — are nevoie întâi de Tabăra Încredere în Sine',
+      ],
+    },
+    ceSeIntampla: [
+      { day: 1, title: 'Cine sunt eu', desc: 'Descoperă trăsăturile de personalitate prin testul MBTI — unul dintre cele mai folosite instrumente de autocunoaștere din lume.' },
+      { day: 2, title: 'La ce sunt bun', desc: 'Identifică punctele forte prin testul Strengths. Nu ce i-au spus alții — ce arată datele.' },
+      { day: 3, title: 'Ce îmi place', desc: 'Explorează domeniile și activitățile care îl aprind — fără presiune, fără judecată.' },
+      { day: 4, title: 'Ce cere piața', desc: 'Înțelege joburile viitorului, rolul AI și ce abilități vor conta în următorii 10-15 ani.' },
+      { day: 5, title: 'Planul meu', desc: 'Construiește un plan personal de dezvoltare a abilităților — concret, al lui, nu dat de părinte.' },
+      { day: 6, title: 'Abilități practice + seminar părinți', desc: 'Schimbă o roată, gătește o masă, se orientează în oraș, își gestionează un buget zilnic + prezentare în fața părinților.' },
+    ],
+    parintProfil: {
+      intro: 'Părintele pentru această tabără e diferit — e sub o presiune specifică. Există <strong>3 tipuri</strong> care sună: (1) <em>Părintele anxios despre viitor</em> — copilul e în clasa a 7-a, 8-a sau 10-a, presiunea alegerii e reală. (2) <em>Părintele care a ales el și regretă</em> — receptiv la „lasă-l să afle singur cine este". (3) <em>Părintele care a încercat totul</em> — psiholog, orientare vocațională, teste online; sceptic dar disperat.',
+      ingrijorari: [
+        '„Timpul trece și copilul meu nu știe ce vrea"',
+        '„Nu vreau să îi impun eu, dar nici nu știu cum să îl îndrum"',
+        '„Am încercat și altele — de ce ar fi asta diferit?"',
+        'Frica că adolescentul alege o meserie care „dispare din cauza AI"',
+        'Presiunea sistemului școlar de a alege devreme și definitiv',
+      ],
+      doreste: [
+        'Ca adolescentul să aibă claritate despre cine este',
+        'Să aleagă școala / cariera bazat pe el, nu pe părinte',
+        'Să nu regrete peste 5 ani că a ales greșit',
+        'Abilități concrete pentru viața reală, nu doar diplomă',
+      ],
+    },
+    cuvintele: {
+      cumDescrie: ['Nu știe ce vrea', 'E confuz', 'Nu se decide', 'Are mai multe pasiuni', 'Nu îl pasionează nimic concret'],
+      ceIsiDoreste: ['Să se cunoască pe el', 'Să aibă claritate', 'Să facă o alegere informată', 'Să fie pregătit pentru viața reală'],
+    },
+    faq: [
+      { q: 'Îl ajută să aleagă facultatea / școala?', a: 'Da — dar nu direct. Nu îi spunem „du-te la X". Îl ajutăm să afle <strong>cine este el</strong>, la ce e bun și ce îl aprinde. De acolo, alegerea școlii devine clară și e <em>a lui</em> — nu a voastră. Copiii care aleg singuri, bazat pe autocunoaștere, rămân motivați.' },
+      { q: 'Nu e prea devreme la 13-14 ani?', a: 'E exact vârsta potrivită — înainte să vină presiunea reală a alegerii. La 16-17 ani e deja stres. La 13-14 ani e curiozitate. Cu cât află mai devreme cine sunt și ce îi aprinde, cu atât au mai mult timp să își dezvolte abilitățile potrivite.' },
+      { q: 'Am făcut teste de orientare vocațională și nu a ajutat.', a: 'Testele singure nu ajută — un raport pe care îl citești acasă și nu știi ce să faci cu el nu schimbă nimic. Diferența e că aici adolescentul <strong>trăiește</strong> 6 zile în care integrează ce află despre el — prin activități, conversații, abilități practice. Pleacă cu un plan al lui.' },
+      { q: 'Ce sunt testele MBTI și Strengths?', a: 'MBTI e unul dintre cele mai folosite instrumente de personalitate din lume — arată cum gândește și cum ia decizii copilul tău. Strengths arată punctele lui forte reale — nu ce cred alții despre el, ci ce arată datele. Împreună îi dau o imagine clară și concretă despre el însuși.' },
+      { q: 'E prea scump. / Nu ne permitem.', a: 'Înțeleg. Avem rate — spuneți-mi care sumă pe lună e confortabilă și vedem. Și vă mai spun ceva: mulți părinți cheltuiesc sute de euro pe meditații pentru o facultate pe care copilul o abandonează după un an pentru că nu e a lui. Această tabără reduce exact riscul ăsta.' },
+    ],
+    povesti: [
+      {
+        title: 'Argumentul central — „la ce școală mergi?"',
+        when: 'cu orice părinte — e mesajul universal al acestei tabere',
+        text: '„Știți care e întrebarea pe care o pun toți părinții? <em>«La ce școală mergi?»</em> Și știți care e problema cu întrebarea asta? E <strong>ultima</strong> întrebare pe care ar trebui să o pui. Înainte de școală trebuie să știi cine ești, la ce ești bun și ce te aprinde. Noi facem exact asta în 6 zile — și școala vine la urmă, ca un pas natural."',
+      },
+      {
+        title: 'Construită din conversație (folosește cuvintele lor)',
+        when: 'părintele a descris un copil care nu știe ce vrea sau e sub presiunea alegerii',
+        text: '„Din ce mi-ați spus, [Numele] nu știe ce vrea și simte presiunea alegerii. Exact asta lucrăm în primele zile — nu îi spunem ce să aleagă. Îl ajutăm să afle cine este el, la ce e cu adevărat bun. MBTI îi arată cum gândește și ia decizii. Strengths îi arată punctele lui forte reale. După ce știe asta, alegerea școlii devine clară."',
+      },
+      {
+        title: 'Abilitățile practice (elementul-surpriză)',
+        when: 'părintele vrea ceva concret și tangibil — nu abstract',
+        text: '„Știți ce face copilul vostru în tabără, pe lângă testele de personalitate și planul de carieră? <strong>Schimbă o roată de mașină. Gătește o masă completă. Se orientează singur în oraș fără telefon.</strong> De ce? Pentru că vocația nu e doar despre ce scrie pe o diplomă. E despre cât de pregătit ești pentru viața reală."',
+      },
+      {
+        title: 'Joburile viitorului și AI',
+        when: 'părintele menționează AI, viitorul muncii sau nesiguranța despre cariere',
+        text: '„Părinții mă întreabă des: <em>«Dar dacă alege o meserie care dispare din cauza AI?»</em> Exact de aceea avem o zi dedicată AI și joburilor viitorului în tabără. Nu ca să îi sperie — ca să îi arate ce abilități vor conta în următorii 15 ani, indiferent de domeniu: creativitate, gândire critică, abilități sociale."',
+      },
+    ],
+    pretRate: '<strong>Verifică prețul actualizat înainte de fiecare apel.</strong> Spui prețul clar, oferi ratele imediat. Pentru această tabără, formularea: „5.500 lei pentru cele 6 zile — testele MBTI și Strengths, planul personalizat, abilitățile practice și seminarul cu părinții. Avem și rate."',
   },
 
   leadership: {
+    comingSoon: true,
     name: 'Tabăra de Leadership',
     tagline: 'Nivel 3 · pentru adolescenți cu potențial de lider',
     tag: 'Top ales', category: 'tabere', thumb: 'thumb-leadership', icon: 'ti-crown',
@@ -549,6 +717,7 @@ PRODUCTS: {
   },
 
   relatii: {
+    comingSoon: true,
     name: 'Tabăra de Relații',
     tagline: 'Nivel 2 · abilități sociale și emoționale reale',
     tag: 'Nou', category: 'tabere', thumb: 'thumb-relatii', icon: 'ti-heart-handshake',
@@ -804,6 +973,84 @@ PRODUCTS: {
     ],
 
     periods: [{ age: '14–18', dates: '2–7 aug', occupied: 13, total: 50 }],
+
+    // === Câmpuri din docx „Tabara_Educatie_Financiara_Materiale_Sales" (mai 2026) ===
+    fisaProdus: {
+      age: '14 – 18 ani',
+      duration: '6 zile / 5 nopți',
+      location: 'Zona Brașov',
+      priceLabel: '5.500 RON',
+      rateNote: 'Rate disponibile chiar în apel.',
+      seriesYear: '2026',
+      seriesLabel: '2 – 7 august 2026',
+    },
+    whatIsItShort: '6 zile în care adolescentul tău învață despre bani așa cum nu învață la școală — mentalitate, buget, investiții, antreprenoriat. Nu e un curs de economie. E o schimbare a modului în care copilul tău gândește despre bani, muncă și viitor.',
+    mesajCentral: 'Libertatea financiară nu e un vis îndepărtat. E o direcție clară care începe la 15 ani. Obiceiurile financiare se formează între 10 și 17 ani — după aceea le schimbi cu multă muncă.',
+    pentruCine: {
+      se_potriveste: [
+        'Cheltuie toți banii imediat ce îi primește',
+        'Nu înțelege de ce economisirea contează',
+        'Vrea să facă bani dar nu știe de unde să înceapă',
+        'E interesat de antreprenoriat sau investiții',
+        'Are 14-18 ani și începe să aibă autonomie financiară',
+      ],
+      nu_se_potriveste: [
+        'Copilul e sub 14 ani — încă nu are autonomia financiară necesară',
+        'Părintele așteaptă „cum să facă bani repede" — accentul e pe mentalitate, nu pe scheme',
+      ],
+    },
+    ceSeIntampla: [
+      { day: 1, title: 'Mentalitate', desc: 'Relația cu banii — credințe, emoții, tipare moștenite. De ce unii oameni câștigă și cheltuie toți banii și alții construiesc. Jurnal financiar personal.', parentSees: 'Începe să întrebe cât costă lucrurile și să observe cum se cheltuiesc banii în familie.' },
+      { day: 2, title: 'Disciplină', desc: 'Controlul impulsurilor și decizii conștiente. Diferența dintre impuls și nevoie reală. Influența reclamelor și a presiunii sociale asupra cheltuielilor.', parentSees: 'Nu mai cumpără impulsiv. Începe să întrebe „am nevoie sau vreau?"' },
+      { day: 3, title: 'Buget și antreprenoriat', desc: 'Cum se face un buget real. Ce înseamnă venit, cheltuială, profit, pierdere. Mini-afacere — de la idee la plan concret.', parentSees: 'Vine acasă cu o idee de business sau un plan de buget gândit de el.' },
+      { day: 4, title: 'Investiții', desc: 'Cum banii pot produce alți bani. Dobânda compusă — de ce timpul e cel mai valoros aliat. Risc, câștig, obiective financiare pe termen lung.', parentSees: 'Înțelege că libertatea financiară nu e un vis, e o direcție clară.' },
+      { day: 5, title: 'Integrare', desc: 'Toate piesele se pun la loc. Adolescentul își asumă un mod nou de a se raporta la bani — cu claritate și curaj.', parentSees: 'Pleacă cu un toolkit personal: exerciții, coduri mentale, comportamente.' },
+      { day: 6, title: 'Prezentare finală + seminar părinți', desc: 'Copiii prezintă ce au învățat. Părinții primesc cheia pentru a continua acasă.', parentSees: 'Vedeți cu ochii voștri transformarea. Primiți instrumentele să continuați.' },
+    ],
+    parintProfil: {
+      intro: 'Părintele acestei tabere e <strong>orientat spre viitor</strong>. Gândește pe termen lung pentru copilul lui, e frustrat că școala nu predă educație financiară și vrea să-l pregătească pentru viața reală. De multe ori el însuși a făcut greșeli financiare și nu vrea același lucru pentru copil. Venit mediu-mare, atent la investiții și viitorul familiei.',
+      ingrijorari: [
+        'Copilul cheltuie tot ce primește, nu economisește nimic',
+        'Frustrare că școala nu predă deloc educație financiară',
+        'Frica că adolescentul va face aceleași greșeli ca el la 25-30 ani',
+        'Nu știe cum să-i explice copilului despre bani fără să-l plictisească',
+      ],
+      doreste: [
+        'Ca adolescentul să gândească diferit despre bani',
+        'Să plece în viață cu obiceiuri sănătoase, nu cu confuzie',
+        'Să înțeleagă valoarea muncii și a economisirii',
+        'Bonus: să fie deschis spre antreprenoriat sau investiții',
+      ],
+    },
+    cuvintele: {
+      cumDescrie: ['Cheltuie tot', 'Nu pricepe valoarea banilor', 'Nu economisește', 'Vrea de toate', 'Nu îi pasă'],
+      ceIsiDoreste: ['Să gândească diferit despre bani', 'Să economisească', 'Să înțeleagă munca', 'Să fie pregătit pentru viața reală'],
+    },
+    faq: [
+      { q: 'E prea devreme să vorbească de bani la 14-15 ani?', a: 'E exact vârsta potrivită — pentru că nu au încă obiceiuri rele formate. La 25 de ani <em>schimbi</em> tipare. La 15 ani le <strong>construiești corect</strong> de la început. Studiile arată că obiceiurile financiare se formează între 10 și 17 ani.' },
+      { q: 'Ce învață concret — nu e prea teoretic?', a: 'Deloc teoretic. În ziua 3 fac un buget real și un plan de mini-afacere. În ziua 4 calculează dobânda compusă cu banii lor. Pleacă cu un toolkit personal pe care îl aplică acasă. Sunt exerciții, nu lecturi.' },
+      { q: 'Copilul meu nu e interesat de bani / nu știe ce vrea.', a: 'Asta e exact motivul să meargă. Lipsa de interes pentru bani la această vârstă vine de obicei din faptul că banii par <em>complicați</em> sau <em>imposibil de înțeles</em>. Tabăra îi arată că nu e așa — și de acolo vine interesul.' },
+      { q: 'E prea scump. / Nu ne permitem.', a: 'Înțeleg. Avem și varianta în rate — spuneți-mi care sumă pe lună ar fi confortabilă și vedem ce putem face. Și vă mai spun un lucru: dacă la finalul taberei copilul tău învață să economisească 100 lei pe lună, în 10 ani cu dobânda compusă e o sumă semnificativă. Investiția se plătește singură.' },
+      { q: 'Am auzit de webinarul cu Sebi Burcaș. Ce legătură are cu tabăra?', a: 'Sebi Burcaș e unul dintre cei mai cunoscuți experți în educație financiară din România — a lucrat cu zeci de mii de adulți. El vine să explice din perspectiva adultului <strong>de ce educația financiară la adolescență face diferența</strong>. Webinarul prezintă exact structura taberei — zi cu zi, nivel cu nivel.' },
+    ],
+    povesti: [
+      {
+        title: 'Ștefan (vrea să vină la toate taberele)',
+        when: 'părintele a mai avut copilul la PPS sau a auzit de Tabăra Încredere în Sine',
+        text: '„Un părinte ne-a scris după Tabăra Încredere în Sine: <em>«Ștefan s-a întors transformat. Mi-a spus că vrea să vină la toate taberele — și acum așteaptă tabăra de educație financiară.»</em> Asta spune ceva important: copiii care trec prin programele noastre nu vor să se oprească. Educația financiară e pasul natural următor."',
+      },
+      {
+        title: 'Argumentul Sebi Burcaș (din webinar)',
+        when: 'părintele a văzut webinarul sau îl cunoaște pe Sebi Burcaș',
+        text: '„Sebi Burcaș a spus ceva în webinarul nostru care a rămas cu mine: <strong>obiceiurile financiare se formează între 10 și 17 ani.</strong> După aceea le schimbi cu multă muncă, dacă le schimbi. El a făcut faliment la 27 de ani tocmai pentru că nimeni nu l-a învățat. A trebuit să reclădească totul. Noi am construit această tabără ca să nu mai treacă alți copii prin asta."',
+      },
+      {
+        title: 'Construită din conversație',
+        when: 'părintele a descris o problemă concretă (cheltuie tot / nu economisește / nu înțelege valoarea banilor)',
+        text: '„Din ce mi-ați spus, [Numele] cheltuie toți banii pe care îi primește și nu înțelege de ce economisirea contează. Exact asta lucrăm în ziua 1 — nu îi spunem «economisește», îi arătăm cum gândește creierul despre bani și de ce <em>impulsul câștigă mereu</em> dacă nu ai un sistem. După ziua 2, majoritatea părinților ne spun că au observat schimbarea acasă."',
+      },
+    ],
+    pretRate: 'Spui prețul clar, fără scuze. Argument-cheie: „Dacă la finalul taberei copilul tău învață să economisească 100 lei pe lună, în 10 ani cu dobânda compusă e o sumă semnificativă. Investiția se plătește singură." Oferi ratele imediat.',
   },
 
   public: {
@@ -921,9 +1168,97 @@ PRODUCTS: {
     ],
 
     periods: [{ age: '14–18', dates: '16–21 aug', occupied: 30, total: 50 }],
+
+    // === Câmpuri din docx „Tabara_Public_Speaking_Materiale_Sales" (mai 2026) ===
+    fisaProdus: {
+      age: '13 – 18 ani',
+      duration: '6 zile / 5 nopți',
+      location: 'Zona Brașov',
+      priceLabel: '5.900 RON',
+      rateNote: 'Rate disponibile chiar în apel.',
+      seriesYear: '2026',
+      seriesLabel: '16 – 21 august 2026',
+    },
+    whatIsItShort: '6 zile de antrenament — nu un curs de retorică. Adolescentul trece prin frica de a vorbi în public într-un cadru sigur, cu feedback real. Nu îi promitem că nu va mai tremura — îi promitem că va ști ce să facă atunci când tremură.',
+    mesajCentral: 'Tabăra Public Speaking e la Nivelul 2 — după Tabăra Încredere în Sine. Nu îi învățăm tehnică pe gol — lucrăm pe frică. Fără să rezolvi frica, tehnica nu ajută.',
+    pentruCine: {
+      se_potriveste: [
+        'Îi e frică să vorbească în fața clasei',
+        'Se blochează la examene orale',
+        'Evită să ridice mâna chiar dacă știe răspunsul',
+        'Vrea să fie mai convingător și mai sigur',
+        'Are ambiții de lider, antreprenor sau profesionist',
+        'A făcut deja Tabăra Încredere în Sine și vrea pasul următor',
+      ],
+      nu_se_potriveste: [
+        'Copilul nu are încă o bază de încredere în sine — recomandă întâi Tabăra Încredere în Sine',
+        'Părintele vrea „un orator" în 6 zile — promitem schimbare reală, nu transformare miraculoasă',
+      ],
+    },
+    ceSeIntampla: [
+      { title: 'Frica de a vorbi în public', desc: 'Înțelege de unde vine frica, o numește și învață să o gestioneze — nu să o elimine.' },
+      { title: 'Ce fac când greșesc', desc: 'Protocoale concrete pentru momentele de bloc, panică sau gol mental. Nu mai îngheață.' },
+      { title: 'Structura unui discurs', desc: 'Poveste, întrebări, CTA — cum construiești un mesaj care rămâne. Nu improvizație — arhitectură.' },
+      { title: 'Simulare de examen', desc: 'Vorbește în fața grupului ca și cum ar fi un examen real. Presiune controlată, feedback imediat.' },
+      { title: 'Speech despre pasiunea lui', desc: 'Pregătește și susține un discurs despre ceva care îl aprinde. Autenticitatea e forța.' },
+      { title: 'Telefon cu necunoscuți', desc: 'Sună pentru a depăși frica de interacțiune directă. Situație reală, nu simulată.' },
+      { title: 'Simulare interviu de angajare', desc: 'Prezentare personală, răspuns la întrebări dificile, gestionare a emoției sub presiune.' },
+      { title: 'Fișa de evaluare și autofeedback', desc: 'Voce, comportament non-verbal, structură — își evaluează propria performanță și pe a colegilor. Învață să se vadă pe sine — o abilitate rară.' },
+    ],
+    parintProfil: {
+      intro: 'Părintele acestei tabere are o durere specifică și vizibilă: copilul lui se blochează la examene orale, nu ridică mâna la școală deși știe, evită situațiile în care trebuie să vorbească. E bun pe scris dar slab pe oral. O recunoști imediat dacă asculți bine.',
+      ingrijorari: [
+        'Copilul se blochează la examene orale',
+        'Nu ridică mâna la școală deși știe',
+        'Evită situațiile în care trebuie să vorbească',
+        'E bun pe scris dar slab pe oral',
+        'Îi e rușine să vorbească cu adulți sau necunoscuți',
+      ],
+      doreste: [
+        'Să vorbească clar și cu încredere',
+        'Să se descurce la examene orale și interviuri',
+        'Să-și apere punctul de vedere',
+        'Să fie luat în serios de profesori și colegi',
+      ],
+    },
+    cuvintele: {
+      cumDescrie: ['Se blochează', 'Nu vorbește', 'E timid pe oral', 'Îi e rușine', 'Nu se exprimă', 'Stă în banca lui'],
+      ceIsiDoreste: ['Să vorbească clar', 'Să fie sigur pe el când vorbește', 'Să nu se mai blocheze', 'Să se descurce la oral'],
+    },
+    faq: [
+      { q: 'Copilul meu e timid — nu cred că poate face asta.', a: 'Exact pentru copiii timizi e această tabără. Nu îi aruncăm în fața grupului din prima zi. Construim treptat — începem cu exerciții mici, în siguranță, și creștem progresiv. La final, tocmai copiii cei mai timizi au cele mai mari transformări — pentru că pleacă de la zero.' },
+      { q: 'Nu ar fi mai bine un curs de teatru sau oratorie?', a: 'Cursurile de teatru sau oratorie învață <em>tehnica</em>. Noi lucrăm pe <strong>frică</strong> — pe ce se întâmplă în corp și în minte când ești în fața altora. Fără să rezolvi frica, tehnica nu ajută. De aceea începem de acolo și construim tehnica pe o bază stabilă.' },
+      { q: 'Are deja încredere în sine — mai e nevoie?', a: 'Încrederea în sine generală și încrederea în fața unui public sunt <em>două lucruri diferite</em>. Poți fi sigur pe tine în conversații private și să te blochezi în fața unui grup. Această tabără lucrează specific pe exprimarea publică — e un skill distinct.' },
+      { q: 'Ce face cu fișa de evaluare — e prea complicat?', a: 'Dimpotrivă — fișa e simplă și concretă. Copilul bifează și notează ce a observat. Scopul e să învețe să se vadă pe sine așa cum îl vede audiența — o abilitate pe care majoritatea adulților nu o au.' },
+      { q: 'E prea scump. / Nu ne permitem.', a: 'Înțeleg. Avem rate — care sumă pe lună ar fi confortabilă? Și gândiți-vă așa: un copil care învață să vorbească convingător în fața altora are un <strong>avantaj pentru tot restul vieții</strong> — la examene, interviuri, prezentări, negocieri. E un skill care se plătește singur.' },
+    ],
+    povesti: [
+      {
+        title: 'Argumentul central — a doua cea mai mare frică umană',
+        when: 'cu orice părinte — produce reacții puternice pentru că e un fapt surprinzător și adevărat',
+        text: '„Știți care e a doua cea mai mare frică umană, după frica de moarte? <strong>Frica de a vorbi în public.</strong> Adică mai mulți oameni preferă să moară decât să țină un discurs. În 6 zile, copilul vostru trece prin asta — în siguranță, cu oameni care îl susțin, cu feedback real. Nu îi promitem că nu va mai tremura. Îi promitem că va ști ce să facă <em>când tremură</em>."',
+      },
+      {
+        title: 'Copilul care se blochează la examen',
+        when: 'părintele menționează blocaje la examene orale sau la școală',
+        text: '„Îmi amintesc un băiat care știa materia — învăța bine, era pregătit. Dar la examenul oral îngheța. Profesorii credeau că nu știe. <em>El știa</em> — dar nu putea scoate cuvintele. În tabără am lucrat exact pe asta: ce faci în momentul în care simți că îngheți. Are un protocol — respiră, ancorează, începe. La primul examen oral după tabără și-a luat nota maximă."',
+      },
+      {
+        title: 'Exercițiul cu telefonul',
+        when: 'părintele vrea ceva concret și practic — nu teorie',
+        text: '„Unul dintre exercițiile care îi surprinde cel mai mult pe copii e simplu: trebuie să sune <strong>un necunoscut</strong>. Poate să rezerve o masă, să întrebe de un produs, să ceară o informație — orice. Sună banal. Dar pentru mulți adolescenți e terifiant — pentru că e real, nu simulat. După ce fac asta, ne spun: «Pot orice acum.»"',
+      },
+      {
+        title: 'Speech-ul despre pasiune',
+        when: 'părintele vrea să vadă transformarea emoțională, nu doar tehnica',
+        text: '„Într-una din zile, fiecare copil ține un discurs despre ceva care îl aprinde — o pasiune, un vis, ceva în care crede. Nu li se dă subiectul. Li se dă libertatea. Și ce se întâmplă e fascinant: copiii care toată săptămâna au vorbit ezitant, încep să vorbească <em>cu foc</em>. Pentru că autenticitatea e cea mai puternică formă de exprimare."',
+      },
+    ],
+    pretRate: 'Spui prețul clar — 5.900 lei. Argument-cheie: „Un copil care învață să vorbească convingător în fața altora are un avantaj pentru tot restul vieții — examene, interviuri, prezentări, negocieri. E un skill care se plătește singur." Oferi ratele imediat.',
   },
 
   lifestart: {
+    comingSoon: true,
     name: 'Life Start',
     tagline: 'Nivel 2 → 3 · pregătire pentru viața reală',
     tag: 'Pentru 18+', category: 'tabere', thumb: 'thumb-lifestart', icon: 'ti-walk',
@@ -1044,6 +1379,7 @@ PRODUCTS: {
   },
 
   examene: {
+    comingSoon: true,
     name: 'Tabăra de Examene',
     tagline: 'Nivel 2 · gestionare emoții, concentrare, presiune',
     tag: 'Toamnă', category: 'tabere', thumb: 'thumb-examene', icon: 'ti-school',
@@ -1165,6 +1501,7 @@ PRODUCTS: {
   },
 
   parinte: {
+    comingSoon: true,
     name: 'Curs Părinte de Adolescent',
     tagline: '6 întâlniri bilunare LIVE online · pentru părinți',
     tag: 'Pentru părinți', category: 'online', thumb: 'thumb-parinte', icon: 'ti-users-group',
@@ -1261,6 +1598,7 @@ PRODUCTS: {
   },
 
   ie: {
+    comingSoon: true,
     name: 'Inteligența Emoțională pentru Adolescenți',
     tagline: 'Curs digital · 3 module + extensii M4-M7',
     tag: 'Curs digital', category: 'cursuri', thumb: 'thumb-curs', icon: 'ti-device-laptop',
@@ -1348,6 +1686,7 @@ PRODUCTS: {
   },
 
   carte: {
+    comingSoon: true,
     name: 'Agenda EQ — 4peace',
     tagline: 'Carte/agendă pentru adolescenți',
     tag: 'Carte', category: 'cursuri', thumb: 'thumb-carte', icon: 'ti-book',
@@ -1435,32 +1774,211 @@ PRODUCTS: {
   },
 },
 
-SCRIPTS: [
-  { title: 'Deschiderea apelului', phase: 'sales', phaseLabel: 'Apel',
-    quote: 'Bună ziua! Mă numesc [Numele tău] și sun din partea Pașaport pentru Succes. V-ați înscris recent pentru informații despre programele noastre pentru adolescenți. Aveți 3 minute să vă spun pe scurt ce oferim și să văd cum vă pot ajuta?',
-    note: 'Tonul e cald, nu recitat. Nu întrebi dacă ai deranjat — prezumi că e ok și treci la subiect.' },
-  { title: 'Calificare — 3 întrebări cheie', phase: 'sales', phaseLabel: 'Apel',
-    quote: '1. Ce vârstă are copilul? 2. Ce v-a atras la PPS — ați văzut ceva specific sau v-a recomandat cineva? 3. Care e lucrul pe care ați vrea cel mai mult să se schimbe la el/ea în perioada asta?',
-    note: 'Nu întrebi toate odată. Le pui natural, ascultând răspunsul înainte de următoarea.' },
-  { title: 'Descoperire reală', phase: 'sales', phaseLabel: 'Apel',
-    quote: 'Înțeleg din ce mi-ați spus că [problema identificată]. Vreau să înțeleg mai bine înainte să vă propun ceva — cum arată asta în viața de zi cu zi a copilului? Ce se întâmplă concret?',
-    note: 'Nu pitch-ui imediat. Pune întrebări specifice pentru a înțelege contextul real al familiei.' },
-  { title: 'Escaladare către Adina sau Dana', phase: 'escalate', phaseLabel: 'Escaladare',
-    quote: 'Apreciez foarte mult discuția noastră. Cred că [Adina/Dana] poate să vă explice mai în detaliu și să vă răspundă la întrebări specifice. Când aveți 20 de minute în cursul săptămânii ca să vorbiți cu ea?',
-    note: 'Folosește DOAR când lead-ul are potențial mare dar simți că nu poți închide tu. Nu e procedură standard — e excepție pentru lead-uri sensibile.' },
-  { title: 'Obiecție: „e scump"', phase: 'objection', phaseLabel: 'Obiecție',
-    quote: 'Înțeleg că investiția contează. În această perioadă (mai 2026) avem o ofertă de -10% valabilă până la sfârșitul lunii. Dar dincolo de preț: ce ar fi cel mai important pentru voi să vedeți schimbat la copil în perioada următoare?',
-    note: 'Nu spui „aceasta e reducerea maximă". Redirectezi spre valoare și spre problema lor reală.' },
-  { title: 'Obiecție: „mai stau să mă gândesc"', phase: 'objection', phaseLabel: 'Obiecție',
-    quote: 'Bineînțeles, e o decizie importantă. Ca să vă ajut să gândiți mai clar: care e lucrul principal care vă face să ezitați? De obicei e vorba de timing, buget sau nu sunteți siguri că se potrivește. La care vă referiți voi?',
-    note: 'Nu lași obiecția în aer. Clarifici ce anume stă în spatele ei — fiecare obiecție are o cauză reală.' },
-  { title: 'Obiecție: „nu cred că vrea să meargă"', phase: 'objection', phaseLabel: 'Obiecție',
-    quote: 'E o îngrijorare normală. Mulți copii ezită înainte, dar pleacă mulțumiți și cer să revină. Ați vrea să vă trimit 2-3 testimoniale de la copii care au avut aceeași ezitare?',
-    note: 'Numerele sunt reale — verifică-le în materialele de la Adina înainte. Nu inventa procente.' },
-  { title: 'Închidere blândă', phase: 'sales', phaseLabel: 'Apel',
-    quote: 'Având în vedere ce mi-ați spus, cred că tabăra de [produs] e cea mai potrivită. Avem locuri în seria [data]. Cum facem mai departe — vă trimit acum link-ul de înscriere sau preferați să vorbim cu copilul mai întâi?',
-    note: 'Oferi două opțiuni clare, ambele pozitive. Nu „vreți sau nu vreți" — ci „cum facem".' },
-],
+// GHIDURI Caller & Closer — înlocuiesc vechiul SCRIPTS pe pagina „Ghiduri Caller & Closer"
+GHID_CALLER: {
+  badge: 'Caller',
+  title: 'Ghidul Callerului',
+  subtitle: 'Warm leads · Ce faci, ce spui, ce notezi',
+  intro: 'Callerul are un singur scop: să afle dacă persoana e potrivită pentru un program PPS și, dacă da, să programeze o conversație cu Dana sau Adina. <strong>Nu convinge. Nu vinde. Califică și programează.</strong>',
+  sections: [
+    {
+      num: '01',
+      title: 'Pregătire înainte de apel',
+      eyebrow: '2 min',
+      blocks: [
+        { type: 'paragraph', text: 'Înainte să formezi numărul, uită-te în Podio și bifează:' },
+        { type: 'checklist', items: [
+          'Cum a intrat în baza de date? (formular, Instagram, recomandare)',
+          'Ce program l-a interesat, dacă se știe',
+          'A mai fost contactat? De câte ori?',
+          'Copil / adolescent de ce vârstă?',
+        ]},
+        { type: 'rule', text: '<strong>Regula:</strong> dacă nu știi nimic despre persoană, tot formezi numărul. Informațiile le afli în apel.' },
+      ],
+    },
+    {
+      num: '02',
+      title: 'Apelul — scriptul exact',
+      blocks: [
+        { type: 'subheading', text: 'DESCHIDEREA' },
+        { type: 'script', text: 'Bună, sunt [Nume], din partea echipei <strong>Pașaport pentru Succes</strong>. Te sun pentru că ai interacționat recent cu noi — ai completat un formular / ne-ai urmărit pe Instagram / ai primit o recomandare către programele noastre. Ai 3 minute acum să înțeleg puțin contextul tău și să vedem cum te putem ghida mai bine?' },
+        { type: 'script-alt', label: 'Dacă spune NU', text: 'Nicio problemă. Când ar fi mai bine să revin: mai târziu sau mâine? <em>(altă oră sau ziua următoare)</em>' },
+
+        { type: 'subheading', text: 'CALIFICAREA — cele 3 întrebări obligatorii' },
+        { type: 'qa', items: [
+          { q: 'Spune-mi, ce te-a atras la Pașaport pentru Succes? E prima interacțiune sau ne știi de mai mult timp?', hint: 'Afli relația cu brand-ul și pe ce să te sprijini.' },
+          { q: 'Câți ani are copilul? Frați?', hint: 'Afli pentru cine e, ca să știi ce program se potrivește.' },
+          { q: 'Ce ți-ai dori cel mai mult să dobândească în perioada următoare? — mai multă încredere în sine, relații mai bune, comunicare, leadership, gestionarea emoțiilor sau altceva ce simți că e important acum?', hint: 'Aceasta e întrebarea cheie. Răspunsul îți arată exact ce program să propui.' },
+        ]},
+
+        { type: 'subheading', text: 'PROPUNEREA — dacă e potrivit' },
+        { type: 'script', text: 'Din ce mi-ai spus, cred că programul <strong>[Încredere în Sine / Relații / Leadership]</strong> s-ar potrivi foarte bine pentru voi. Îți propun o discuție de aproximativ 15 minute cu <strong>Dana / Adina</strong>, consultant în echipa noastră, care îți poate explica mai clar cum funcționează programul, ce presupune și dacă mai sunt locuri disponibile. <br><br>Când ai fi disponibil — <strong>dimineața sau după-amiaza?</strong>' },
+        { type: 'rule', text: 'Oferi două variante de timp — nu întrebi „când vreți". Asta crește rata de programare.' },
+      ],
+    },
+    {
+      num: '03',
+      title: 'Gestionarea obiecțiilor frecvente',
+      blocks: [
+        { type: 'objections', rows: [
+          { obj: '„Trimite-mi un email"', resp: 'Sigur, îți trimit cu drag. Ca să îți trimit materialele potrivite pentru tine, ce te-a interesat mai exact?' },
+          { obj: '„E prea scump"', resp: 'Înțeleg. Tocmai de aceea cred că ar fi utilă o discuție scurtă cu Dana / Adina, ca să vezi exact ce include și ce soluții există.' },
+          { obj: '„Nu sunt interesat"', resp: 'Înțeleg, nu e nicio problemă. Pot să te întreb ce te-a făcut să simți că nu e potrivit acum? Dacă e un nu ferm → notezi și nu mai suni.' },
+        ]},
+      ],
+    },
+    {
+      num: '04',
+      title: 'După apel — ce notezi în Podio',
+      eyebrow: 'max 2 min',
+      blocks: [
+        { type: 'paragraph', text: 'Indiferent de rezultat, notezi imediat:' },
+        { type: 'checklist', items: [
+          '<strong>Status:</strong> Programat / Reapelare / Nu e interesat / Nu a răspuns',
+          '<strong>Data și ora</strong> următorului contact (dacă e cazul)',
+          'Un rând despre context: ce a spus, ce îl interesează, vârsta copilului, detalii relevante',
+        ]},
+        { type: 'rule', text: '<strong>Regula de aur:</strong> Dacă nu e în Podio, nu s-a întâmplat.' },
+      ],
+    },
+    {
+      num: '05',
+      title: 'Cum știe Dana / Adina că merg lucrurile bine',
+      blocks: [
+        { type: 'signals', good: {
+            title: 'Semnal că merge bine',
+            items: [
+              'Toate leadurile alocate sunt apelate în 24h',
+              'Podio actualizat după fiecare apel',
+              'La refuz, întreabă „de ce" înainte să închidă',
+              'Raport scurt la finalul zilei',
+            ],
+          }, bad: {
+            title: 'Semnal de problemă',
+            items: [
+              'Leaduri nesunate fără explicație',
+              'Podio gol la sfârșitul zilei',
+              '„Nu răspunde nimeni" — fără follow-up',
+              'Se plânge de calitatea leadurilor',
+              'Dispare după 2–3 refuzuri',
+            ],
+          },
+        },
+      ],
+    },
+  ],
+  footer: 'Nu convingi. Nu vinzi. Asculți, califici și programezi.',
+},
+
+GHID_CLOSER: {
+  badge: 'Closer',
+  title: 'Ghidul Closerului',
+  subtitle: 'Conversație la telefon · 20–40 min · De la nevoie la decizie',
+  intro: 'Closerul nu convinge. Closerul ajută părintele să vadă singur că programul e potrivit pentru copilul lui. Confirmi timpul disponibil de la început — nu intri în conversație fără să știi că părintele e prezent și are timp.',
+  sections: [
+    {
+      num: '01',
+      title: 'Deschiderea',
+      eyebrow: 'Primele 2 minute — creezi contextul',
+      blocks: [
+        { type: 'script', text: 'Bună (Prenume), îți mulțumesc că ai răspuns la telefon. Mă bucur că reușim să ne auzim. Colega mea mi-a spus că ați avut o conversație și că te interesează să discutăm mai mult. Vreau să înțeleg nevoile voastre reale și ce situații întâmpinați acasă, pentru a-ți putea recomanda un program potrivit pentru voi. Sunt aici să te susțin în a face cea mai bună alegere pentru adolescentul tău. <br><br><strong>Avem vreo 20–30 de minute, e în regulă pentru tine?</strong>' },
+      ],
+    },
+    {
+      num: '02',
+      title: 'Înțelegi — identificarea nevoii',
+      eyebrow: 'Aici părintele vorbește. Tu asculți.',
+      blocks: [
+        { type: 'subheading', text: 'Întrebarea de deschidere' },
+        { type: 'script', text: 'Spune-mi puțin despre <strong>[Numele copilului]</strong>. Cum este, ce schimbări apar în ultima perioadă care te îngrijorează? <em>(despre părinte și context)</em>' },
+        { type: 'rule', text: 'Lasă părintele să vorbească. Nu întrerupe. Nu propune nimic încă. Notezi mental: ce îl bucură, ce îl îngrijorează.' },
+
+        { type: 'subheading', text: 'Întrebarea de adâncire' },
+        { type: 'script', text: 'Care e cea mai mare provocare a lui <strong>[Nume]</strong> în perioada asta? <em>(despre copil — comportament, emoții, reacții, situații, frici)</em>' },
+        { type: 'rule', text: 'Aceasta e întrebarea care deschide tot. Părintele începe să vorbească din inimă. Ascult-o până la capăt, fără să o completezi.' },
+
+        { type: 'subheading', text: 'Întrebarea de clarificare + conștientizare risc' },
+        { type: 'script', text: 'Și când spui că e <strong>[timid / retras / agresiv / fără motivație]</strong> — ce ai observat că face repetat, cum se exprimă, cum arată asta concret acasă? <br><br>Care crezi că sunt <strong>riscurile pe termen lung</strong> dacă nu lucrați la asta?' },
+        { type: 'rule', text: 'Vrei detalii concrete, nu etichete. „E nesigur pe el" e o etichetă. „Nu vrea să răspundă la ore și vine acasă supărat" e o imagine reală.' },
+
+        { type: 'warning', text: 'Nu trece mai departe până nu ai înțeles cu adevărat provocarea. Dacă nu o simți clar — mai pune o întrebare. Folosește cuvintele lor înapoi, ca oglindă, atunci când propui.' },
+      ],
+    },
+    {
+      num: '03',
+      title: 'Conectezi — povestea, programul + VALIDARE',
+      eyebrow: 'Faci puntea între nevoia lor și ce oferim noi',
+      blocks: [
+        { type: 'subheading', text: 'Tranziția — „Din ce mi-ai spus..."' },
+        { type: 'script', text: 'Din ce mi-ai spus, înțeleg că <strong>[Nume]</strong> se confruntă cu x, y, z / a trecut prin x, y, z / face x, y, z / are nevoie să x, y, z <em>[reformulezi cu cuvintele lor]</em>. <br><br>Exact pentru a înțelege frica / neîncrederea / comportamentul x și a reuși să depășească asta, am creat programul <strong>[Numele programului potrivit pentru nevoia părintelui]</strong>. <br><br><strong>Ca să înțelegi impactul, e în regulă să-ți explic puțin ce se întâmplă concret în program și cum vom lucra cu [Nume copil]?</strong>' },
+        { type: 'rule', text: '„Din ce mi-ai spus..." e fraza de tranziție — arată că ai ascultat, nu că ai un script. Ceri permisiunea înainte să prezinți — așa nu mai ești cineva care vinde, ești cineva care explică.' },
+
+        { type: 'subheading', text: 'Povestea — un copil real, un exemplu concret' },
+        { type: 'script', text: 'Ca idee, nu este ceva nou — adeseori intră în programele noastre copii care trec prin exact aceeași situație. Îmi amintesc un copil <strong>[Nume]</strong>, care a venit la noi <em>[descrie situația inițială: cum se comporta, rețineri, frici]</em>. La finalul programului <em>[descrie transformarea concretă]</em>. Părintele lui mi-a spus după că <strong>„i-am dat alt copil la întoarcere acasă"</strong>.' },
+        { type: 'rule', text: 'Povestea nu e decorativă. E cel mai puternic moment al conversației — pentru că părintele se vede în ea. Pregătește 2–3 povești reale din programele voastre.' },
+      ],
+    },
+    {
+      num: '04',
+      title: 'Propui — oferta',
+      eyebrow: 'Spui prețul clar, fără scuze, cu rata pregătită',
+      blocks: [
+        { type: 'script', text: 'Programul <strong>[Nume]</strong> costă <strong>[Preț]</strong>. Acesta include <em>[2–3 elemente concrete: 6 zile de cazare la hotel 4*, de duminică-vineri, cazare și masă, kit-ul de primire / tricou / ecuson, toate materialele necesare]</em>. <br><br>Și un lucru important — la final de săptămână participați la <strong>atelierul cu părinții</strong>. Am structurat programul așa încât rezultatele să fie pe termen lung și să continuați acasă. Veți învăța exact ce am făcut, care sunt schimbările care pot apărea și cum să continuați mai departe. <br><br>Și pentru că știm că e o investiție importantă, vă pot oferi și varianta <strong>în rate</strong>, ca să fie mai ușor de gestionat. <em>[X rate a Y lei]</em>. <br><br><strong>Care variantă vi s-ar potrivi mai bine — integral sau în rate?</strong>' },
+        { type: 'warning', text: '<strong>Taci după ce ai spus prețul.</strong> Nu completa liniștea. Liniștea e a lor — lasă-i să o umple.' },
+        { type: 'rule', text: '<strong>Greșeala frecventă:</strong> să te scuzi pentru preț sau să îl dai la final ca pe o veste proastă. Prețul e parte din soluție, nu din problemă. Oferi mereu ambele variante în același moment — nu aștepți să întrebe de rate.' },
+      ],
+    },
+    {
+      num: '05',
+      title: 'Obiecțiile — cum le gestionezi',
+      eyebrow: '„Mă consult" înseamnă ceva diferit în fiecare caz',
+      blocks: [
+        { type: 'script-alt', label: 'Primul răspuns la „mă consult / mă mai gândesc"', text: 'Înțeleg perfect. Spuneți-mi — când vă gândiți să discutați cu partenerul, ce anume simțiți că ar trebui să lămuriți împreună?' },
+
+        { type: 'objections', rows: [
+          { obj: '„E vorba de buget"', resp: 'Înțeleg. Tocmai de aceea avem și varianta în rate [X rate a Y lei]. Putem să găsim o formă potrivită pentru tine — rate egale sau prelungite. Putem rezerva locul acum și decidem împreună sub ce formă te avantajează cel mai tare.' },
+          { obj: '„Trebuie să se decidă și copilul"', resp: 'Are sens. O întrebare: am discutat despre consecințele pe termen lung dacă nu lucrați la x, y, z — e total normal să fie reticient, pentru că nu e ușor să ieși din zona de confort și să lucrezi la frică. <br><br>Tu personal, din ce am discutat, consideri că e momentul să adresați x, y, z? Simți că ar fi potrivit pentru [Nume]? <br><br>Dacă știi că e potrivit și pe termen lung e ceea ce aveți nevoie — e posibil ca [Nume] să aibă nevoie să fie împins de la spate. S-a întâmplat în trecut să iei decizii pentru el cu care nu a fost de acord, dar în final a fost bucuros și au fost în favoarea lui? Te întreb pentru că e vorba despre viitorul lui.' },
+          { obj: '„Mai stăm să ne gândim"', resp: 'Bineînțeles, e o decizie importantă. Pot să te întreb ce anume te mai face să eziți? Vreau să mă asigur că ai toate informațiile de care ai nevoie.' },
+          { obj: '„E prea scump"', resp: '<strong>Anchor pe valoare, nu pe preț.</strong> Înțeleg că e o investiție importantă. În comparație cu ce vi se pare scump — terapie, meditații, alte cursuri / tabere? Vreau să înțeleg reperul despre care vorbim, pentru că aceasta nu e o tabără, este un program de educație care impactează toată viața lui.' },
+        ]},
+
+        { type: 'warning', text: 'Dacă după <strong>două răspunsuri la obiecție</strong> tot nu se decide — nu forța. Întreabă: „Când credeți că veți putea lua o decizie?" și notezi data pentru follow-up.' },
+      ],
+    },
+    {
+      num: '06',
+      title: 'Închiderea',
+      eyebrow: 'Simplu, ferm, fără presiune',
+      blocks: [
+        { type: 'paragraph', text: '<strong>Pasul 1 — Afli care e cazul.</strong> Răspunsul îți arată imediat dacă e <em>preț</em> sau <em>decizie neclară</em>. Nu presupune — întreabă.' },
+
+        { type: 'script-alt', label: 'Dacă e DA', text: 'Perfect. Îți mulțumim pentru încredere. Mă bucur mult că ne vedem la vară și abia așteptăm să lucrăm împreună cu [Nume]! Am nevoie de câteva date de la tine pentru rezervare și te ajut eu mai departe cu înscrierea. Spune-i lui [Nume] că urmează o vară genială pentru el.' },
+
+        { type: 'script-alt', label: 'Dacă e POATE — programezi follow-up', text: 'Înțeleg. Să-mi spui dacă e potrivit să revin la tine în X zi, să ai suficient timp. Ai putea să-mi dai un răspuns <strong>joi sau vineri?</strong>' },
+        { type: 'rule', text: 'Oferi două zile concrete. Nu „sunați când sunteți gata". Tu ești cel care sună la data stabilită — nu aștepți să sune ei.' },
+
+        { type: 'script-alt', label: 'Dacă e NU ferm', text: 'Înțeleg. Pot să te întreb ce te-a determinat? Vreau să înțeleg mai bine.' },
+        { type: 'rule', text: 'Notezi în Podio și închizi conversația cu căldură.' },
+      ],
+    },
+    {
+      num: '07',
+      title: 'Structura conversației — referință rapidă',
+      eyebrow: 'Cronometrare orientativă',
+      blocks: [
+        { type: 'timetable', rows: [
+          { time: '0–2 min',   action: 'Deschidere — confirmi timpul',       signal: 'Părintele e relaxat, răspunde scurt' },
+          { time: '3–12 min',  action: 'Înțelegi — asculți provocarea',      signal: 'Părintele vorbește mai mult decât tine' },
+          { time: '13–20 min', action: 'Conectezi — poveste + program',      signal: 'Părintele pune întrebări' },
+          { time: '21–28 min', action: 'Propui — preț + rate clar',          signal: 'Nu există liniște incomodă' },
+          { time: '29–35 min', action: 'Gestionezi obiecții',                signal: 'Afli cauza reală, nu o presupui' },
+          { time: '36–40 min', action: 'Închizi sau programezi follow-up',   signal: 'Există un pas următor clar' },
+        ]},
+      ],
+    },
+  ],
+  footer: 'Dacă părintele vorbește mai mult decât tine — conversația merge bine.',
+},
 
 PARENT_RESOURCES: [
   { emoji: '💚', title: 'Povești reale (testimoniale)',

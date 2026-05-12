@@ -6,7 +6,7 @@
 <title>Sales Hub · Pașaport pentru Succes</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
-<link rel="stylesheet" href="styles.css?v=20260511d">
+<link rel="stylesheet" href="styles.css?v=20260512b">
 </head>
 <body>
 
@@ -30,7 +30,7 @@
   <nav class="nav">
     <button class="nav-item active" data-page="acasa"><span class="nav-emoji">🏠</span> Acasă</button>
     <button class="nav-item" data-page="produse"><span class="nav-emoji">📦</span> Produse</button>
-    <button class="nav-item" data-page="scripturi"><span class="nav-emoji">💬</span> Scripturi</button>
+    <button class="nav-item" data-page="scripturi"><span class="nav-emoji">💬</span> Ghiduri Caller &amp; Closer</button>
     <button class="nav-item" data-page="limbaj"><span class="nav-emoji">🗣️</span> Limbaj comun</button>
     <button class="nav-item" data-page="parinti"><span class="nav-emoji">👨‍👩‍👧</span> Resurse Părinți</button>
     <button class="nav-item" data-page="invatare"><span class="nav-emoji">📚</span> Învățare <span class="badge-mini">4 capitole</span></button>
@@ -62,7 +62,7 @@
       <div class="hero">
         <div class="label">Sistem de operare vânzări</div>
         <h2>Tot ce ai nevoie ca să suni cu încredere — într-un singur loc</h2>
-        <p>Produse, scripturi, limbaj comun, politici, resurse pentru părinți și contactele echipei. Pentru zilele când ai 80 de apeluri și nu ai timp să cauți.</p>
+        <p>Produse, ghiduri Caller &amp; Closer, limbaj comun, politici, resurse pentru părinți și contactele echipei. Pentru zilele când ai 80 de apeluri și nu ai timp să cauți.</p>
         <div class="hero-stats">
           <div class="hero-stat"><strong>12</strong><span>produse active</span></div>
           <div class="hero-stat"><strong>-10%</strong><span>campania mai</span></div>
@@ -97,8 +97,8 @@
         <button class="quick-action" data-page="scripturi">
           <div class="quick-action-icon">💬</div>
           <div class="quick-action-text">
-            <strong>Top obiecții cu răspunsuri</strong>
-            <span>„E scump", „mă mai gândesc", „nu vrea"</span>
+            <strong>Ghiduri Caller &amp; Closer</strong>
+            <span>Scriptul pas cu pas + obiecții cu răspunsuri</span>
           </div>
         </button>
         <button class="quick-action" data-page="politici">
@@ -168,26 +168,33 @@
       <div id="productDetail" class="product-detail"></div>
     </section>
 
-    <!-- SCRIPTURI -->
+    <!-- GHIDURI CALLER & CLOSER -->
     <section class="page" id="page-scripturi" data-search-area>
       <div class="page-header">
         <div>
-          <p class="eyebrow">Vorbește cu părinții</p>
-          <h1>Scripturi & gestionare obiecții</h1>
-          <p class="intro">Nu sunt texte de citit. Sunt structuri pe care le faci tale. Tonul tău, cuvintele aprobate.</p>
-        </div>
-        <span class="status-pill soon">Va urma</span>
-      </div>
-      <div class="coming-soon-banner">
-        <div class="cs-icon">⏳</div>
-        <div class="cs-text">
-          <strong>Va urma</strong>
-          <p>Scripturile și obiecțiile sunt în pregătire. Textele de mai jos sunt orientative — vor fi disponibile în versiunea finală.</p>
+          <p class="eyebrow">Conversația la telefon · pas cu pas</p>
+          <h1>Ghiduri Caller &amp; Closer</h1>
+          <p class="intro">Două ghiduri operaționale: <strong>Callerul</strong> califică și programează, <strong>Closerul</strong> duce conversația de la nevoie la decizie. Folosește-le în timpul apelului — nu ca text de citit, ci ca structură.</p>
         </div>
       </div>
-      <div class="coming-soon-wrap">
-        <div class="script-board" id="scriptBoard"></div>
+      <div class="ghid-tabs" role="tablist" aria-label="Ghiduri vânzare">
+        <button class="ghid-tab active" data-ghid="caller" role="tab" aria-selected="true">
+          <span class="ghid-tab-emoji">📞</span>
+          <span class="ghid-tab-text">
+            <strong>Ghid Caller</strong>
+            <small>Warm leads · califică &amp; programează</small>
+          </span>
+        </button>
+        <button class="ghid-tab" data-ghid="closer" role="tab" aria-selected="false">
+          <span class="ghid-tab-emoji">🎯</span>
+          <span class="ghid-tab-text">
+            <strong>Ghid Closer</strong>
+            <small>20–40 min · de la nevoie la decizie</small>
+          </span>
+        </button>
       </div>
+      <div class="ghid-content active" id="ghid-caller" role="tabpanel"></div>
+      <div class="ghid-content" id="ghid-closer" role="tabpanel"></div>
     </section>
 
     <!-- LIMBAJ COMUN -->
@@ -410,7 +417,7 @@
             <li><strong>Descoperire profundă</strong> — întrebări despre copil și familie. Cum arată problema în viața de zi cu zi.</li>
             <li><strong>Matching</strong> — recomanzi produsul potrivit, nu pe cel mai scump. Folosește pagina Produse pentru detalii.</li>
             <li><strong>Prezentare</strong> — axată pe beneficii concrete pe limba părinților (vezi Limbaj comun · NU vs DA).</li>
-            <li><strong>Gestionare obiecții</strong> — formula: Înțeleg → Are sens → Mulți părinți simt asta → Pot să vă explic. Vezi pagina Scripturi pentru obiecții specifice.</li>
+            <li><strong>Gestionare obiecții</strong> — formula: Înțeleg → Are sens → Mulți părinți simt asta → Pot să vă explic. Vezi pagina Ghiduri Caller &amp; Closer pentru obiecții specifice.</li>
             <li><strong>Închidere</strong> — propui pașii de înscriere cu două opțiuni clare. Nu „vreți sau nu" — ci „cum facem".</li>
             <li><strong>Notițe în Podio</strong> — imediat după apel, cât e proaspăt în minte.</li>
             <li><strong>Follow-up</strong> — dacă ezită sau nu răspunde, regula 1-3-7 (1 zi, 3 zile, 7 zile).</li>
@@ -443,9 +450,9 @@
             <span class="material-tag video">Mergi la Instrumente →</span>
           </div>
           <div class="material-card" data-action="page:scripturi">
-            <strong>📋 Scripturile</strong>
-            <p>Memorezi structura (nu textul). Tonul rămâne al tău. Vezi pagina Scripturi pentru toate cele 8.</p>
-            <span class="material-tag script">Mergi la Scripturi →</span>
+            <strong>📋 Ghiduri Caller &amp; Closer</strong>
+            <p>Memorezi structura, nu textul. Tonul rămâne al tău. Două ghiduri pe pagina dedicată: unul pentru Caller, unul pentru Closer.</p>
+            <span class="material-tag script">Mergi la Ghiduri →</span>
           </div>
         </div>
         </div>
@@ -886,7 +893,7 @@
   </div>
 </div>
 
-<script src="data.js?v=20260511d"></script>
-<script src="app.js?v=20260511d"></script>
+<script src="data.js?v=20260512b"></script>
+<script src="app.js?v=20260512b"></script>
 </body>
 </html>
