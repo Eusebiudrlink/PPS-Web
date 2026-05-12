@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Telesales · Pașaport pentru Succes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+:root {
+  --primary: #0F766E;
+  --primary-dark: #064E47;
+  --primary-light: #E6F2F0;
+  --primary-soft: #F0F8F6;
+  --accent: #DC6F1F;
+  --accent-light: #FDF1E6;
+  --bg: #FAFAF7;
+  --card: #FFFFFF;
+  --text-1: #111827;
+  --text-2: #4B5563;
+  --text-3: #9CA3AF;
+  --border: #E8E8E3;
+  --border-strong: #D1D5DB;
+  --success: #059669;
+  --success-bg: #ECFDF5;
+  --warning: #D97706;
+  --warning-bg: #FFFBEB;
+  --danger: #DC2626;
+  --danger-bg: #FEF2F2;
+  --info: #2563EB;
+  --info-bg: #EFF6FF;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,.06);
+  --shadow-lg: 0 12px 32px rgba(15,23,42,.08);
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  color: var(--text-1);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+input { font-family: inherit; }
+
+/* ===== Layout ===== */
+.app {
+  display: grid;
+  grid-template-columns: 256px 1fr;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  padding: 22px 14px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px 22px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.5px;
+}
+.brand-text { line-height: 1.15; }
+.brand-text strong { display: block; font-size: 14px; font-weight: 600; color: var(--text-1); }
+.brand-text span { font-size: 11px; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 14px 12px 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  color: var(--text-2);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+  text-align: left;
+}
+.nav-item:hover {
+  background: var(--bg);
+  color: var(--text-1);
+}
+.nav-item.active {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+.nav-item i {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+.nav-item .badge-mini {
+  margin-left: auto;
+  background: var(--accent);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ===== Main area ===== */
+.main { display: flex; flex-direction: column; min-width: 0; }
+
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(250, 250, 247, 0.85);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 9px 14px;
+  max-width: 560px;
+  transition: all 0.15s;
+}
+.search:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+.search i { font-size: 16px; color: var(--text-3); }
+.search input {
+  flex: 1;
+  border: none; outline: none;
+  font-size: 14px;
+  color: var(--text-1);
+  background: transparent;
+}
+.search input::placeholder { color: var(--text-3); }
+.search kbd {
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2);
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+.icon-btn:hover { background: white; border-color: var(--border); color: var(--text-1); }
+.icon-btn i { font-size: 18px; }
+
+.user-chip {
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 8px 4px 4px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: white;
+}
+.avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.user-chip span { font-size: 13px; font-weight: 500; color: var(--text-1); }
+
+/* ===== Content ===== */
+.content { padding: 32px; max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.page { display: none; animation: fadeIn 0.25s ease; }
+.page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+.page-header { margin-bottom: 28px; }
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--text-1);
+  margin-bottom: 6px;
+}
+.page-subtitle {
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--text-3);
+  margin: 28px 0 12px;
+}
+.section-title:first-child { margin-top: 0; }
+
+/* ===== Cards ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  transition: all 0.15s ease;
+}
+.card-hover { cursor: pointer; }
+.card-hover:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ===== Hero (home) ===== */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  border-radius: var(--r-xl);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -40px; top: -40px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  margin-bottom: 6px;
+  position: relative;
+}
+.hero p {
+  opacity: 0.9;
+  font-size: 14px;
+  margin-bottom: 18px;
+  position: relative;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  position: relative;
+}
+.hero-stat strong {
+  display: block;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.hero-stat span {
+  font-size: 12px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ===== Quick actions ===== */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.quick-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px;
+  transition: all 0.15s;
+  cursor: pointer;
+  text-align: left;
+}
+.quick-action:hover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+.quick-action-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--primary-light);
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.quick-action-icon i { font-size: 18px; }
+.quick-action-text { line-height: 1.2; min-width: 0; }
+.quick-action-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 2px;
+}
+.quick-action-text span {
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+/* ===== Product cards ===== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.product-card {
+  display: flex; flex-direction: column;
+}
+.product-card-thumb {
+  height: 140px;
+  border-radius: var(--r-md);
+  margin-bottom: 14px;
+  display: flex; align-items: flex-end; justify-content: flex-start;
+  padding: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.product-card-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.35) 100%);
+}
+.thumb-1 { background: linear-gradient(135deg, #0F766E, #14B8A6); }
+.thumb-2 { background: linear-gradient(135deg, #DC6F1F, #F59E0B); }
+.thumb-3 { background: linear-gradient(135deg, #7C3AED, #C084FC); }
+.thumb-4 { background: linear-gradient(135deg, #DB2777, #F472B6); }
+.thumb-5 { background: linear-gradient(135deg, #2563EB, #60A5FA); }
+.thumb-6 { background: linear-gradient(135deg, #B45309, #D97706); }
+
+.product-card-thumb i {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 24px;
+  color: white;
+  opacity: 0.7;
+  z-index: 1;
+}
+.product-card-thumb .status-pill {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.95);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.product-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+.product-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 12px;
+}
+.product-meta span { display: flex; align-items: center; gap: 4px; }
+.product-meta i { font-size: 14px; color: var(--text-3); }
+.product-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-top: auto;
+}
+.product-price small { font-size: 12px; color: var(--text-3); font-weight: 500; }
+
+/* ===== Badges ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-success { background: var(--success-bg); color: var(--success); }
+.badge-warning { background: var(--warning-bg); color: var(--warning); }
+.badge-info { background: var(--info-bg); color: var(--info); }
+.badge-neutral { background: var(--bg); color: var(--text-2); }
+.badge-accent { background: var(--accent-light); color: var(--accent); }
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-accent {
+  background: var(--accent);
+  color: white;
+}
+.btn-accent:hover { background: #B85B14; }
+.btn-secondary {
+  background: white;
+  color: var(--text-1);
+  border-color: var(--border);
+}
+.btn-secondary:hover { border-color: var(--border-strong); background: var(--bg); }
+.btn-ghost { color: var(--text-2); }
+.btn-ghost:hover { background: var(--bg); color: var(--text-1); }
+
+/* ===== Product detail ===== */
+.product-detail-hero {
+  background: linear-gradient(135deg, #0F766E 0%, #064E47 100%);
+  color: white;
+  border-radius: var(--r-xl);
+  padding: 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.product-detail-hero::after {
+  content: '';
+  position: absolute;
+  right: -50px; bottom: -50px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+  border-radius: 50%;
+}
+.detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 14px;
+  position: relative;
+}
+.detail-back:hover { color: white; }
+.detail-title {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.detail-meta-row {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  margin-bottom: 22px;
+  position: relative;
+  font-size: 14px;
+  opacity: 0.9;
+}
+.detail-meta-row span { display: flex; align-items: center; gap: 6px; }
+.detail-cta-row { display: flex; gap: 10px; position: relative; flex-wrap: wrap; }
+.detail-cta-row .btn-accent { box-shadow: 0 4px 14px rgba(220,111,31,.4); }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .detail-grid { grid-template-columns: 1fr; }
+}
+
+.detail-section {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin-bottom: 16px;
+}
+.detail-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.detail-section h2 i { color: var(--primary); font-size: 18px; }
+
+.benefits-list { list-style: none; padding: 0; }
+.benefits-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.benefits-list li:last-child { border-bottom: none; }
+.benefits-list li i {
+  color: var(--success);
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.q-to-b {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media (max-width: 700px) { .q-to-b { grid-template-columns: 1fr; } }
+.q-to-b-item {
+  background: var(--primary-soft);
+  border-radius: var(--r-md);
+  padding: 14px;
+  border-left: 3px solid var(--primary);
+}
+.q-to-b-item .q { font-size: 13px; font-weight: 500; color: var(--text-1); margin-bottom: 6px; }
+.q-to-b-item .b { font-size: 13px; color: var(--text-2); }
+.q-to-b-item .b strong { color: var(--primary-dark); font-weight: 600; }
+
+.video-frame {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #1F2937, #374151);
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.video-frame::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="20" fill="rgba(255,255,255,0.05)"/></svg>');
+  opacity: 0.4;
+}
+.video-frame .play-btn {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+  box-shadow: 0 12px 32px rgba(0,0,0,.3);
+  transition: transform 0.2s;
+}
+.video-frame:hover .play-btn { transform: scale(1.08); }
+.video-frame .play-btn i { font-size: 24px; color: var(--primary-dark); margin-left: 3px; }
+.video-frame .vlabel {
+  position: absolute;
+  bottom: 14px; left: 14px;
+  z-index: 1;
+  color: white;
+  font-size: 13px;
+  background: rgba(0,0,0,0.5);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+/* Sidebar inside detail */
+.detail-aside { display: flex; flex-direction: column; gap: 16px; }
+
+.price-box { padding: 22px; }
+.price-box h3 { font-size: 13px; color: var(--text-2); font-weight: 500; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.price-amount { font-size: 32px; font-weight: 700; color: var(--text-1); letter-spacing: -1px; margin-bottom: 4px; }
+.price-amount small { font-size: 14px; font-weight: 500; color: var(--text-2); }
+.price-note { font-size: 12px; color: var(--text-3); margin-bottom: 16px; }
+.payment-option {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: 8px;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.payment-option:hover { border-color: var(--primary); background: var(--primary-soft); }
+.payment-option strong { font-weight: 600; }
+.payment-option span { color: var(--text-2); }
+
+/* FAQ accordion */
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  margin-bottom: 8px;
+  background: white;
+  overflow: hidden;
+  transition: all 0.15s;
+}
+.accordion-item:hover { border-color: var(--border-strong); }
+.accordion-trigger {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
+  gap: 12px;
+}
+.accordion-trigger i { font-size: 18px; color: var(--text-3); transition: transform 0.2s; flex-shrink: 0; }
+.accordion-item.open .accordion-trigger i { transform: rotate(180deg); color: var(--primary); }
+.accordion-content {
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.65;
+}
+.accordion-item.open .accordion-content {
+  max-height: 600px;
+  padding: 0 16px 16px;
+}
+.accordion-content p { margin-bottom: 8px; }
+.accordion-content strong { color: var(--text-1); }
+.accordion-tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+.tab {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--text-2);
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+}
+.tab:hover { color: var(--text-1); }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+/* Script display */
+.script-box {
+  background: var(--primary-soft);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-1);
+}
+.script-box strong { color: var(--primary-dark); font-weight: 600; }
+.script-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Resources cards */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.resource-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: all 0.15s;
+}
+.resource-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.resource-thumb {
+  height: 130px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  position: relative;
+}
+.resource-thumb i { font-size: 38px; opacity: 0.9; }
+.resource-thumb.r-pdf { background: linear-gradient(135deg, #DC2626, #991B1B); }
+.resource-thumb.r-video-1 { background: linear-gradient(135deg, #7C3AED, #5B21B6); }
+.resource-thumb.r-video-2 { background: linear-gradient(135deg, #DB2777, #9D174D); }
+.resource-thumb.r-video-3 { background: linear-gradient(135deg, #0891B2, #0E7490); }
+.resource-thumb.r-pdf-2 { background: linear-gradient(135deg, #EA580C, #C2410C); }
+.resource-thumb.r-pdf-3 { background: linear-gradient(135deg, #16A34A, #15803D); }
+.resource-thumb.r-pdf-4 { background: linear-gradient(135deg, #9333EA, #7E22CE); }
+.resource-body { padding: 16px; }
+.resource-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: -0.1px;
+}
+.resource-body p {
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.resource-actions {
+  display: flex;
+  gap: 8px;
+}
+.resource-actions .btn {
+  flex: 1;
+  justify-content: center;
+  padding: 7px 12px;
+  font-size: 13px;
+}
+
+/* Onboarding weeks */
+.week-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  margin-bottom: 16px;
+  position: relative;
+}
+.week-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.week-num {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.week-title { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+.week-subtitle { font-size: 13px; color: var(--text-2); }
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-1);
+}
+.checklist li i { color: var(--text-3); font-size: 18px; margin-top: 1px; flex-shrink: 0; }
+.checklist li.done i { color: var(--success); }
+.checklist li.done { color: var(--text-2); text-decoration: line-through; }
+
+/* Tools page */
+.tool-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px;
+  margin-bottom: 12px;
+  transition: all 0.15s;
+}
+.tool-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+.tool-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 22px;
+}
+.tool-card-body { flex: 1; min-width: 0; }
+.tool-card-body h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.tool-card-body p { font-size: 13px; color: var(--text-2); }
+
+/* Policy callout */
+.callout {
+  background: var(--warning-bg);
+  border: 1px solid #FCD34D;
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.callout i { color: var(--warning); font-size: 20px; flex-shrink: 0; }
+.callout-body { font-size: 13px; color: var(--text-1); }
+.callout-body strong { font-weight: 600; }
+
+/* Empty / utility */
+.muted { color: var(--text-2); }
+.center { text-align: center; }
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  .content { padding: 20px; }
+  .topbar { padding: 12px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">PS</div>
+      <div class="brand-text">
+        <strong>Pașaport pentru Succes</strong>
+        <span>Telesales</span>
+      </div>
+    </div>
+
+    <div class="nav-label">Principal</div>
+    <button class="nav-item active" data-page="acasa"><i class="ti ti-home"></i> Acasă</button>
+    <button class="nav-item" data-page="produse"><i class="ti ti-package"></i> Produse</button>
+    <button class="nav-item" data-page="scripturi"><i class="ti ti-message-2-share"></i> Scripturi & Obiecții</button>
+    <button class="nav-item" data-page="parinti"><i class="ti ti-users"></i> Resurse Părinți</button>
+
+    <div class="nav-label">Pregătire</div>
+    <button class="nav-item" data-page="invatare"><i class="ti ti-book-2"></i> Învățare <span class="badge-mini">4 săpt.</span></button>
+    <button class="nav-item" data-page="instrumente"><i class="ti ti-tool"></i> Instrumente</button>
+    <button class="nav-item" data-page="politici"><i class="ti ti-file-description"></i> Politici</button>
+
+    <div class="nav-label">Suport</div>
+    <button class="nav-item" data-page="ajutor"><i class="ti ti-help-circle"></i> Cere ajutor</button>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="search">
+        <i class="ti ti-search"></i>
+        <input type="text" placeholder='Caută rapid: nume tabără, preț, "părinte zice e prea scump"...'>
+        <kbd>⌘ K</kbd>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" title="Notificări"><i class="ti ti-bell"></i></button>
+        <button class="icon-btn" title="Setări"><i class="ti ti-settings"></i></button>
+        <div class="user-chip">
+          <div class="avatar">AD</div>
+          <span>Adina</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="content">
+
+      <!-- =============== PAGE: ACASĂ =============== -->
+      <section class="page active" id="page-acasa">
+        <div class="hero">
+          <h1>Bună dimineața, Adina 👋</h1>
+          <p>Ai 12 lead-uri active de apelat astăzi. 3 părinți te așteaptă cu răspuns.</p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>12</strong>
+              <span>Lead-uri azi</span>
+            </div>
+            <div class="hero-stat">
+              <strong>4</strong>
+              <span>Comenzi luna asta</span>
+            </div>
+            <div class="hero-stat">
+              <strong>2.840 lei</strong>
+              <span>Comision curent</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">Acțiuni rapide</div>
+        <div class="quick-actions">
+          <button class="quick-action">
+            <div class="quick-action-icon"><i class="ti ti-external-link"></i></div>
+            <div class="quick-action-text"><strong>Deschide Podio</strong><span>Comenzi & lead-uri</span></div>
+          </button>
+          <button class="quick-action">
+            <div class="quick-action-icon" style="background:#FEE2E2; color:#DC2626;"><i class="ti ti-microphone"></i></div>
+            <div class="quick-action-text"><strong>Vocaroo</strong><span>Înregistrează apel</span></div>
+          </button>
+          <button class="quick-action">
+            <div class="quick-action-icon" style="background:#EDE9FE; color:#7C3AED;"><i class="ti ti-file-text"></i></div>
+            <div class="quick-action-text"><strong>Whisper</strong><span>Transcript apel</span></div>
+          </button>
+          <button class="quick-action">
+            <div class="quick-action-icon" style="background:#FEF3C7; color:#D97706;"><i class="ti ti-calculator"></i></div>
+            <div class="quick-action-text"><strong>Calculator comision</strong><span>Câștiguri lunare</span></div>
+          </button>
+          <button class="quick-action">
+            <div class="quick-action-icon" style="background:#DBEAFE; color:#2563EB;"><i class="ti ti-message-circle-question"></i></div>
+            <div class="quick-action-text"><strong>Cere ajutor</strong><span>Contactează mentorul</span></div>
+          </button>
+        </div>
+
+        <div class="callout" style="background:var(--primary-light); border-color:var(--primary); margin-bottom: 22px;">
+          <i class="ti ti-discount" style="color:var(--primary);"></i>
+          <div class="callout-body">
+            <strong>Campania activă (mai 2026):</strong> reducere -10% la toate taberele. Rate disponibile (+200 lei taxă administrativă). <a href="#" data-page="politici" style="color:var(--primary-dark); font-weight:600;">Vezi detalii →</a>
+          </div>
+        </div>
+
+        <div class="section-title">Următoarele 3 tabere care încep</div>
+        <div class="product-grid">
+
+          <div class="card card-hover product-card" data-page="produs-incredere">
+            <div class="product-card-thumb thumb-1">
+              <i class="ti ti-bolt"></i>
+              <span class="status-pill" style="color:#065F46;">● 3 grupe vârstă</span>
+            </div>
+            <h3>Tabăra de Încredere în Sine</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 28 iun → 23 aug</span>
+              <span><i class="ti ti-users"></i> 10-18 ani</span>
+            </div>
+            <div class="product-price">4.050 lei <small>/ preț ofertă, standard 4.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-3">
+              <i class="ti ti-bulb"></i>
+              <span class="status-pill" style="color:#5B21B6;">● 19 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Vocație</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 12-17 iul</span>
+              <span><i class="ti ti-users"></i> 13-18 ani</span>
+            </div>
+            <div class="product-price">4.950 lei <small>/ preț ofertă, standard 5.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-2">
+              <i class="ti ti-flag"></i>
+              <span class="status-pill" style="color:#92400E;">● 7 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Leadership</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 19-24 iul</span>
+              <span><i class="ti ti-users"></i> 15-18 ani</span>
+            </div>
+            <div class="product-price">5.310 lei <small>/ preț ofertă, standard 5.900 lei</small></div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center; margin-top:18px;">
+          <button class="btn btn-secondary" data-page="produse"><i class="ti ti-package"></i> Vezi toate cele 12 produse</button>
+        </div>
+
+      </section>
+
+      <!-- =============== PAGE: PRODUSE =============== -->
+      <section class="page" id="page-produse">
+        <div class="page-header">
+          <h1 class="page-title">Produse</h1>
+          <p class="page-subtitle">Toate taberele, cursurile și produsele, cu prețuri și locuri în timp real</p>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active">Toate</button>
+          <button class="tab">Tabere staționare</button>
+          <button class="tab">Online live</button>
+          <button class="tab">Cursuri & cărți</button>
+        </div>
+
+        <div class="section-title">Tabere staționare (Zona Brașov · ofertă curentă -10%)</div>
+        <div class="product-grid">
+
+          <div class="card card-hover product-card" data-page="produs-incredere">
+            <div class="product-card-thumb thumb-1">
+              <i class="ti ti-bolt"></i>
+              <span class="status-pill" style="color:#065F46;">● 3 grupe vârstă</span>
+            </div>
+            <h3>Tabăra de Încredere în Sine</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 28 iun → 23 aug</span>
+              <span><i class="ti ti-users"></i> 10-18 ani</span>
+            </div>
+            <div class="product-price">4.050 lei <small>/ standard 4.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-3">
+              <i class="ti ti-bulb"></i>
+              <span class="status-pill" style="color:#5B21B6;">● 19 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Vocație</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 12-17 iul</span>
+              <span><i class="ti ti-users"></i> 13-18 ani</span>
+            </div>
+            <div class="product-price">4.950 lei <small>/ standard 5.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-2">
+              <i class="ti ti-flag"></i>
+              <span class="status-pill" style="color:#92400E;">● 7 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Leadership</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 19-24 iul</span>
+              <span><i class="ti ti-users"></i> 15-18 ani</span>
+            </div>
+            <div class="product-price">5.310 lei <small>/ standard 5.900 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-4">
+              <i class="ti ti-heart-handshake"></i>
+              <span class="status-pill" style="color:#9D174D;">● 17 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Relații</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 26-31 iul</span>
+              <span><i class="ti ti-users"></i> 13-18 ani</span>
+            </div>
+            <div class="product-price">4.950 lei <small>/ standard 5.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-6">
+              <i class="ti ti-coin"></i>
+              <span class="status-pill" style="color:#92400E;">● 13 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Educație Financiară</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 2-7 aug</span>
+              <span><i class="ti ti-users"></i> 14-18 ani</span>
+            </div>
+            <div class="product-price">4.950 lei <small>/ standard 5.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-5">
+              <i class="ti ti-microphone-2"></i>
+              <span class="status-pill" style="color:#92400E;">● 30 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Public Speaking</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 16-21 aug</span>
+              <span><i class="ti ti-users"></i> 14-18 ani</span>
+            </div>
+            <div class="product-price">4.950 lei <small>/ standard 5.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-3">
+              <i class="ti ti-rocket"></i>
+              <span class="status-pill" style="color:#5B21B6;">● 4 locuri ocupate</span>
+            </div>
+            <h3>Life Start</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 23-28 aug</span>
+              <span><i class="ti ti-users"></i> 18+ ani</span>
+            </div>
+            <div class="product-price">4.050 lei <small>/ standard 4.500 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-2">
+              <i class="ti ti-school"></i>
+              <span class="status-pill" style="color:#92400E;">● 16 locuri ocupate</span>
+            </div>
+            <h3>Tabăra de Examene</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 25-30 oct</span>
+              <span><i class="ti ti-users"></i> 13-18 ani</span>
+            </div>
+            <div class="product-price">4.950 lei <small>/ standard 5.500 lei</small></div>
+          </div>
+
+        </div>
+
+        <div class="section-title">Programe online live</div>
+        <div class="product-grid">
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-5">
+              <i class="ti ti-heart-handshake"></i>
+              <span class="status-pill" style="color:#1E40AF;">● 2 serii / an</span>
+            </div>
+            <h3>Ateliere Conectăm Generații</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> Seria 2: 15 apr 2026</span>
+              <span><i class="ti ti-users"></i> Părinți</span>
+            </div>
+            <div class="product-price">720 lei <small>/ standard 990 lei</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-6">
+              <i class="ti ti-users-group"></i>
+              <span class="status-pill" style="color:#92400E;">● Începe 11 oct</span>
+            </div>
+            <h3>Curs Părinte de Adolescent</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-calendar"></i> 6 întâlniri bilunare LIVE</span>
+              <span><i class="ti ti-users"></i> Părinți</span>
+            </div>
+            <div class="product-price">2.050 lei <small>/ standard 2.950 lei</small></div>
+          </div>
+
+        </div>
+
+        <div class="section-title">Cursuri scurte & cărți</div>
+        <div class="product-grid">
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-4">
+              <i class="ti ti-device-laptop"></i>
+              <span class="status-pill" style="color:#9D174D;">● Disponibil mereu</span>
+            </div>
+            <h3>Inteligența Emoțională pentru Adolescenți</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-stack"></i> 5 module + basic</span>
+              <span><i class="ti ti-users"></i> Adolescenți</span>
+            </div>
+            <div class="product-price">509 lei <small>/ pachet complet</small></div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-1">
+              <i class="ti ti-book"></i>
+              <span class="status-pill" style="color:#065F46;">● În stoc</span>
+            </div>
+            <h3>Agenda EQ — 4peace</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-package"></i> Carte fizică</span>
+              <span><i class="ti ti-users"></i> Părinți + adolescenți</span>
+            </div>
+            <div class="product-price">237 lei</div>
+          </div>
+
+          <div class="card card-hover product-card">
+            <div class="product-card-thumb thumb-2">
+              <i class="ti ti-book-2"></i>
+              <span class="status-pill" style="color:#92400E;">● În stoc</span>
+            </div>
+            <h3>Ghid de supraviețuire când ai fost înșelat</h3>
+            <div class="product-meta">
+              <span><i class="ti ti-package"></i> Carte fizică</span>
+              <span><i class="ti ti-users"></i> Adolescenți</span>
+            </div>
+            <div class="product-price">65 lei</div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =============== PAGE: PRODUS DETALIU (Încredere) =============== -->
+      <section class="page" id="page-produs-incredere">
+        <div class="product-detail-hero">
+          <button class="detail-back" data-page="produse"><i class="ti ti-arrow-left"></i> Înapoi la Produse</button>
+          <h1 class="detail-title">Tabăra de Încredere în Sine</h1>
+          <div class="detail-meta-row">
+            <span><i class="ti ti-calendar"></i> 28 iun → 23 aug 2026</span>
+            <span><i class="ti ti-map-pin"></i> Zona Brașov</span>
+            <span><i class="ti ti-users"></i> 3 grupe vârstă: 10-11 / 12-14 / 15-18 ani</span>
+            <span><i class="ti ti-bed"></i> 5-6 nopți, all-inclusive</span>
+          </div>
+          <div class="detail-cta-row">
+            <button class="btn btn-accent"><i class="ti ti-shopping-cart"></i> Plasează comandă în Podio</button>
+            <button class="btn btn-secondary" style="background:rgba(255,255,255,0.95);"><i class="ti ti-player-play"></i> Vezi video tabără</button>
+            <button class="btn btn-ghost" style="color:white;"><i class="ti ti-share"></i> Trimite părintelui</button>
+          </div>
+        </div>
+
+        <div class="detail-grid">
+
+          <div>
+            <!-- Perioade și locuri -->
+            <div class="detail-section">
+              <h2><i class="ti ti-calendar-stats"></i> Perioade și locuri disponibile</h2>
+              <p class="muted" style="font-size:13px; margin-bottom:14px;">Maxim 48 copii / serie. Întreabă părintele de vârsta copilului ca să vezi exact ce serii sunt potrivite.</p>
+
+              <div style="margin-bottom:18px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                  <span class="badge badge-accent" style="font-size:12px; padding:4px 10px;">Grupa 10-11 ani</span>
+                  <span style="font-size:13px; color:var(--text-2);">1 perioadă programată</span>
+                </div>
+                <div class="payment-option" style="margin-bottom:0;">
+                  <strong>28 iun - 3 iul</strong>
+                  <span><span class="badge badge-warning">22 ocupate / 28 libere</span></span>
+                </div>
+              </div>
+
+              <div style="margin-bottom:18px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                  <span class="badge badge-accent" style="font-size:12px; padding:4px 10px;">Grupa 12-14 ani</span>
+                  <span style="font-size:13px; color:var(--text-2);">3 perioade programate</span>
+                </div>
+                <div class="payment-option" style="margin-bottom:6px;">
+                  <strong>5 - 10 iul</strong>
+                  <span><span class="badge badge-warning">20 ocupate / 30 libere</span></span>
+                </div>
+                <div class="payment-option" style="margin-bottom:6px;">
+                  <strong>19 - 24 iul</strong>
+                  <span><span class="badge badge-warning">21 ocupate / 29 libere</span></span>
+                </div>
+                <div class="payment-option" style="margin-bottom:0;">
+                  <strong>16 - 21 aug</strong>
+                  <span><span class="badge badge-success">14 ocupate / 37 libere</span></span>
+                </div>
+              </div>
+
+              <div>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                  <span class="badge badge-accent" style="font-size:12px; padding:4px 10px;">Grupa 15-18 ani</span>
+                  <span style="font-size:13px; color:var(--text-2);">4 perioade programate</span>
+                </div>
+                <div class="payment-option" style="margin-bottom:6px;">
+                  <strong>12 - 17 iul</strong>
+                  <span><span class="badge badge-warning">14 ocupate / 37 libere</span></span>
+                </div>
+                <div class="payment-option" style="margin-bottom:6px;">
+                  <strong>26 - 31 iul</strong>
+                  <span><span class="badge badge-success">7 ocupate / 43 libere</span></span>
+                </div>
+                <div class="payment-option" style="margin-bottom:6px;">
+                  <strong>2 - 7 aug</strong>
+                  <span><span class="badge badge-success">11 ocupate / 39 libere</span></span>
+                </div>
+                <div class="payment-option" style="margin-bottom:0;">
+                  <strong>23 - 28 aug</strong>
+                  <span><span class="badge badge-success">7 ocupate / 43 libere</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top 5 beneficii -->
+            <div class="detail-section">
+              <h2><i class="ti ti-check"></i> Top 5 beneficii — primele 90 de secunde</h2>
+              <ul class="benefits-list">
+                <li><i class="ti ti-check"></i><span>Copilul învață să vorbească în fața unui grup fără să roșească — exerciții zilnice de prezentare.</span></li>
+                <li><i class="ti ti-check"></i><span>Construiește o stimă de sine bazată pe acțiune, nu pe complimente goale.</span></li>
+                <li><i class="ti ti-check"></i><span>Învață să spună „nu" și să-și apere opiniile — în jocuri de rol și activități de grup.</span></li>
+                <li><i class="ti ti-check"></i><span>Își face prieteni noi într-un mediu sigur, supravegheat de psihologi formați.</span></li>
+                <li><i class="ti ti-check"></i><span>Pleacă acasă cu un plan personal — 30 de zile de mini-provocări la întoarcere.</span></li>
+              </ul>
+            </div>
+
+            <!-- Întrebări care duc la beneficii -->
+            <div class="detail-section">
+              <h2><i class="ti ti-message-question"></i> Întrebări care duc la beneficii</h2>
+              <p class="muted" style="font-size:13px; margin-bottom:14px;">Pune întrebarea părintelui, ascultă, apoi conectează cu beneficiul.</p>
+              <div class="q-to-b">
+                <div class="q-to-b-item">
+                  <p class="q">„Cum e copilul când trebuie să vorbească în clasă?"</p>
+                  <p class="b">→ Conectezi cu <strong>exercițiile de prezentare zilnice</strong>.</p>
+                </div>
+                <div class="q-to-b-item">
+                  <p class="q">„Are prieteni? Se simte bine cu colegii?"</p>
+                  <p class="b">→ Conectezi cu <strong>grupul mic de 12 copii și activitățile de echipă</strong>.</p>
+                </div>
+                <div class="q-to-b-item">
+                  <p class="q">„Ce face când cineva îl provoacă sau îl ia peste picior?"</p>
+                  <p class="b">→ Conectezi cu <strong>jocurile de rol „cum spui nu"</strong>.</p>
+                </div>
+                <div class="q-to-b-item">
+                  <p class="q">„Ce v-ar plăcea să schimbe la el când vine acasă?"</p>
+                  <p class="b">→ Conectezi cu <strong>planul personal de 30 zile post-tabără</strong>.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ce învață -->
+            <div class="detail-section">
+              <h2><i class="ti ti-target"></i> Ce învață copilul, concret</h2>
+              <p style="font-size:14px; color:var(--text-2); margin-bottom:14px;">7 zile, 4 module mari, fiecare cu activități practice și aplicate. Nu prelegeri — exerciții.</p>
+              <ul class="benefits-list">
+                <li><i class="ti ti-circle-check"></i><span><strong>Modul 1 — Cine sunt eu:</strong> Identificarea punctelor forte. Exercițiu „4 talente personale".</span></li>
+                <li><i class="ti ti-circle-check"></i><span><strong>Modul 2 — Vocea mea:</strong> Tehnici de respirație + 3 prezentări scurte în fața grupului.</span></li>
+                <li><i class="ti ti-circle-check"></i><span><strong>Modul 3 — Cum spun nu:</strong> Jocuri de rol pe situații reale (presiune de grup, refuz politicos).</span></li>
+                <li><i class="ti ti-circle-check"></i><span><strong>Modul 4 — Plan acasă:</strong> Setarea a 3 mini-obiective + caiet de provocări de 30 zile.</span></li>
+              </ul>
+            </div>
+
+            <!-- Video -->
+            <div class="detail-section">
+              <h2><i class="ti ti-player-play"></i> Video tabără</h2>
+              <p class="muted" style="font-size:13px; margin-bottom:14px;">Trimite-l părintelui pe WhatsApp după apel — convertește mai bine decât broșura.</p>
+              <div class="video-frame">
+                <div class="play-btn"><i class="ti ti-player-play-filled"></i></div>
+                <span class="vlabel">2:48 · Tabăra Încredere în Sine</span>
+              </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="detail-section">
+              <h2><i class="ti ti-help"></i> FAQ specific acestei tabere</h2>
+
+              <div class="accordion-item">
+                <button class="accordion-trigger">
+                  <span><span class="accordion-tag">Frică</span>Copilul meu e foarte timid, va putea face față?</span>
+                  <i class="ti ti-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>Tabăra e construită <strong>special pentru copii timizi</strong>. Grup mic (12 copii), psiholog formator prezent toată ziua, fără presiune competitivă. În prima zi, fiecare copil are un „buddy" desemnat. Pleacă acasă alt copil — nu pentru că l-am schimbat, ci pentru că s-a descoperit.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-trigger">
+                  <span><span class="accordion-tag">Sănătate</span>Cum gestionați alergiile alimentare sau tratamentele?</span>
+                  <i class="ti ti-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>La înscriere, completați un formular medical detaliat. Avem medic permanent și asistent. Mâncarea e adaptată — fără gluten, fără lactoză, vegetarian, totul gestionat dacă spui dinainte.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-trigger">
+                  <span><span class="accordion-tag">Părinte</span>Cum comunicăm cu copilul în timpul taberei?</span>
+                  <i class="ti ti-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>Apel video în fiecare seară între 19:30-20:30, 10 minute per copil. Plus poze și update-uri zilnice în grupul de WhatsApp al părinților. Recomandăm <strong>să nu fie sunat în restul timpului</strong> — îi rupe procesul.</p>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <button class="accordion-trigger">
+                  <span><span class="accordion-tag">Logistic</span>Există transport organizat?</span>
+                  <i class="ti ti-chevron-down"></i>
+                </button>
+                <div class="accordion-content">
+                  <p>Da. Plecare din București (autocar dedicat, însoțitori formatori) pe 15 iulie ora 8:00, întoarcere pe 22 iulie ora 17:00. Costul transportului e inclus.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Aside (preț, reduceri, link Podio) -->
+          <aside class="detail-aside">
+
+            <div class="card price-box">
+              <h3>Preț standard</h3>
+              <div class="price-amount" style="text-decoration:line-through; color:var(--text-3); font-size:20px; font-weight:500;">4.500 lei</div>
+              <h3 style="margin-top:10px;">Ofertă curentă (-10%)</h3>
+              <div class="price-amount">4.050 <small>lei</small></div>
+              <p class="price-note">All-inclusive: cazare, masă, activități, supervizare 24/7.<br><strong style="color:var(--accent);">Campania mai 2026 — valabilă până 31 mai</strong></p>
+              <button class="btn btn-accent" style="width:100%; justify-content:center;"><i class="ti ti-shopping-cart"></i> Plasează comandă</button>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size:13px; color:var(--text-2); font-weight:500; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Variante de plată</h3>
+              <div class="payment-option">
+                <div><strong>Plată integrală</strong><br><span style="font-size:11px; color:var(--text-3);">fără taxă suplimentară</span></div>
+                <span>4.050 lei</span>
+              </div>
+              <div class="payment-option">
+                <div><strong>2 rate</strong><br><span style="font-size:11px; color:var(--text-3);">+200 lei taxă admin</span></div>
+                <span>2 × 2.125 lei</span>
+              </div>
+              <div class="payment-option">
+                <div><strong>3 rate</strong><br><span style="font-size:11px; color:var(--text-3);">+200 lei taxă admin</span></div>
+                <span>3 × 1.417 lei</span>
+              </div>
+            </div>
+
+            <div class="card" style="background:var(--accent-light); border-color:#FBD9B5;">
+              <h3 style="font-size:13px; color:var(--accent); font-weight:600; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Reduceri aplicabile</h3>
+              <p style="font-size:12px; color:var(--text-2); margin-bottom:10px;"><strong>Reducerile NU se cumulează.</strong> Doar una se aplică, cea mai favorabilă pentru client.</p>
+              <ul style="list-style:none; font-size:13px; color:var(--text-1);">
+                <li style="padding:8px 0; border-bottom:1px solid #FBD9B5;"><strong>Campania mai 2026:</strong> -10% (activă acum)</li>
+                <li style="padding:8px 0; border-bottom:1px solid #FBD9B5;"><strong>Frați / prieteni înscriși:</strong> +5% suplimentar (singura care se cumulează)</li>
+                <li style="padding:8px 0;"><strong>Plată integrală în 24h:</strong> -10% (când nu există campanie activă)</li>
+              </ul>
+              <button class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:8px; color:var(--accent); font-size:13px;" data-page="politici">Vezi politica completă →</button>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size:13px; color:var(--text-2); font-weight:500; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">Pentru părinte</h3>
+              <button class="btn btn-secondary" style="width:100%; justify-content:flex-start; margin-bottom:6px;"><i class="ti ti-link"></i> Copiază link video</button>
+              <button class="btn btn-secondary" style="width:100%; justify-content:flex-start; margin-bottom:6px;"><i class="ti ti-mail"></i> Email cu detalii</button>
+              <button class="btn btn-secondary" style="width:100%; justify-content:flex-start;"><i class="ti ti-brand-whatsapp"></i> Mesaj WhatsApp</button>
+            </div>
+
+          </aside>
+        </div>
+      </section>
+
+      <!-- =============== PAGE: SCRIPTURI =============== -->
+      <section class="page" id="page-scripturi">
+        <div class="page-header">
+          <h1 class="page-title">Scripturi & Obiecții</h1>
+          <p class="page-subtitle">Structura apelului și răspunsuri rapide la cele mai frecvente blocaje</p>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="t-script">Scripturi apel</button>
+          <button class="tab" data-tab="t-obiectii">Obiecții comune</button>
+        </div>
+
+        <div id="t-script" class="tab-content">
+
+          <div class="detail-section">
+            <h2><i class="ti ti-phone-incoming"></i> Deschidere apel (10-15 secunde)</h2>
+            <span class="script-label">Scop: prezentare clară + permisiunea de a continua</span>
+            <div class="script-box">
+              „Bună ziua, sunt <strong>{numele tău}</strong> de la Pașaport pentru Succes. Sunt 2 minute la dispoziție? V-ați înscris (sau ați deschis un email de la noi) acum câteva zile despre <strong>{webinar/produs}</strong> și voiam să văd dacă mai sunteți interesat să discutăm despre cum putem ajuta copilul dumneavoastră."
+            </div>
+            <span class="script-label" style="color:var(--accent);">Capcană: nu cere voie de „5 minute". Părintele zice nu. „2 minute" trece.</span>
+          </div>
+
+          <div class="detail-section">
+            <h2><i class="ti ti-search"></i> Descoperire (3-5 minute)</h2>
+            <span class="script-label">Scop: înțelegi cu adevărat de ce stă părintele trezit la 2 noaptea</span>
+            <div class="script-box">
+              <strong>Întrebări de pus, în ordine:</strong><br>
+              1. „Cum se numește copilul și ce vârstă are?"<br>
+              2. „Ce v-a făcut să dați click pe acel webinar/anunț?"<br>
+              3. <strong>„Ce ați vrea să fie altfel la copilul dumneavoastră peste 6 luni?"</strong> ← cea mai importantă<br>
+              4. „Ați mai încercat ceva în direcția asta? Cum a mers?"<br>
+              5. „Este copilul implicat în decizie, sau e ceva ce vă gândiți dvs.?"
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h2><i class="ti ti-presentation"></i> Prezentare (2-3 minute)</h2>
+            <span class="script-label">Scop: leagă fiecare beneficiu de un răspuns concret de la părinte</span>
+            <div class="script-box">
+              „Din ce mi-ați spus, văd 2 lucruri care contează pentru dvs.: <strong>{durerea 1}</strong> și <strong>{durerea 2}</strong>. Pentru asta, recomand <strong>{Tabăra X}</strong> — și uite de ce: la noi {beneficiu legat de durere 1}, plus {beneficiu legat de durere 2}. Acolo e diferența între o tabără obișnuită și ce facem noi."
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <h2><i class="ti ti-check"></i> Închidere (1-2 minute)</h2>
+            <span class="script-label">Scop: nu lasă conversația deschisă, propune un pas clar</span>
+            <div class="script-box">
+              „Mai am o întrebare. Pe scară de la 1 la 10, cât de aproape sunteți să spuneți DA pentru tabără? <em>{ascultă}</em><br>
+              Bun. Pot să vă rezerv unul din locurile rămase pentru {data limită}? E plată integrală sau în 3 rate, oricare vă convine."
+            </div>
+          </div>
+
+        </div>
+
+        <div id="t-obiectii" class="tab-content" style="display:none;">
+
+          <div class="callout">
+            <i class="ti ti-bulb"></i>
+            <div class="callout-body">
+              <strong>Regulă de aur:</strong> înainte să răspunzi obiecției, întreabă „Înțeleg. Dacă rezolvăm asta, mai e altceva care v-ar opri să spuneți DA?" — descoperi adevărata obiecție.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Preț</span>„E prea scump"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns scurt:</strong> „Înțeleg. Pot să vă întreb: comparați cu altceva specific, sau e mai mult o reacție la sumă?"</p>
+              <p>Dacă <strong>compară cu altă tabără:</strong> diferențiază — formatori specializați, all-inclusive (cazare + masă + activități + supervizare), Tabără în Zona Brașov.</p>
+              <p>Dacă <strong>e doar suma:</strong> sparge în rate. „4.050 împărțit în 3 luni = aproximativ 1.417 lei/lună. Cât plătesc părinții pe meditații sau alte activități într-o lună?"</p>
+              <p><strong>NU spune:</strong> „pot să vă fac o reducere" peste campania activă.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Reducere</span>„Pot să primesc o reducere?"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Dacă există campanie activă (mai 2026, -10%):</strong></p>
+              <div class="script-box" style="margin:8px 0;">„În această perioadă avem o ofertă de <strong>10% pentru înscriere</strong>, valabilă până la <strong>31 mai</strong>. Asta este reducerea pe care o pot oferi acum."</div>
+              <p><strong>Dacă se înscriu 2 frați/prieteni:</strong></p>
+              <div class="script-box" style="margin:8px 0;">„Dacă se înscrie și fratele/sora/un prieten, se aplică <strong>+5% suplimentar</strong> peste reducerea actuală."</div>
+              <p><strong>Dacă nu există campanie și clientul ezită:</strong></p>
+              <div class="script-box" style="margin:8px 0;">„Singura reducere pe care o pot oferi este de <strong>10%, doar pentru plata integrală</strong>, dacă plasăm comanda în <strong>maxim 24h</strong>."</div>
+              <p style="color:var(--danger); font-weight:500;">Nu spune niciodată „cea mai mare reducere posibilă" sau „nu există reducere mai mare". <a href="#" data-page="politici">Vezi politica completă →</a></p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Decizie</span>„Trebuie să discut cu soțul/soția"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Perfect, e o decizie de luat împreună. Pot să vă întreb — care credeți că va fi prima lui/ei întrebare? Hai să-i pregătesc răspunsul acum."</p>
+              <p>Apoi setează un follow-up CONCRET: „Vorbesc cu dvs. mâine la ora 18, sunteți disponibilă?"</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Email</span>„Trimiteți-mi pe email și mă uit"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Cu siguranță vă trimit. Dar dacă mă uit pe statistici, 80% dintre părinți care zic „mă uit pe email" nu ne mai sună înapoi — nu pentru că nu li se pare interesant, ci pentru că viața intervine. Pot să vă fur 90 de secunde să vă spun esența?"</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Copil</span>„Copilul meu nu va vrea să meargă"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Asta îmi spun mulți părinți. 90% din copiii care vin reticenți pleacă acasă întrebând când e următoarea. Pot să vă trimit un video de 3 minute făcut chiar de copii din taberele anterioare, să-i arătați?"</p>
+              <p>Apoi: „Hai să facem un test. Arătați-i copilului videoclipul azi seară. Vorbim mâine — dacă tot zice nu, înțeleg."</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Timp</span>„Sunați-mă altă dată / nu am timp acum"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Înțeleg. Când vă vine mai bine — diseară pe la 20, sau mâine pe la 10? Vă apel atunci, durează 7 minute."</p>
+              <p>Cheia: <strong>nu lăsa „te sun eu". Fixează ora tu.</strong></p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Încredere</span>„De unde știu că e ok?"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Întrebare bună, eu pe locul dvs. aș avea-o. 3 lucruri: (1) anul ăsta e a 4-a ediție, am avut peste 600 copii. (2) Pot să vă pun în contact cu un părinte care a trimis copilul anul trecut? (3) Avem psiholog formator prezent toată ziua, nu animator."</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Comparație</span>„Am încercat altceva similar și nu i-a plăcut"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Ce a fost diferit acolo de ce credeați? <em>{ascultă atent}</em> Înțeleg. Și cred că exact lucrul ăla e ce facem noi diferit. La noi {punct concret de diferențiere}."</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Timp gândire</span>„Am nevoie de timp să mă gândesc"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Cu siguranță. Pot să vă întreb — ce anume vreți să mai gândiți? Poate vă pot ajuta să clarificați ceva chiar acum."</p>
+              <p>Dacă insistă: „Ok. Mai sunt 3 locuri în această tabără. Pot să vă rezerv unul fără plată până mâine la ora 18, ca să vă lase timp?"</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Plată</span>„Pot plăti în rate?"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Da, fără probleme. 2 sau 3 rate, fără dobândă, fără comision. Care vă convine mai mult?"</p>
+              <p>Asta e o obiecție de cumpărător. Treci direct la închidere.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Personalitate</span>„Copilul meu e prea timid pentru așa ceva"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Tabăra e construită exact pentru copiii timizi — nu sportivi, nu lideri. Grup de 12. Psiholog formator. Niciun exercițiu de tip „prezintă-te în fața a 100 de oameni". E gradat. Cei mai timizi sunt cei care se schimbă cel mai mult."</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Calendar</span>„Suntem ocupați luna aia"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Înțeleg. Avem 3 sesiuni anul ăsta — iulie, august, septembrie. Vreți să vă spun datele celorlalte? Una se potrivește cu siguranță."</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger"><span><span class="accordion-tag">Final</span>„Ne mai gândim, vă sunăm noi"</span><i class="ti ti-chevron-down"></i></button>
+            <div class="accordion-content">
+              <p><strong>Răspuns:</strong> „Înțeleg. Hai să facem așa: vă rezerv un loc fără plată până {dată concretă, max 3 zile}. Dacă în acest interval vreți să continuați, sunați-mă. Dacă nu, locul se eliberează automat și nu trebuie să faceți nimic. Așa nu pierdeți și nici nu vă presez."</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =============== PAGE: RESURSE PĂRINȚI =============== -->
+      <section class="page" id="page-parinti">
+        <div class="page-header">
+          <h1 class="page-title">Resurse pentru Părinți</h1>
+          <p class="page-subtitle">Trimite-le pre-apel pentru încălzire sau post-apel pentru consolidare. Fiecare are buton „Copiază link".</p>
+        </div>
+
+        <div class="section-title">Webinarii (Vimeo)</div>
+        <div class="resource-grid">
+
+          <div class="resource-card">
+            <div class="resource-thumb r-video-1">
+              <i class="ti ti-player-play-filled"></i>
+            </div>
+            <div class="resource-body">
+              <h3>Încredere în sine în era AI</h3>
+              <p>Cum ajuți copilul să-și păstreze stima de sine într-o lume dominată de algoritmi.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-eye"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-thumb r-video-2">
+              <i class="ti ti-player-play-filled"></i>
+            </div>
+            <div class="resource-body">
+              <h3>Conectăm Generații</h3>
+              <p>Cum reduci ruptura comunicării între părinți și adolescenți.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-eye"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-thumb r-video-3">
+              <i class="ti ti-player-play-filled"></i>
+            </div>
+            <div class="resource-body">
+              <h3>Autonomia adolescenților</h3>
+              <p>Când să dai libertate, când să pui limite — fără luptă.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-eye"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section-title">Ghiduri PDF</div>
+        <div class="resource-grid">
+
+          <div class="resource-card">
+            <div class="resource-thumb r-pdf"><i class="ti ti-file-type-pdf"></i></div>
+            <div class="resource-body">
+              <h3>Ce spui când nu mai știi ce să spui</h3>
+              <p>Ghid practic cu 12 fraze de deblocare a conversației cu adolescentul.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-download"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-thumb r-pdf-2"><i class="ti ti-file-type-pdf"></i></div>
+            <div class="resource-body">
+              <h3>4 Talente și puncte forte</h3>
+              <p>Cum identifici punctele forte ale copilului și le hrănești săptămânal.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-download"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-thumb r-pdf-3"><i class="ti ti-file-type-pdf"></i></div>
+            <div class="resource-body">
+              <h3>5 Pași dacă e retras</h3>
+              <p>Plan de 5 zile pentru a redeschide comunicarea cu un copil retras.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-download"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-thumb r-pdf-4"><i class="ti ti-file-type-pdf"></i></div>
+            <div class="resource-body">
+              <h3>De ce adolescentul tău reacționează așa</h3>
+              <p>Explicarea pe înțeles a creierului adolescent + 8 strategii de zi cu zi.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-link"></i> Copiază link</button>
+                <button class="btn btn-secondary"><i class="ti ti-download"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- =============== PAGE: ÎNVĂȚARE =============== -->
+      <section class="page" id="page-invatare">
+        <div class="page-header">
+          <h1 class="page-title">Învățare — Onboarding 4 săptămâni</h1>
+          <p class="page-subtitle">Parcurs structurat pentru un seller nou. La final: gata de apeluri reale, singur.</p>
+        </div>
+
+        <div class="callout">
+          <i class="ti ti-rocket"></i>
+          <div class="callout-body">
+            <strong>Mentor desemnat:</strong> Adina Popescu · contact direct WhatsApp: 07XX XXX XXX. Te ajută în orice moment, nu trebuie să aștepți „întâlnirea săptămânală".
+          </div>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <div class="week-num">1</div>
+            <div>
+              <div class="week-title">Săptămâna 1 — Înțelegi produsele și echipa</div>
+              <div class="week-subtitle">Niciun apel real încă. Doar absorbți.</div>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li class="done"><i class="ti ti-circle-check-filled"></i><span>Întâlnire de bun-venit cu Simona (1h)</span></li>
+            <li class="done"><i class="ti ti-circle-check-filled"></i><span>Citește pagina fiecărui produs din dashboard</span></li>
+            <li><i class="ti ti-circle"></i><span>Vizionează cele 2 video-uri Podio (cum creezi comandă, cum salvezi datele de facturare)</span></li>
+            <li><i class="ti ti-circle"></i><span>Ascultă 5 apeluri reale din biblioteca de apeluri</span></li>
+            <li><i class="ti ti-circle"></i><span>Citește 12 obiecții și răspunsuri</span></li>
+            <li><i class="ti ti-circle"></i><span>Test la final: răspunde la 10 întrebări despre Tabăra de Încredere</span></li>
+          </ul>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <div class="week-num">2</div>
+            <div>
+              <div class="week-title">Săptămâna 2 — Shadowing + Role-play</div>
+              <div class="week-subtitle">Asculți Adina. Joci scenarii. Niciun apel real încă.</div>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li><i class="ti ti-circle"></i><span>Asistă la 10 apeluri reale făcute de Adina (cu permisiunea părintelui)</span></li>
+            <li><i class="ti ti-circle"></i><span>Notează în jurnal după fiecare: ce a mers, ce ai face altfel</span></li>
+            <li><i class="ti ti-circle"></i><span>3 sesiuni de role-play cu mentorul (deschidere, descoperire, închidere)</span></li>
+            <li><i class="ti ti-circle"></i><span>Memorează scriptul de deschidere — trebuie să curgă natural</span></li>
+            <li><i class="ti ti-circle"></i><span>Învață Podio practic (creezi 3 comenzi de test)</span></li>
+          </ul>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <div class="week-num">3</div>
+            <div>
+              <div class="week-title">Săptămâna 3 — Primele apeluri reale</div>
+              <div class="week-subtitle">Doar Tabăra de Încredere. Volum mic. Mentorul ascultă.</div>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li><i class="ti ti-circle"></i><span>Maxim 15 apeluri/zi — calitate, nu cantitate</span></li>
+            <li><i class="ti ti-circle"></i><span>Înregistrează fiecare apel cu Vocaroo (cu acord)</span></li>
+            <li><i class="ti ti-circle"></i><span>Debrief zilnic 30 min cu mentorul — ascultă 1 apel împreună</span></li>
+            <li><i class="ti ti-circle"></i><span>Țintă realistă: prima comandă în zilele 3-4</span></li>
+          </ul>
+        </div>
+
+        <div class="week-card">
+          <div class="week-header">
+            <div class="week-num">4</div>
+            <div>
+              <div class="week-title">Săptămâna 4 — Extindere portofoliu</div>
+              <div class="week-subtitle">Adaugi taberele de Leadership și Conectăm Generații.</div>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li><i class="ti ti-circle"></i><span>Învață cele 2 produse noi (1 zi/produs)</span></li>
+            <li><i class="ti ti-circle"></i><span>Crește la 25 apeluri/zi</span></li>
+            <li><i class="ti ti-circle"></i><span>Evaluare săptămânală: rata de conversie, timpul mediu/apel</span></li>
+            <li><i class="ti ti-circle"></i><span>La final: trecere la regim normal (40+ apeluri/zi, autonom)</span></li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- =============== PAGE: INSTRUMENTE =============== -->
+      <section class="page" id="page-instrumente">
+        <div class="page-header">
+          <h1 class="page-title">Instrumente</h1>
+          <p class="page-subtitle">Tot ce ai nevoie zi de zi, într-un singur loc</p>
+        </div>
+
+        <div class="section-title">Comenzi & lead-uri</div>
+
+        <div class="tool-card">
+          <div class="tool-icon" style="background:#DBEAFE; color:#1E40AF;"><i class="ti ti-database"></i></div>
+          <div class="tool-card-body">
+            <h3>Podio</h3>
+            <p>Aici plasezi comenzile, marchezi lead-urile apelate și salvezi datele de facturare.</p>
+          </div>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide</button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon" style="background:#FEF3C7; color:#D97706;"><i class="ti ti-calculator"></i></div>
+          <div class="tool-card-body">
+            <h3>Calculator comision</h3>
+            <p>Vezi exact cât câștigi luna asta în funcție de vânzări.</p>
+          </div>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide</button>
+        </div>
+
+        <div class="section-title">Înregistrare & transcript apeluri</div>
+
+        <div class="tool-card">
+          <div class="tool-icon" style="background:#FEE2E2; color:#DC2626;"><i class="ti ti-microphone"></i></div>
+          <div class="tool-card-body">
+            <h3>Vocaroo</h3>
+            <p>Înregistrare rapidă online, 1 click. Folosește pentru toate apelurile cu acord.</p>
+          </div>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide</button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon" style="background:#EDE9FE; color:#7C3AED;"><i class="ti ti-file-text"></i></div>
+          <div class="tool-card-body">
+            <h3>Whisper</h3>
+            <p>Transcrie automat înregistrarea în text — util pentru notițe și învățare.</p>
+          </div>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide</button>
+        </div>
+
+        <div class="section-title">Ghiduri Podio (referință)</div>
+
+        <div class="tool-card">
+          <div class="tool-icon" style="background:#E6F2F0; color:#0F766E;"><i class="ti ti-photo-scan"></i></div>
+          <div class="tool-card-body">
+            <h3>Ghid Podio — Comenzi (cu screenshot-uri)</h3>
+            <p>Ghid vizual pas-cu-pas pentru crearea și modificarea comenzilor în workspace-ul Comenzi. Recomandat după ce ai văzut video-ul.</p>
+          </div>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide</button>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-icon" style="background:#E6F2F0; color:#0F766E;"><i class="ti ti-photo-scan"></i></div>
+          <div class="tool-card-body">
+            <h3>Ghid Podio — Vânzări (cu screenshot-uri)</h3>
+            <p>Cum gestionezi lead-urile în workspace-ul 04_Vânzări: generezi oferte PDF, trimiți pe email, transformi în comenzi.</p>
+          </div>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide</button>
+        </div>
+
+      </section>
+
+      <!-- =============== PAGE: POLITICI =============== -->
+      <section class="page" id="page-politici">
+        <div class="page-header">
+          <h1 class="page-title">Politica de reduceri PPS 2026</h1>
+          <p class="page-subtitle">Tabere staționare. Reduceri, formulări recomandate, ce să NU spui niciodată.</p>
+        </div>
+
+        <div class="callout">
+          <i class="ti ti-alert-triangle"></i>
+          <div class="callout-body">
+            <strong>Cele 4 reguli de aur:</strong><br>
+            1. Reducerile <strong>NU se cumulează</strong> (excepție: +5% frați/prieteni se adaugă peste campanie).<br>
+            2. Telesales <strong>nu oferă</strong> reduceri mai mari decât campania activă.<br>
+            3. <strong>Niciodată</strong> nu spui „cea mai mare reducere posibilă" sau „nu există reducere mai mare".<br>
+            4. Prețul valabil este cel din momentul înscrierii.
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h2><i class="ti ti-discount"></i> Calendar campanii lunare</h2>
+          <p style="font-size:14px; color:var(--text-2); margin-bottom:14px;">Reducerile scad progresiv pe măsură ce se apropie începerea taberelor. Reducerea în campania activă este maximul pe care telesales îl poate oferi.</p>
+          <table style="width:100%; font-size:14px; border-collapse:collapse;">
+            <thead>
+              <tr style="background:var(--bg);">
+                <th style="padding:10px; text-align:left; border-bottom:1px solid var(--border); font-weight:600; font-size:13px; color:var(--text-2);">Lună</th>
+                <th style="padding:10px; text-align:left; border-bottom:1px solid var(--border); font-weight:600; font-size:13px; color:var(--text-2);">Reducere maximă</th>
+                <th style="padding:10px; text-align:left; border-bottom:1px solid var(--border); font-weight:600; font-size:13px; color:var(--text-2);">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td style="padding:10px; border-bottom:1px solid var(--border);"><strong>Martie 2026</strong></td><td style="padding:10px; border-bottom:1px solid var(--border);">-15%</td><td style="padding:10px; border-bottom:1px solid var(--border);"><span class="badge badge-neutral">Expirat</span></td></tr>
+              <tr><td style="padding:10px; border-bottom:1px solid var(--border);"><strong>Aprilie 2026</strong></td><td style="padding:10px; border-bottom:1px solid var(--border);">-15%</td><td style="padding:10px; border-bottom:1px solid var(--border);"><span class="badge badge-neutral">Expirat</span></td></tr>
+              <tr style="background:var(--primary-soft);"><td style="padding:10px; border-bottom:1px solid var(--border);"><strong>Mai 2026</strong></td><td style="padding:10px; border-bottom:1px solid var(--border);"><strong>-10%</strong></td><td style="padding:10px; border-bottom:1px solid var(--border);"><span class="badge badge-success">● Activă acum</span></td></tr>
+              <tr><td style="padding:10px; border-bottom:1px solid var(--border);"><strong>Iunie 2026</strong></td><td style="padding:10px; border-bottom:1px solid var(--border);">-10%</td><td style="padding:10px; border-bottom:1px solid var(--border);"><span class="badge badge-info">Următoarea</span></td></tr>
+              <tr><td style="padding:10px;"><strong>Iulie 2026</strong></td><td style="padding:10px;">-5%</td><td style="padding:10px;"><span class="badge badge-info">Programată</span></td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:12px; color:var(--text-3); margin-top:14px;">Reducerile sunt comunicate prin: email, webinare, telesales. Prețul standard rămâne afișat pe site.</p>
+        </div>
+
+        <div class="detail-section">
+          <h2><i class="ti ti-users"></i> Reducere suplimentară: frați / prieteni</h2>
+          <p style="font-size:14px; color:var(--text-1);">Dacă <strong>2 participanți se înscriu împreună</strong>, se aplică <strong>+5% suplimentar</strong> peste reducerea campaniei active. Asta este SINGURA reducere care se cumulează.</p>
+          <div class="callout" style="margin-top:14px;">
+            <i class="ti ti-calculator"></i>
+            <div class="callout-body">
+              <strong>Exemplu mai 2026:</strong> 2 frați înscriși → -10% campanie + 5% frați = <strong>-15% per copil</strong>. Tabăra de 4.500 lei → 3.825 lei pentru fiecare copil.
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h2><i class="ti ti-credit-card"></i> Plata în rate</h2>
+          <ul class="benefits-list">
+            <li><i class="ti ti-check"></i><span>Plata în rate este disponibilă pentru toate taberele staționare.</span></li>
+            <li><i class="ti ti-check"></i><span><strong>Taxă administrativă: +200 RON</strong> la suma totală.</span></li>
+            <li><i class="ti ti-check"></i><span>Variante: 2 sau 3 rate, fără dobândă.</span></li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h2><i class="ti ti-message-2"></i> Formulări recomandate (use cases)</h2>
+
+          <div style="margin-bottom:18px;">
+            <span class="script-label">1️⃣ Când NU există ofertă activă</span>
+            <div class="script-box">
+              „În acest moment înscrierea se face la prețul standard. Din când în când organizăm webinare sau perioade speciale în care apar oferte pentru înscriere."
+            </div>
+            <p style="font-size:12px; color:var(--text-3); margin-top:6px;">Scop: nu promiți reducere, nu creezi așteptări.</p>
+          </div>
+
+          <div style="margin-bottom:18px;">
+            <span class="script-label">2️⃣ Când EXISTĂ ofertă activă (acum: mai 2026, -10%)</span>
+            <div class="script-box">
+              „În această perioadă avem o ofertă de <strong>10% pentru înscriere</strong>, valabilă până la <strong>31 mai 2026</strong>."
+            </div>
+            <p style="font-size:12px; color:var(--text-3); margin-top:6px;">Important: menționează întotdeauna perioada limitată — ajută clientul să înțeleagă că oferta e temporară.</p>
+          </div>
+
+          <div style="margin-bottom:18px;">
+            <span class="script-label">3️⃣ După ce o ofertă a expirat</span>
+            <div class="script-box">
+              „Oferta respectivă a fost valabilă după webinar și doar în perioada anunțată. În acest moment înscrierea se face la oferta disponibilă acum."
+            </div>
+          </div>
+
+          <div>
+            <span class="script-label">4️⃣ Dacă clientul ezită și nu există campanie activă (regula 24h)</span>
+            <div class="script-box">
+              „Dacă decideți înscrierea acum, pot să verific dacă vă pot ajuta cu un mic avantaj." <em>{verifici cu mentorul}</em><br>
+              Sau direct: „Singura reducere pe care o putem face este de <strong>10%, doar pentru plata integrală</strong>. Dacă este plasată comanda în <strong>maxim 24h</strong> de la această convorbire."
+            </div>
+            <p style="font-size:12px; color:var(--text-3); margin-top:6px;">Folosește această regulă DOAR când nu există campanie activă. Nu o suprapune cu reducerea campaniei.</p>
+          </div>
+        </div>
+
+        <div class="detail-section" style="background:var(--danger-bg); border-color:#FECACA;">
+          <h2 style="color:var(--danger);"><i class="ti ti-circle-x" style="color:var(--danger);"></i> Formulări INTERZISE</h2>
+          <ul style="list-style:none; font-size:14px; color:var(--text-1);">
+            <li style="padding:8px 0; border-bottom:1px solid #FECACA;"><span style="color:var(--danger); font-weight:600;">❌</span> „Aceasta este reducerea maximă"</li>
+            <li style="padding:8px 0; border-bottom:1px solid #FECACA;"><span style="color:var(--danger); font-weight:600;">❌</span> „Nu există reducere mai mare"</li>
+            <li style="padding:8px 0;"><span style="color:var(--danger); font-weight:600;">❌</span> „Cea mai mare reducere posibilă"</li>
+          </ul>
+          <p style="font-size:13px; color:var(--text-2); margin-top:10px;">De ce: blochează negocierea, creează impresia că oricine altcineva ar putea oferi mai mult.</p>
+        </div>
+
+        <div class="detail-section">
+          <h2><i class="ti ti-shield-check"></i> Consimțământ la apel (GDPR)</h2>
+          <p style="font-size:14px; color:var(--text-2); margin-bottom:12px;">La începutul apelului, dacă înregistrezi:</p>
+          <div class="script-box">
+            „Vă informez că acest apel este înregistrat pentru îmbunătățirea calității serviciilor noastre. Sunteți de acord să continuăm?"
+          </div>
+          <p style="font-size:13px; color:var(--text-3); margin-top:10px;">Dacă răspunde NU — nu înregistrezi, dar continui apelul normal.</p>
+        </div>
+
+        <div class="detail-section">
+          <h2><i class="ti ti-link"></i> Reduceri detaliate (Spreadsheet)</h2>
+          <p style="font-size:14px; color:var(--text-2); margin-bottom:12px;">Pentru detalii pe fiecare campanie și produs, consultă spreadsheet-ul oficial:</p>
+          <button class="btn btn-secondary"><i class="ti ti-external-link"></i> Deschide Spreadsheet Reduceri</button>
+        </div>
+
+      </section>
+
+      <!-- =============== PAGE: AJUTOR =============== -->
+      <section class="page" id="page-ajutor">
+        <div class="page-header">
+          <h1 class="page-title">Cere ajutor</h1>
+          <p class="page-subtitle">Cine te ajută cu ce. Răspuns garantat sub 30 minute în program de lucru.</p>
+        </div>
+
+        <div class="resource-grid">
+          <div class="resource-card" style="display:flex; flex-direction:column;">
+            <div style="padding:24px; text-align:center; background:var(--primary-soft);">
+              <div class="avatar" style="width:56px; height:56px; font-size:18px; margin:0 auto 12px;">SI</div>
+              <h3 style="font-weight:600; margin-bottom:2px;">Simona</h3>
+              <p style="font-size:13px; color:var(--text-2);">Owner & strateg vânzări</p>
+            </div>
+            <div class="resource-body" style="flex:1;">
+              <p><strong>Întreab-o despre:</strong> reduceri peste 10%, decizii strategice, lead-uri complicate.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-brand-whatsapp"></i> WhatsApp</button>
+                <button class="btn btn-secondary"><i class="ti ti-mail"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" style="display:flex; flex-direction:column;">
+            <div style="padding:24px; text-align:center; background:var(--accent-light);">
+              <div class="avatar" style="width:56px; height:56px; font-size:18px; margin:0 auto 12px; background:var(--accent);">AD</div>
+              <h3 style="font-weight:600; margin-bottom:2px;">Adina</h3>
+              <p style="font-size:13px; color:var(--text-2);">Mentor seller</p>
+            </div>
+            <div class="resource-body" style="flex:1;">
+              <p><strong>Întreab-o despre:</strong> obiecții pe apel, role-play, debrief, cum să ataci un produs nou.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-brand-whatsapp"></i> WhatsApp</button>
+                <button class="btn btn-secondary"><i class="ti ti-mail"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="resource-card" style="display:flex; flex-direction:column;">
+            <div style="padding:24px; text-align:center; background:#EFF6FF;">
+              <div class="avatar" style="width:56px; height:56px; font-size:18px; margin:0 auto 12px; background:#2563EB;">SE</div>
+              <h3 style="font-weight:600; margin-bottom:2px;">Sebi</h3>
+              <p style="font-size:13px; color:var(--text-2);">Tehnic & marketing</p>
+            </div>
+            <div class="resource-body" style="flex:1;">
+              <p><strong>Întreab-l despre:</strong> Podio (bug-uri), dashboard, materiale, link-uri care nu merg.</p>
+              <div class="resource-actions">
+                <button class="btn btn-primary"><i class="ti ti-brand-whatsapp"></i> WhatsApp</button>
+                <button class="btn btn-secondary"><i class="ti ti-mail"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+// Page navigation
+document.querySelectorAll('.nav-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-page');
+    if (!target) return;
+    showPage(target);
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// Cards with data-page links
+document.addEventListener('click', (e) => {
+  const card = e.target.closest('[data-page]');
+  if (card && !card.classList.contains('nav-item')) {
+    const target = card.getAttribute('data-page');
+    if (target && document.getElementById('page-' + target)) {
+      showPage(target);
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      // try to find matching nav and highlight closest
+      const navMatch = document.querySelector('.nav-item[data-page="' + target + '"]');
+      if (navMatch) navMatch.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+});
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) target.classList.add('active');
+}
+
+// Accordion
+document.addEventListener('click', (e) => {
+  const trig = e.target.closest('.accordion-trigger');
+  if (trig) {
+    trig.parentElement.classList.toggle('open');
+  }
+});
+
+// Tabs (simple)
+document.addEventListener('click', (e) => {
+  const tab = e.target.closest('.tab');
+  if (tab) {
+    const group = tab.closest('.tabs');
+    if (!group) return;
+    group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const targetId = tab.getAttribute('data-tab');
+    if (targetId) {
+      const container = group.parentElement;
+      container.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+      const content = container.querySelector('#' + targetId);
+      if (content) content.style.display = 'block';
+    }
+  }
+});
+</script>
+
+</body>
+</html>

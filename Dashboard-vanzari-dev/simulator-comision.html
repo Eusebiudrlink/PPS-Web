@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simulator comision · Pașaport pentru Succes</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F0;
+    --surface: #FFFFFF;
+    --border: #E2DDD4;
+    --text: #1A1714;
+    --text2: #6B6560;
+    --text3: #A8A29A;
+    --accent: #C4622D;
+    --accent-bg: #FDF0E8;
+    --accent2: #2D6B5A;
+    --accent2-bg: #E8F5F0;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    padding: 32px 20px 60px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  /* HEADER */
+  header { margin-bottom: 32px; }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  header p { font-size: 15px; color: var(--text2); max-width: 720px; }
+
+  /* INPUT PRINCIPAL */
+  .input-card {
+    background: var(--text);
+    background-image: linear-gradient(135deg, #1A1714 0%, #2D2520 100%);
+    color: #F7F5F0;
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  .input-card .label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .input-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
+  .input-row input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #F7F5F0;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .input-row input:focus { border-color: var(--accent); background: rgba(255,255,255,0.10); }
+  .input-row .unit { font-family: 'DM Serif Display', serif; font-size: 22px; color: rgba(247,245,240,0.6); }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none; appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 999px;
+    outline: none;
+    margin-bottom: 6px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 3px solid #F7F5F0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 3px solid #F7F5F0;
+  }
+  .hint { font-size: 11px; color: rgba(247,245,240,0.4); text-align: center; }
+  .net-info { margin-top: 10px; font-size: 13px; color: rgba(247,245,240,0.78); display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .net-info .ico { font-size: 14px; }
+  .net-info strong { color: #FFD9B8; font-weight: 600; }
+  .net-info .dim { color: rgba(247,245,240,0.45); font-size: 12px; font-style: italic; }
+
+  /* GRID 3 CALCULATOARE */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 980px) { .results-grid { grid-template-columns: 1fr; } }
+
+  .calc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 24px 22px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .calc-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .calc-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--accent2);
+    background: var(--accent2-bg);
+    padding: 5px 10px; border-radius: 999px;
+    margin-bottom: 12px;
+    align-self: flex-start;
+  }
+  .calc-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px; font-weight: 400; line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .calc-subtitle {
+    font-size: 12px; color: var(--text2); margin-bottom: 18px;
+  }
+
+  /* Slider pentru calc 3 */
+  .pct-control {
+    background: var(--accent-bg);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .pct-control .pct-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+  .pct-control .pct-label { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+  .pct-control .pct-value { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--accent); }
+  .pct-control input[type="range"] {
+    background: rgba(196,98,45,0.18);
+    margin-bottom: 0;
+  }
+  .pct-control input[type="range"]::-webkit-slider-thumb {
+    background: var(--accent); border-color: #FFFFFF;
+  }
+
+  .result-block {
+    background: var(--accent2-bg);
+    border-left: 4px solid var(--accent2);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .result-block .r-label {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent2); font-weight: 700; margin-bottom: 4px;
+  }
+  .result-block .r-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px; color: var(--accent2); font-weight: 400; line-height: 1;
+  }
+  .breakdown {
+    font-size: 12px; color: var(--text2);
+    border-top: 1px dashed var(--border);
+    padding-top: 12px; margin-top: auto;
+  }
+  .breakdown-row { display: flex; justify-content: space-between; padding: 3px 0; }
+  .breakdown-row span:last-child { color: var(--text); font-weight: 600; }
+  .breakdown-rule { font-size: 11px; color: var(--text3); margin-top: 8px; font-style: italic; }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px; color: var(--text3);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Simulator comparativ · 3 modele</p>
+    <h1>Cum se schimbă comisionul în funcție de model</h1>
+    <p>Introdu o singură sumă brută vândută într-o lună. Toate cele 3 calculatoare arată ce ar lua sellerul, pe același input. Util pentru a compara structurile înainte de a decide ce ofertă faci echipei.</p>
+  </header>
+
+  <!-- INPUT PRINCIPAL -->
+  <div class="input-card">
+    <p class="label">💼 Vânzări brute (cu TVA) într-o lună</p>
+    <div class="input-row">
+      <input type="text" id="brutInput" inputmode="numeric" placeholder="ex: 87.500" value="50.000" autocomplete="off" />
+      <span class="unit">lei</span>
+    </div>
+    <input type="range" id="brutSlider" min="0" max="250000" step="1000" value="50000" />
+    <p class="hint">← trage slider-ul sau tastează suma exactă · max 250.000 lei</p>
+    <p class="net-info"><span class="ico">🏕️</span> ≈ <strong id="tabereDisplay">12</strong> tabere vândute <span class="dim">(la 4.000 lei/tabără în medie)</span></p>
+    <p class="net-info"><span class="ico">📊</span> ≈ <strong id="netDisplay">41.322</strong> lei net <span class="dim">(fără TVA 21%) — pe această valoare se aplică comisionul</span></p>
+  </div>
+
+  <!-- 3 CALCULATOARE -->
+  <div class="results-grid">
+
+    <!-- CALC 1: Progresiv FĂRĂ bază -->
+    <div class="calc-card">
+      <span class="calc-tag">Model 1</span>
+      <h3 class="calc-title">Progresiv pe tranșe</h3>
+      <p class="calc-subtitle">Fără bază fixă, fără praguri bonus. Doar procentul progresiv aplicat pe net.</p>
+
+      <div class="result-block">
+        <p class="r-label">Câștig total</p>
+        <p class="r-value"><span id="c1Total">—</span> lei</p>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row"><span>0 – 50.000 net · 3%</span><span id="c1T1">—</span></div>
+        <div class="breakdown-row"><span>50.000 – 100.000 net · 4%</span><span id="c1T2">—</span></div>
+        <div class="breakdown-row"><span>100.000 – 150.000 net · 5%</span><span id="c1T3">—</span></div>
+        <div class="breakdown-row"><span>peste 150.000 net · 7%</span><span id="c1T4">—</span></div>
+        <p class="breakdown-rule">Fiecare tranșă se aplică doar pe suma din intervalul ei.</p>
+      </div>
+    </div>
+
+    <!-- CALC 2: Flat 5% -->
+    <div class="calc-card">
+      <span class="calc-tag">Model 2</span>
+      <h3 class="calc-title">Flat 5% constant</h3>
+      <p class="calc-subtitle">Simplu: 5% din vânzările nete. Niciun prag, nicio tranșă, nicio bază.</p>
+
+      <div class="result-block">
+        <p class="r-label">Câștig total</p>
+        <p class="r-value"><span id="c2Total">—</span> lei</p>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row"><span>Vânzări nete</span><span id="c2Net">—</span></div>
+        <div class="breakdown-row"><span>Procent aplicat</span><span>5 %</span></div>
+        <p class="breakdown-rule">Cel mai predictibil model. Sellerul știe exact ce ia pe fiecare vânzare.</p>
+      </div>
+    </div>
+
+    <!-- CALC 3: Flat ajustabil -->
+    <div class="calc-card">
+      <span class="calc-tag">Model 3</span>
+      <h3 class="calc-title">Flat · procent reglabil</h3>
+      <p class="calc-subtitle">Trage slider-ul ca să simulezi orice procent flat între 1% și 15%.</p>
+
+      <div class="pct-control">
+        <div class="pct-row">
+          <span class="pct-label">Procent</span>
+          <span class="pct-value"><span id="c3Pct">5</span>%</span>
+        </div>
+        <input type="range" id="c3Slider" min="1" max="15" step="0.5" value="5" />
+      </div>
+
+      <div class="result-block">
+        <p class="r-label">Câștig total</p>
+        <p class="r-value"><span id="c3Total">—</span> lei</p>
+      </div>
+
+      <div class="breakdown">
+        <div class="breakdown-row"><span>Vânzări nete</span><span id="c3Net">—</span></div>
+        <div class="breakdown-row"><span>Procent aplicat</span><span><span id="c3PctTxt">5</span> %</span></div>
+        <p class="breakdown-rule">Folosește slider-ul ca să găsești pragul de comision care arată bine pentru echipă fără să strice marja.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="footer-note">Toate calculele se aplică pe valoarea netă (brut ÷ 1.21). TVA-ul nu intră în baza de comision.</p>
+
+</div>
+
+<script>
+  const TVA = 0.21;
+  const TABARA_MEDIE = 4000; // lei brut per tabără în medie
+  const FMT = n => Math.round(n).toLocaleString('ro-RO');
+
+  function calcProgresiv(net) {
+    // 0–50k = 3%, 50k–100k = 4%, 100k–150k = 5%, >150k = 7%
+    const transe = [
+      { pana: 50000, pct: 3 },
+      { pana: 100000, pct: 4 },
+      { pana: 150000, pct: 5 },
+      { pana: Infinity, pct: 7 },
+    ];
+    let restant = net, prev = 0, parts = [], total = 0;
+    for (const t of transe) {
+      const slice = Math.max(0, Math.min(restant, t.pana - prev));
+      const c = slice * t.pct / 100;
+      parts.push(c);
+      total += c;
+      restant -= slice;
+      prev = t.pana;
+      if (restant <= 0) break;
+    }
+    while (parts.length < 4) parts.push(0);
+    return { total, parts };
+  }
+
+  function parseSum(str) {
+    return parseFloat(String(str).replace(/[^0-9.,]/g, '').replace(/\./g, '').replace(',', '.')) || 0;
+  }
+
+  function recompute() {
+    const brut = parseSum(document.getElementById('brutInput').value);
+    const net = brut / (1 + TVA);
+    document.getElementById('netDisplay').textContent = FMT(net);
+    document.getElementById('tabereDisplay').textContent = brut > 0 ? Math.round(brut / TABARA_MEDIE) : '0';
+
+    // CALC 1 · progresiv fără bază
+    const r1 = calcProgresiv(net);
+    document.getElementById('c1Total').textContent = brut > 0 ? FMT(r1.total) : '—';
+    document.getElementById('c1T1').textContent = brut > 0 ? FMT(r1.parts[0]) + ' lei' : '—';
+    document.getElementById('c1T2').textContent = brut > 0 ? FMT(r1.parts[1]) + ' lei' : '—';
+    document.getElementById('c1T3').textContent = brut > 0 ? FMT(r1.parts[2]) + ' lei' : '—';
+    document.getElementById('c1T4').textContent = brut > 0 ? FMT(r1.parts[3]) + ' lei' : '—';
+
+    // CALC 2 · flat 5%
+    const c2 = net * 0.05;
+    document.getElementById('c2Total').textContent = brut > 0 ? FMT(c2) : '—';
+    document.getElementById('c2Net').textContent = brut > 0 ? FMT(net) + ' lei' : '—';
+
+    // CALC 3 · flat ajustabil
+    const pct = parseFloat(document.getElementById('c3Slider').value);
+    document.getElementById('c3Pct').textContent = pct;
+    document.getElementById('c3PctTxt').textContent = pct;
+    const c3 = net * pct / 100;
+    document.getElementById('c3Total').textContent = brut > 0 ? FMT(c3) : '—';
+    document.getElementById('c3Net').textContent = brut > 0 ? FMT(net) + ' lei' : '—';
+
+    // sync brut slider
+    document.getElementById('brutSlider').value = Math.min(brut, 250000);
+
+    // colorare slider track (brut)
+    const bs = document.getElementById('brutSlider');
+    const pBs = (bs.value - bs.min) / (bs.max - bs.min) * 100;
+    bs.style.background = `linear-gradient(to right, var(--accent) ${pBs}%, rgba(255,255,255,0.12) ${pBs}%)`;
+
+    // colorare slider track (c3 %)
+    const cs = document.getElementById('c3Slider');
+    const pCs = (cs.value - cs.min) / (cs.max - cs.min) * 100;
+    cs.style.background = `linear-gradient(to right, var(--accent) ${pCs}%, rgba(196,98,45,0.18) ${pCs}%)`;
+  }
+
+  document.getElementById('brutInput').addEventListener('input', e => {
+    const val = parseSum(e.target.value);
+    e.target.value = val > 0 ? val.toLocaleString('ro-RO') : '';
+    recompute();
+  });
+  document.getElementById('brutSlider').addEventListener('input', e => {
+    document.getElementById('brutInput').value = parseFloat(e.target.value).toLocaleString('ro-RO');
+    recompute();
+  });
+  document.getElementById('c3Slider').addEventListener('input', recompute);
+
+  recompute();
+</script>
+
+</body>
+</html>
