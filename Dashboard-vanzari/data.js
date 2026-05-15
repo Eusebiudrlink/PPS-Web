@@ -1774,12 +1774,12 @@ PRODUCTS: {
   },
 },
 
-// GHIDURI Caller & Closer — înlocuiesc vechiul SCRIPTS pe pagina „Ghiduri Caller & Closer"
-GHID_CALLER: {
-  badge: 'Caller',
-  title: 'Ghidul Callerului',
+// GHIDURI Setter & Closer — înlocuiesc vechiul SCRIPTS pe pagina „Ghiduri Setter & Closer"
+GHID_SETTER: {
+  badge: 'Setter',
+  title: 'Ghidul Setterului',
   subtitle: 'Warm leads · Ce faci, ce spui, ce notezi',
-  intro: 'Callerul are un singur scop: să afle dacă persoana e potrivită pentru un program PPS și, dacă da, să programeze o conversație cu Dana sau Adina. <strong>Nu convinge. Nu vinde. Califică și programează.</strong>',
+  intro: 'Setterul are un singur scop: să afle dacă persoana e potrivită pentru un program PPS și, dacă da, să programeze o conversație cu Dana sau Adina. <strong>Nu convinge. Nu vinde. Califică și programează.</strong>',
   sections: [
     {
       num: '01',

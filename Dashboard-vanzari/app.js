@@ -1,5 +1,5 @@
 // PPS Sales Hub — logica aplicației
-const { PRODUCTS, GHID_CALLER, GHID_CLOSER, PARENT_RESOURCES, WEBINARII, WHATSAPP_MESSAGES, GHIDURI_PARINTI, LEARNING_CONTENT, DEMO_CALLS, LIMBAJ } = window.SALES_DATA;
+const { PRODUCTS, GHID_SETTER, GHID_CLOSER, PARENT_RESOURCES, WEBINARII, WHATSAPP_MESSAGES, GHIDURI_PARINTI, LEARNING_CONTENT, DEMO_CALLS, LIMBAJ } = window.SALES_DATA;
 
 // ============= INTRO SPLASH (video logo · prima vizită) =============
 (function initIntroSplash(){
@@ -43,7 +43,7 @@ const PAGE_TITLES = {
   'acasa': 'Acasă',
   'produse': 'Produse',
   'produs': 'Detaliu produs',
-  'scripturi': 'Ghiduri Caller & Closer',
+  'scripturi': 'Ghiduri Setter & Closer',
   'limbaj': 'Limbaj comun',
   'parinti': 'Resurse pentru părinți',
   'invatare': 'Învățare · onboarding',
@@ -89,6 +89,11 @@ function renderProductGrid(filter = 'all') {
 function renderProductDetail(key) {
   const p = PRODUCTS[key];
   if (!p) return;
+
+  // Aplic clasa de culoare a produsului pe containerul de detaliu
+  // → header & meta-strip primesc gradient-ul caracteristic produsului
+  const detailRoot = document.getElementById('productDetail');
+  if (detailRoot) detailRoot.className = `product-detail ${p.thumb || ''}`;
 
   // helper to render a list as ul
   const ul = (items, cls = 'list-clean') => `<ul class="${cls}">${items.map(i => `<li>${i}</li>`).join('')}</ul>`;
@@ -408,7 +413,7 @@ function renderProductDetail(key) {
   `;
 }
 
-// ============= GHIDURI CALLER & CLOSER =============
+// ============= GHIDURI SETTER & CLOSER =============
 function renderBlock(b) {
   switch (b.type) {
     case 'paragraph':
@@ -511,9 +516,9 @@ function renderGhid(ghid) {
 }
 
 function renderGhiduri() {
-  const callerEl = document.getElementById('ghid-caller');
+  const setterEl = document.getElementById('ghid-setter');
   const closerEl = document.getElementById('ghid-closer');
-  if (callerEl) callerEl.innerHTML = renderGhid(GHID_CALLER);
+  if (setterEl) setterEl.innerHTML = renderGhid(GHID_SETTER);
   if (closerEl) closerEl.innerHTML = renderGhid(GHID_CLOSER);
 
   // Tabs switching

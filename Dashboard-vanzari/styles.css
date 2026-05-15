@@ -803,33 +803,37 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .product-header {
-  background: var(--text);
+  /* fundalul vine din culoarea produsului — vezi blocul `.product-detail.thumb-*` */
+  background: linear-gradient(135deg, #C4622D 0%, #A14F22 100%);
   padding: 32px 36px 28px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
+  position: relative;
 }
 
 .product-header h4 {
   font-family: 'DM Serif Display', serif;
   font-size: 28px;
   font-weight: 400;
-  color: #F7F5F0;
+  color: #FFFFFF;
   margin-bottom: 6px;
   line-height: 1.2;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.18);
 }
-.product-header p { font-size: 13px; color: rgba(247,245,240,0.65); margin-bottom: 14px; }
+.product-header p { font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
 
 .product-tag {
-  background: var(--accent);
-  color: white;
+  background: rgba(255,255,255,0.95);
+  color: var(--text);
   font-size: 10px;
   font-weight: 700;
   padding: 5px 12px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .product-price-block {
@@ -842,19 +846,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .product-price-main {
   font-family: 'DM Serif Display', serif;
   font-size: 26px;
-  color: #F7F5F0;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.18);
 }
 .product-price-discounted {
   font-size: 11px;
-  color: var(--accent);
-  background: rgba(196,98,45,0.18);
+  color: #FFFFFF;
+  background: rgba(255,255,255,0.22);
   padding: 4px 10px;
   border-radius: 20px;
   font-weight: 700;
+  backdrop-filter: blur(4px);
 }
 
 .product-meta-strip {
-  background: var(--text);
+  /* fundalul preia culoarea produsului dar mai îmblânzit — vezi `.product-detail.thumb-*` */
+  background: linear-gradient(135deg, rgba(196,98,45,0.85) 0%, rgba(161,79,34,0.85) 100%);
   padding: 0 36px 22px;
   display: flex;
   gap: 28px;
@@ -863,12 +870,41 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .product-meta-strip > div { display: flex; flex-direction: column; gap: 2px; }
 .product-meta-strip .meta-label {
   font-size: 10px;
-  color: rgba(247,245,240,0.5);
+  color: rgba(255,255,255,0.75);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 600;
 }
-.product-meta-strip .meta-value { font-size: 13px; color: #F7F5F0; font-weight: 500; }
+.product-meta-strip .meta-value { font-size: 13px; color: #FFFFFF; font-weight: 600; }
+
+/* =========================
+   CULORI PRODUSE — header + meta-strip
+   Preiau culoarea cardului cu o nuanță îmblânzită
+   ========================= */
+.product-detail.thumb-incredere  .product-header,
+.product-detail.thumb-incredere  .product-meta-strip { background: linear-gradient(135deg, #D9534F 0%, #A93B36 100%); }
+.product-detail.thumb-conectam   .product-header,
+.product-detail.thumb-conectam   .product-meta-strip { background: linear-gradient(135deg, #D9534F 0%, #A93B36 100%); }
+.product-detail.thumb-public     .product-header,
+.product-detail.thumb-public     .product-meta-strip { background: linear-gradient(135deg, #EA7B3E 0%, #B85C24 100%); }
+.product-detail.thumb-leadership .product-header,
+.product-detail.thumb-leadership .product-meta-strip { background: linear-gradient(135deg, #E8B23A 0%, #B58A1F 100%); }
+.product-detail.thumb-financiar  .product-header,
+.product-detail.thumb-financiar  .product-meta-strip { background: linear-gradient(135deg, #4FA371 0%, #2D7250 100%); }
+.product-detail.thumb-vocatie    .product-header,
+.product-detail.thumb-vocatie    .product-meta-strip { background: linear-gradient(135deg, #3FB5AA 0%, #1F7E73 100%); }
+.product-detail.thumb-examene    .product-header,
+.product-detail.thumb-examene    .product-meta-strip { background: linear-gradient(135deg, #5FB0F5 0%, #2E84CC 100%); }
+.product-detail.thumb-lifestart  .product-header,
+.product-detail.thumb-lifestart  .product-meta-strip { background: linear-gradient(135deg, #3D52A6 0%, #1D2A7E 100%); }
+.product-detail.thumb-relatii    .product-header,
+.product-detail.thumb-relatii    .product-meta-strip { background: linear-gradient(135deg, #9742BC 0%, #66248F 100%); }
+.product-detail.thumb-parinte    .product-header,
+.product-detail.thumb-parinte    .product-meta-strip { background: linear-gradient(135deg, #5DC3B9 0%, #1F8A7A 100%); }
+.product-detail.thumb-curs       .product-header,
+.product-detail.thumb-curs       .product-meta-strip { background: linear-gradient(135deg, #94A4B0 0%, #5C6F7B 100%); }
+.product-detail.thumb-carte      .product-header,
+.product-detail.thumb-carte      .product-meta-strip { background: linear-gradient(135deg, #A38275 0%, #6E4F44 100%); }
 
 /* PRODUCT SUB-TABS */
 .product-subtabs {
@@ -3214,7 +3250,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* =========================
-   GHIDURI CALLER & CLOSER
+   GHIDURI SETTER & CLOSER
    ========================= */
 .ghid-tabs {
   display: flex;
@@ -3312,45 +3348,119 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .ghid-sections {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+  background: var(--surface2);
 }
 .ghid-section {
-  padding: 26px 32px;
-  border-bottom: 1px solid var(--border);
+  padding: 28px 32px 30px;
+  background: var(--card);
+  border-left: 6px solid var(--accent);
+  position: relative;
+  transition: border-color 0.2s;
+}
+.ghid-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(196,98,45,0.06) 0%, transparent 30%);
+  pointer-events: none;
 }
 .ghid-section:last-child { border-bottom: none; }
+
+/* Alternez accentul pentru fiecare pas — verde / portocaliu / mov / albastru — ca să se vadă clar că-s pași */
+.ghid-section:nth-child(6n+1) { border-left-color: #C4622D; }
+.ghid-section:nth-child(6n+1)::before { background: linear-gradient(90deg, rgba(196,98,45,0.08) 0%, transparent 35%); }
+.ghid-section:nth-child(6n+1) .ghid-section-num { background: linear-gradient(135deg, #C4622D 0%, #A14F22 100%); box-shadow: 0 6px 14px -6px rgba(196,98,45,0.55); }
+.ghid-section:nth-child(6n+1) .ghid-section-eyebrow { background: rgba(196,98,45,0.12); color: #C4622D; }
+
+.ghid-section:nth-child(6n+2) { border-left-color: #2D6B5A; }
+.ghid-section:nth-child(6n+2)::before { background: linear-gradient(90deg, rgba(45,107,90,0.08) 0%, transparent 35%); }
+.ghid-section:nth-child(6n+2) .ghid-section-num { background: linear-gradient(135deg, #2D6B5A 0%, #1F4D40 100%); box-shadow: 0 6px 14px -6px rgba(45,107,90,0.55); }
+.ghid-section:nth-child(6n+2) .ghid-section-eyebrow { background: rgba(45,107,90,0.12); color: #2D6B5A; }
+
+.ghid-section:nth-child(6n+3) { border-left-color: #B58A1F; }
+.ghid-section:nth-child(6n+3)::before { background: linear-gradient(90deg, rgba(181,138,31,0.08) 0%, transparent 35%); }
+.ghid-section:nth-child(6n+3) .ghid-section-num { background: linear-gradient(135deg, #E8B23A 0%, #B58A1F 100%); box-shadow: 0 6px 14px -6px rgba(181,138,31,0.55); }
+.ghid-section:nth-child(6n+3) .ghid-section-eyebrow { background: rgba(181,138,31,0.14); color: #8E6A14; }
+
+.ghid-section:nth-child(6n+4) { border-left-color: #7B1FA2; }
+.ghid-section:nth-child(6n+4)::before { background: linear-gradient(90deg, rgba(123,31,162,0.08) 0%, transparent 35%); }
+.ghid-section:nth-child(6n+4) .ghid-section-num { background: linear-gradient(135deg, #9742BC 0%, #66248F 100%); box-shadow: 0 6px 14px -6px rgba(123,31,162,0.55); }
+.ghid-section:nth-child(6n+4) .ghid-section-eyebrow { background: rgba(123,31,162,0.12); color: #7B1FA2; }
+
+.ghid-section:nth-child(6n+5) { border-left-color: #1F4A8A; }
+.ghid-section:nth-child(6n+5)::before { background: linear-gradient(90deg, rgba(31,74,138,0.08) 0%, transparent 35%); }
+.ghid-section:nth-child(6n+5) .ghid-section-num { background: linear-gradient(135deg, #2E68B5 0%, #1F4A8A 100%); box-shadow: 0 6px 14px -6px rgba(31,74,138,0.55); }
+.ghid-section:nth-child(6n+5) .ghid-section-eyebrow { background: rgba(31,74,138,0.12); color: #1F4A8A; }
+
+.ghid-section:nth-child(6n) { border-left-color: #C0392B; }
+.ghid-section:nth-child(6n)::before { background: linear-gradient(90deg, rgba(192,57,43,0.08) 0%, transparent 35%); }
+.ghid-section:nth-child(6n) .ghid-section-num { background: linear-gradient(135deg, #D9534F 0%, #A93B36 100%); box-shadow: 0 6px 14px -6px rgba(192,57,43,0.55); }
+.ghid-section:nth-child(6n) .ghid-section-eyebrow { background: rgba(192,57,43,0.12); color: #C0392B; }
+
 .ghid-section-head {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 18px;
+  gap: 18px;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
 }
 .ghid-section-num {
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: var(--accent);
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #C4622D 0%, #A14F22 100%);
   color: white;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 800;
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+.ghid-section-num::before {
+  content: 'PAS';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: #FFF;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
 }
 .ghid-section-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.2;
   margin: 0;
   font-weight: 400;
   color: var(--text);
 }
 .ghid-section-eyebrow {
-  font-size: 12px;
-  color: var(--text2);
-  margin: 4px 0 0;
-  font-style: italic;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(196,98,45,0.12);
+  color: var(--accent);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin: 8px 0 0;
+  font-style: normal;
+}
+.ghid-section-body {
+  position: relative;
+  z-index: 1;
 }
 .ghid-section-body {
   display: flex;
