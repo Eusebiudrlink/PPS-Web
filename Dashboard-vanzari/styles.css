@@ -183,6 +183,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .nav-item.active .badge-mini { background: rgba(255,255,255,0.25); }
 
+.nav-group-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247,245,240,0.35);
+  padding: 14px 12px 4px;
+  pointer-events: none;
+}
+
+.nav-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin: 8px 12px;
+}
+
 .sidebar-panel {
   margin: 14px;
   padding: 16px;
@@ -2704,28 +2721,117 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-top: 3px;
 }
 
-/* Secțiuni de conținut */
+/* Secțiuni de conținut — stil inspirat din ghid-section */
 .prod-section {
   background: var(--card);
-  border: 1px solid var(--border);
+  border-left: 5px solid var(--accent);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 26px 30px;
+  padding: 26px 28px 28px;
+  position: relative;
+  overflow: hidden;
 }
+.prod-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(196,98,45,0.05) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+/* Culori alternante pe border + gradient + badge */
+.prod-section:nth-child(6n+1) { border-left-color: #C4622D; }
+.prod-section:nth-child(6n+1)::before { background: linear-gradient(90deg, rgba(196,98,45,0.07) 0%, transparent 30%); }
+.prod-section:nth-child(6n+1) .prod-section-num { background: linear-gradient(135deg, #C4622D 0%, #A14F22 100%); box-shadow: 0 5px 12px -5px rgba(196,98,45,0.5); }
+.prod-section:nth-child(6n+1) .prod-section-eyebrow { background: rgba(196,98,45,0.12); color: #C4622D; }
+
+.prod-section:nth-child(6n+2) { border-left-color: #2D6B5A; }
+.prod-section:nth-child(6n+2)::before { background: linear-gradient(90deg, rgba(45,107,90,0.07) 0%, transparent 30%); }
+.prod-section:nth-child(6n+2) .prod-section-num { background: linear-gradient(135deg, #2D6B5A 0%, #1F4D40 100%); box-shadow: 0 5px 12px -5px rgba(45,107,90,0.5); }
+.prod-section:nth-child(6n+2) .prod-section-eyebrow { background: rgba(45,107,90,0.12); color: #2D6B5A; }
+
+.prod-section:nth-child(6n+3) { border-left-color: #B58A1F; }
+.prod-section:nth-child(6n+3)::before { background: linear-gradient(90deg, rgba(181,138,31,0.07) 0%, transparent 30%); }
+.prod-section:nth-child(6n+3) .prod-section-num { background: linear-gradient(135deg, #E8B23A 0%, #B58A1F 100%); box-shadow: 0 5px 12px -5px rgba(181,138,31,0.5); }
+.prod-section:nth-child(6n+3) .prod-section-eyebrow { background: rgba(181,138,31,0.14); color: #8E6A14; }
+
+.prod-section:nth-child(6n+4) { border-left-color: #7B1FA2; }
+.prod-section:nth-child(6n+4)::before { background: linear-gradient(90deg, rgba(123,31,162,0.07) 0%, transparent 30%); }
+.prod-section:nth-child(6n+4) .prod-section-num { background: linear-gradient(135deg, #9742BC 0%, #66248F 100%); box-shadow: 0 5px 12px -5px rgba(123,31,162,0.5); }
+.prod-section:nth-child(6n+4) .prod-section-eyebrow { background: rgba(123,31,162,0.12); color: #7B1FA2; }
+
+.prod-section:nth-child(6n+5) { border-left-color: #1F4A8A; }
+.prod-section:nth-child(6n+5)::before { background: linear-gradient(90deg, rgba(31,74,138,0.07) 0%, transparent 30%); }
+.prod-section:nth-child(6n+5) .prod-section-num { background: linear-gradient(135deg, #2E68B5 0%, #1F4A8A 100%); box-shadow: 0 5px 12px -5px rgba(31,74,138,0.5); }
+.prod-section:nth-child(6n+5) .prod-section-eyebrow { background: rgba(31,74,138,0.12); color: #1F4A8A; }
+
+.prod-section:nth-child(6n) { border-left-color: #C0392B; }
+.prod-section:nth-child(6n)::before { background: linear-gradient(90deg, rgba(192,57,43,0.07) 0%, transparent 30%); }
+.prod-section:nth-child(6n) .prod-section-num { background: linear-gradient(135deg, #D9534F 0%, #A93B36 100%); box-shadow: 0 5px 12px -5px rgba(192,57,43,0.5); }
+.prod-section:nth-child(6n) .prod-section-eyebrow { background: rgba(192,57,43,0.12); color: #C0392B; }
+
 .prod-section-head {
-  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.prod-section-num {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #C4622D 0%, #A14F22 100%);
+  color: white;
+  font-weight: 800;
+  font-size: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+.prod-section-num::before {
+  content: 'SEC';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: #FFF;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+.prod-section-head-text {
+  display: flex;
+  flex-direction: column;
 }
 .prod-section-eyebrow {
   display: inline-block;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
+  background: rgba(196,98,45,0.12);
   color: var(--accent);
+  padding: 3px 9px;
+  border-radius: 10px;
   margin-bottom: 6px;
+  align-self: flex-start;
 }
 .prod-section-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 400;
   margin: 0;
   color: var(--text);
@@ -2735,6 +2841,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   flex-direction: column;
   gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Secțiunea fișă produs — fără număr, stil neutru */
+.prod-fisa-section {
+  border-left-color: var(--accent) !important;
+}
+.prod-fisa-section::before {
+  background: linear-gradient(90deg, rgba(196,98,45,0.05) 0%, transparent 25%) !important;
 }
 
 /* Lead (2 propoziții) */
@@ -3243,8 +3359,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Responsive */
 @media (max-width: 760px) {
-  .prod-section { padding: 20px 18px; }
-  .prod-section-title { font-size: 19px; }
+  .prod-section { padding: 20px 16px; }
+  .prod-section-title { font-size: 18px; }
+  .prod-section-num { width: 42px; height: 42px; font-size: 16px; border-radius: 10px; }
+  .prod-section-head { gap: 12px; }
   .prod-fisa { padding: 18px 20px; }
   .prod-pret-row { gap: 18px; }
 }
@@ -3776,3 +3894,148 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .ghid-signals { grid-template-columns: 1fr; }
   .ghid-tab { min-width: 100%; }
 }
+
+/* ============================================================
+   ONBOARDING · buton hero + modal ghid rapid
+   ============================================================ */
+
+/* Buton în hero */
+.onboarding-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 24px;
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+.onboarding-btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+}
+.onboarding-btn-icon { font-size: 15px; }
+
+/* Overlay */
+.onboarding-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.onboarding-overlay.open { display: flex; }
+
+/* Modal box */
+.onboarding-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+}
+
+/* Close button */
+.onboarding-close {
+  position: absolute;
+  top: 14px; right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--text2);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.onboarding-close:hover { background: var(--border); color: var(--text); }
+
+/* Header */
+.onboarding-header {
+  padding: 28px 28px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.onboarding-emoji { font-size: 36px; display: block; margin-bottom: 10px; }
+.onboarding-header h3 { font-size: 20px; font-weight: 700; margin: 0 0 6px; color: var(--text); }
+.onboarding-header p { font-size: 13px; color: var(--text2); margin: 0; }
+
+/* Steps */
+.onboarding-steps { padding: 20px 28px; display: flex; flex-direction: column; gap: 14px; }
+
+.ob-step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.ob-step-highlight {
+  background: rgba(45,107,90,0.08);
+  border-color: rgba(45,107,90,0.3);
+}
+.ob-num {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2px;
+}
+.ob-step strong { font-size: 14px; font-weight: 700; color: var(--text); display: block; margin-bottom: 3px; }
+.ob-step p { font-size: 12px; color: var(--text2); margin: 0 0 8px; line-height: 1.5; }
+.ob-step p:last-child { margin-bottom: 0; }
+
+/* CTA în step highlight */
+.ob-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--accent2);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+  margin-top: 4px;
+}
+.ob-cta:hover { opacity: 0.85; }
+
+/* Footer */
+.onboarding-footer {
+  padding: 16px 28px 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.ob-dismiss {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+.ob-dismiss:hover { opacity: 0.85; }

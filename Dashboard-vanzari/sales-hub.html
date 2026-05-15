@@ -29,14 +29,21 @@
 
   <nav class="nav">
     <button class="nav-item active" data-page="acasa"><span class="nav-emoji">🏠</span> Acasă</button>
+
+    <span class="nav-group-label">Zilnic</span>
     <button class="nav-item" data-page="produse"><span class="nav-emoji">📦</span> Produse</button>
     <button class="nav-item" data-page="scripturi"><span class="nav-emoji">💬</span> Ghiduri Setter &amp; Closer</button>
-    <button class="nav-item" data-page="limbaj"><span class="nav-emoji">🗣️</span> Limbaj comun</button>
-    <button class="nav-item" data-page="parinti"><span class="nav-emoji">👨‍👩‍👧</span> Resurse Părinți</button>
-    <button class="nav-item" data-page="invatare"><span class="nav-emoji">📚</span> Învățare <span class="badge-mini">4 capitole</span></button>
-    <button class="nav-item" data-page="instrumente"><span class="nav-emoji">🛠️</span> Instrumente</button>
-    <button class="nav-item" data-page="politici"><span class="nav-emoji">📋</span> Reguli Reduceri</button>
     <button class="nav-item" data-page="comanda"><span class="nav-emoji">📋</span> Gestionează Leads</button>
+
+    <span class="nav-group-label">La nevoie</span>
+    <button class="nav-item" data-page="parinti"><span class="nav-emoji">👨‍👩‍👧</span> Resurse Părinți</button>
+    <button class="nav-item" data-page="politici"><span class="nav-emoji">📋</span> Reguli Reduceri</button>
+    <button class="nav-item" data-page="instrumente"><span class="nav-emoji">🛠️</span> Instrumente</button>
+
+    <span class="nav-group-label">Onboarding</span>
+    <button class="nav-item" data-page="invatare"><span class="nav-emoji">📚</span> Învățare <span class="badge-mini">5 capitole</span></button>
+
+    <div class="nav-divider"></div>
     <button class="nav-item" data-page="ajutor"><span class="nav-emoji">🆘</span> Cere ajutor</button>
   </nav>
 
@@ -62,10 +69,67 @@
       <div class="hero">
         <div class="label">Sistem de operare vânzări</div>
         <h2>Tot ce ai nevoie ca să suni cu încredere — într-un singur loc</h2>
-        <p>Produse, ghiduri Setter &amp; Closer, limbaj comun, politici, resurse pentru părinți și contactele echipei. Pentru zilele când ai 80 de apeluri și nu ai timp să cauți.</p>
+        <p>Produse, ghiduri Setter &amp; Closer, limbaj PPS, politici, resurse pentru părinți și contactele echipei. Pentru zilele când ai 80 de apeluri și nu ai timp să cauți.</p>
         <div class="hero-stats">
           <div class="hero-stat"><strong>12</strong><span>produse active</span></div>
           <div class="hero-stat"><strong>-10%</strong><span>campania mai</span></div>
+        </div>
+        <button class="onboarding-btn" id="onboardingTrigger">
+          <span class="onboarding-btn-icon">👋</span>
+          Ești prima oară aici? Ghid rapid
+        </button>
+      </div>
+
+      <!-- MODAL ONBOARDING -->
+      <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-modal">
+          <button class="onboarding-close" id="onboardingClose">✕</button>
+          <div class="onboarding-header">
+            <span class="onboarding-emoji">🗺️</span>
+            <h3>Bun venit în Sales Hub PPS</h3>
+            <p>5 secțiuni. Fiecare are un rol clar. Iată harta în 2 minute.</p>
+          </div>
+          <div class="onboarding-steps">
+            <div class="ob-step">
+              <span class="ob-num">📦</span>
+              <div>
+                <strong>Produse</strong>
+                <p>Fișa fiecărui program: ce este, pentru cine, cum îl prezinți, obiecții cu răspunsuri. Deschide-o în apel.</p>
+              </div>
+            </div>
+            <div class="ob-step">
+              <span class="ob-num">💬</span>
+              <div>
+                <strong>Ghiduri Setter &amp; Closer</strong>
+                <p>Scriptul complet al unui apel — deschidere, calificare, descoperire, închidere. Structura, nu textul.</p>
+              </div>
+            </div>
+            <div class="ob-step">
+              <span class="ob-num">👨‍👩‍👧</span>
+              <div>
+                <strong>Resurse Părinți</strong>
+                <p>Webinarii, PDF-uri și mesaje WhatsApp gata de trimis — înainte sau după apel.</p>
+              </div>
+            </div>
+            <div class="ob-step">
+              <span class="ob-num">🛠️</span>
+              <div>
+                <strong>Instrumente</strong>
+                <p>Calculator comision Setter &amp; Closer + tool-uri externe (Vocaroo, Whisper) + biblioteca de apeluri.</p>
+              </div>
+            </div>
+            <div class="ob-step ob-step-highlight">
+              <span class="ob-num">📚</span>
+              <div>
+                <strong>Învățare · de unde începi tu</strong>
+                <p>Parcurs complet de onboarding: cultura PPS, customer journey, cum suni, Limbaj PPS. Primele 2 săptămâni.</p>
+                <button class="ob-cta" id="onboardingGoLearn">Mergi la Învățare →</button>
+              </div>
+            </div>
+          </div>
+          <div class="onboarding-footer">
+            <button class="ob-dismiss" id="onboardingDismiss">Am înțeles — mă aventurez 🚀</button>
+          </div>
         </div>
       </div>
 
@@ -87,10 +151,10 @@
             <span>Marchează interacțiune + lista leads Podio</span>
           </div>
         </button>
-        <button class="quick-action" data-page="limbaj">
+        <button class="quick-action" data-page="invatare" data-tab-target="limbaj-pps">
           <div class="quick-action-icon">🗣️</div>
           <div class="quick-action-text">
-            <strong>Limbaj comun</strong>
+            <strong>Limbaj PPS</strong>
             <span>Mesaj central, NU vs DA, fraze cheie</span>
           </div>
         </button>
@@ -197,19 +261,6 @@
       <div class="ghid-content" id="ghid-closer" role="tabpanel"></div>
     </section>
 
-    <!-- LIMBAJ COMUN -->
-    <section class="page" id="page-limbaj" data-search-area>
-      <div class="page-header">
-        <div>
-          <p class="eyebrow">Vocabular comun pentru toată echipa</p>
-          <h1>🗣️ Limbaj comun</h1>
-          <p class="intro">Cum vorbim despre PPS, despre tabere, despre probleme și despre preț. Cuvintele aprobate, formulările NU vs DA, formula de obiecții și ce să nu spui niciodată.</p>
-        </div>
-        <span class="status-pill green">Vocabular intern</span>
-      </div>
-      <div id="limbajContent"></div>
-    </section>
-
     <!-- RESURSE PĂRINȚI -->
     <section class="page" id="page-parinti" data-search-area>
       <div class="page-header">
@@ -250,7 +301,7 @@
       <div class="page-header">
         <div>
           <p class="eyebrow">Onboarding · pentru selleri noi</p>
-          <h1>Învățare — 4 capitole</h1>
+          <h1>Învățare — 5 capitole</h1>
           <p class="intro">Parcurs liniar pentru primele 2 săptămâni. La final faci primul apel real. Veteranii pot reciti orice capitol când vor refresh.</p>
         </div>
       </div>
@@ -259,6 +310,7 @@
         <button data-tab="journey"><span class="step-num">2</span> Customer Journey</button>
         <button data-tab="cumsuni"><span class="step-num">3</span> Cum suni <span class="tab-soon-badge">Va urma</span></button>
         <button data-tab="comanda"><span class="step-num">4</span> Comandă & raportare <span class="tab-soon-badge">Va urma</span></button>
+        <button data-tab="limbaj-pps"><span class="step-num">5</span> Limbaj PPS</button>
       </div>
 
       <!-- TAB 1: BUN VENIT & CULTURA -->
@@ -416,7 +468,7 @@
             <li><strong>Calificare</strong> — cine e copilul, ce vârstă, ce problemă văd părinții. 3 întrebări cheie, puse natural, cu ascultare.</li>
             <li><strong>Descoperire profundă</strong> — întrebări despre copil și familie. Cum arată problema în viața de zi cu zi.</li>
             <li><strong>Matching</strong> — recomanzi produsul potrivit, nu pe cel mai scump. Folosește pagina Produse pentru detalii.</li>
-            <li><strong>Prezentare</strong> — axată pe beneficii concrete pe limba părinților (vezi Limbaj comun · NU vs DA).</li>
+            <li><strong>Prezentare</strong> — axată pe beneficii concrete pe limba părinților (vezi Limbaj PPS · NU vs DA).</li>
             <li><strong>Gestionare obiecții</strong> — formula: Înțeleg → Are sens → Mulți părinți simt asta → Pot să vă explic. Vezi pagina Ghiduri Setter &amp; Closer pentru obiecții specifice.</li>
             <li><strong>Închidere</strong> — propui pașii de înscriere cu două opțiuni clare. Nu „vreți sau nu" — ci „cum facem".</li>
             <li><strong>Notițe în Podio</strong> — imediat după apel, cât e proaspăt în minte.</li>
@@ -513,6 +565,12 @@
         </div>
         </div>
       </div>
+
+      <!-- TAB 5: LIMBAJ PPS -->
+      <div class="tab-content" id="tab-limbaj-pps">
+        <div id="limbajContent"></div>
+      </div>
+
     </section>
 
     <!-- INSTRUMENTE -->

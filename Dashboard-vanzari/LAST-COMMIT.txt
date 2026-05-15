@@ -1,0 +1,41 @@
+============================================================
+  PUSH PPS-WEB — Sales Hub
+  Generat: 2026-05-15
+  Commit: "Update Sales Hub mai 2026"
+============================================================
+
+PASUL 1 — Copiază fișierele live în repo:
+------------------------------------------
+cp "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/Dashboard-Vanzari/sales-hub.html" \
+   "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/PPS-Web/Dashboard-vanzari/"
+
+cp "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/Dashboard-Vanzari/styles.css" \
+   "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/PPS-Web/Dashboard-vanzari/"
+
+cp "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/Dashboard-Vanzari/app.js" \
+   "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/PPS-Web/Dashboard-vanzari/"
+
+cp "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/Dashboard-Vanzari/data.js" \
+   "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/PPS-Web/Dashboard-vanzari/"
+
+
+PASUL 2 — Commit & push:
+--------------------------
+cd "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/PPS-Web"
+
+git add Dashboard-vanzari/sales-hub.html Dashboard-vanzari/styles.css Dashboard-vanzari/app.js Dashboard-vanzari/data.js
+
+git commit -m "Update Sales Hub mai 2026"
+
+git push origin main
+
+
+============================================================
+  Dacă apare eroarea .git/index.lock, rulează mai întâi:
+  rm "$HOME/Library/CloudStorage/GoogleDrive-damatar02@gmail.com/My Drive/00 - My Data/Desktop/JOB/PPS_Work/tools/Claude/PPS-Web/.git/index.lock"
+============================================================
+
+  Live după ~1-2 min la:
+  https://eusebiudrlink.github.io/PPS-Web/Dashboard-vanzari/sales-hub.html
+  (Hard refresh: Cmd+Shift+R)
+

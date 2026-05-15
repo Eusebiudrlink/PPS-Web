@@ -44,7 +44,6 @@ const PAGE_TITLES = {
   'produse': 'Produse',
   'produs': 'Detaliu produs',
   'scripturi': 'Ghiduri Setter & Closer',
-  'limbaj': 'Limbaj comun',
   'parinti': 'Resurse pentru părinți',
   'invatare': 'Învățare · onboarding',
   'instrumente': 'Instrumente',
@@ -159,15 +158,23 @@ function renderProductDetail(key) {
   }
 
   // === Helpers pentru secțiuni ===
-  const section = (id, title, eyebrow, contentHtml) => `
+  let sectionCounter = 0;
+  const section = (id, title, eyebrow, contentHtml) => {
+    sectionCounter++;
+    const num = String(sectionCounter).padStart(2, '0');
+    return `
     <section class="prod-section" id="prod-${id}">
       <div class="prod-section-head">
-        ${eyebrow ? `<span class="prod-section-eyebrow">${eyebrow}</span>` : ''}
-        <h3 class="prod-section-title">${title}</h3>
+        <div class="prod-section-num">${num}</div>
+        <div class="prod-section-head-text">
+          ${eyebrow ? `<span class="prod-section-eyebrow">${eyebrow}</span>` : ''}
+          <h3 class="prod-section-title">${title}</h3>
+        </div>
       </div>
       <div class="prod-section-body">${contentHtml}</div>
     </section>
   `;
+  };
 
   // === Fișa produs (varsta/durata/locatie/serii) ===
   const fp = p.fisaProdus;
@@ -992,6 +999,14 @@ document.body.addEventListener('click', e => {
   if (target.classList.contains('product-card')) return;
   e.preventDefault();
   switchPage(target.dataset.page);
+  // Deep-link toward a specific learn tab if specified
+  const tabTarget = target.dataset.tabTarget;
+  if (tabTarget) {
+    requestAnimationFrame(() => {
+      const tabBtn = document.querySelector(`#page-invatare .tabs button[data-tab="${tabTarget}"]`);
+      if (tabBtn) tabBtn.click();
+    });
+  }
 });
 
 // Smooth scroll pentru ancore interne (ex: card „Marchează interacțiune" → formular Podio)
@@ -1035,6 +1050,29 @@ document.getElementById('modalOverlay')?.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
+
+// ============= ONBOARDING MODAL =============
+(function() {
+  const overlay = document.getElementById('onboardingOverlay');
+  const trigger = document.getElementById('onboardingTrigger');
+  const closeBtn = document.getElementById('onboardingClose');
+  const dismissBtn = document.getElementById('onboardingDismiss');
+  const goLearnBtn = document.getElementById('onboardingGoLearn');
+
+  function openOnboarding() { overlay && overlay.classList.add('open'); }
+  function closeOnboarding() { overlay && overlay.classList.remove('open'); }
+
+  trigger?.addEventListener('click', openOnboarding);
+  closeBtn?.addEventListener('click', closeOnboarding);
+  dismissBtn?.addEventListener('click', closeOnboarding);
+  overlay?.addEventListener('click', e => { if (e.target === overlay) closeOnboarding(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay?.classList.contains('open')) closeOnboarding(); });
+
+  goLearnBtn?.addEventListener('click', () => {
+    closeOnboarding();
+    switchPage('invatare');
+  });
+})();
 
 // Init
 renderProductGrid('all');
